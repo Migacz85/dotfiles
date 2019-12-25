@@ -1,0 +1,11 @@
+bashmount
+compton-tryone-git
+gamin
+gnome-shell-extension-manjaro-update
+gnome-shell-extension-taskbar
+imgur-screenshot-git
+libnm-gtk
+manjaro-gdm-check
+mhwd-catalyst
+ttf-devicons
+vim-devicons

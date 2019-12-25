@@ -1,0 +1,391 @@
+# SHOURTCATS AND AUTOSTART 
+# How to find bindcode of key for shourtcat we looking for ? 
+# Use: 
+# xmodmap -pke
+
+# or
+# xev
+
+## Nice blur effect
+
+# AUTOSTART PROGRAMS
+  exec compton --config $PWD/.config/compton/compton.conf
+
+  # set $browser qutebrowser
+  # exec $browser
+  # exec thunderbird
+
+  exec krunner
+  exec nm-applet
+  exec blueman-manager
+  exec volumeicon 
+  exec copyq
+  exec_always xrdb merge .Xresources
+  exec_always capsesc.sh
+  # exec_always python $HOME/.scripts/i3wm.py 
+  exec bash hibernate.sh -monitor
+  exec bash start.sh "youtube-list" mpsyt 
+  exec bash start.sh "ranger" ranger
+  exec bash start.sh "Htop" htop
+  exec bash start.sh "fterm5" bash
+  exec bash start.sh "fterm6" bash 
+  exec bash start.sh "fterm7" bash
+
+  exec_always python 'xrandr --output $EXTERNAL_OUTPUT --mode 2560x1440_50.00 --pos 0x0 --rotate normal --output VIRTUAL1 --off --output $INTERNAL_OUTPUT --primary --mode 1920x1080 --pos 288x1440 --rotate normal'
+
+  # exec bash time_count.sh -tracki3wm
+
+# BACKUP FOR LOCK PACKAGES 
+# You can install them  using pacman:
+# sudo pacman -S  --noconfirm --needed - < "my-manjaro-packages-Qet.txt"  
+# or 
+# cat my-manjaro-pure-pacman-packages-Qqe.lst | xargs pacman -S --needed --noconfirm
+  exec_always pacman -Q | awk '{print $1}' > $PWD/.dotfiles/.package-list/my-manjaro-packages-Q.txt
+  exec_always pacman -Qe | awk '{print $1}' > $PWD/.dotfiles/.package-list/my-manjaro-packages-Qe.txt
+  exec_always pacman -Qet | awk '{print $1}' > $PWD/.dotfiles/.package-list/my-manjaro-packages-Qet.txt
+  exec_always pacman -Qqe | grep -v "$(pacman -Qqm)" > $PWD/.dotfiles/.package-list/my-manjaro-pure-pacman-packages-Qqe.lst
+  exec_always pacman -Qm | awk '{print $1}' > $PWD/.dotfiles/.package-list/my-manjaro-AUR-packages-Qm.txt
+ 
+  set $mod Mod4
+
+# Programs in variables
+  set $terminal urxvt
+  set $terminalArg -e 
+  set $nameArg -name
+
+# Shourtacts for programs 
+  bindsym $mod+d                          exec --no-startup-id "rofi -combi-modi window,drun,ssh -theme gruvbox-light-soft -show combi"
+  # bindsym $mod+d                        exec --no-startup-id termite -t 'fzf-menu' -e 'i3-dmenu-desktop --dmenu=fzf'
+  # bindsym $mod+d                        exec --no-startup-id i3-dmenu-desktop
+  bindsym $mod+Return                     exec bash terminal.sh 
+  bindsym Ctrl + Escape                   exec $terminal $nameArg "Htop" $terminalArg sudo htop 
+  bindcode 107                            exec spectacle 
+  bindsym $mod+y                          exec urxvt $nameArg "youtube-list" -e mpsyt
+  bindsym $mod+r                          exec urxvt $nameArg "ranger" -e ranger 
+
+# bindsym F2                            exec notify-send Statistics "`time_count.sh -stats 0 | head -10`"  ;  exec notify-send Statistics "`time_count.sh -stats 0 | tail -5`" 
+# bindsym F3                            exec notify-send Statistics "`time_count.sh -stats 7 | head -10`"  ;  exec notify-send Statistics "`time_count.sh -stats 0 | tail -5`" 
+# bindsym F9                            exec echo "left" > /home/migacz/.scripts/side.conf           # Display on kindle
+# bindsym F11                           exec echo "right" > /home/migacz/.scripts/side.conf 
+
+## SCRACHPAD and FLOATING rules 
+
+    floating_modifier $mod
+    for_window [class="copyq"] floating enable 
+    for_window [title="fzf-menu"]           floating enable
+    for_window [class="yakuake"]            floating enable
+    for_window [class="Peek"]               floating enable
+    for_window [class="plasmashell"]        floating enable
+    for_window [class="plasmashell"]        resize set 320 300
+    for_window [class="Gnome-calendar"]      floating enable;  [class="Gnome-calendar"] resize set 588 600; [class="Gnome-calendar"] move position 1327 445
+
+    bindsym F1 [class="qutebrowser"] focus; mode "default"
+    bindsym F2 [class="Emacs"] focus; mode "default"
+    bindsym F3 exec copyq toggle && for_window [class="copyq"] move position center
+    bindsym F4 exec bash hide.sh ranger; [instance="ranger"] scratchpad show ; [instance="ranger"] move position center ; [instance="ranger"] resize set 1200 1000
+    bindsym F5 exec bash hide.sh youtube-list ; [instance="youtube-list"] scratchpad show ; [instance="youtube-list"] move position center
+    bindsym F6 exec bash hide.sh Htop ; [instance="Htop"] scratchpad show ; [instance="Htop"] move position center 
+
+    # bindsym F9                [instance="fterm5"] scratchpad show; [instance="fterm5"] 
+    bindsym F10               exec bash hide.sh fterm7 ; [instance="fterm7"] scratchpad show; 
+    bindsym F11               exec bash hide.sh fterm6 ; [instance="fterm6"] scratchpad show; [instance="fterm6"] move position center
+    bindsym F12               exec bash hide.sh fterm5 ; [instance="fterm5"] scratchpad show; 
+
+    # bindsym F5 [class="Google-chrome"] focus; mode "default"
+    # bindsym F6 [class="TelegramDesktop"] focus; mode "default"
+
+
+    # Guake style
+    for_window [instance="fterm5"] resize set 1850 484 
+    for_window [instance="fterm5"] move to scratchpad;  [instance="fterm5"] resize set 1850 484; [instance="fterm5"] move position 40 -1; [instance="fterm5"] scratchpad show;
+    for_window [instance="fterm7"] resize set 864 364
+    for_window [instance="fterm7"] move to scratchpad [instance="fterm7"] move position 1048 682 ; [instance="fterm7"] scratchpad show;
+
+    # for_window [instance="fterm7"] resize set 900 900
+    # for_window [instance="fterm7"] move to scratchpad
+    # [instance="fterm6"] move position 1500 200 ; [instance="fterm6"] scratchpad show;
+
+    for_window [instance="fterm6"] resize set 1600 900
+    for_window [instance="fterm6"] move to scratchpad
+
+    for_window [instance="youtube-list"] resize set 1000 900
+    for_window [instance="youtube-list"] move to scratchpad 
+
+    for_window  [instance="Htop"] resize set 1600 900 
+    for_window  [instance="Htop"] move to scratchpad 
+
+    for_window [instance="ranger"] resize set 1200 1000
+    for_window [instance="ranger"] move to scratchpad;
+
+
+## EXTERNAL MONITOR
+
+# Monitors (check them with xrandr and setup it here)
+set $laptop-display eDP1
+set $second-display HDMI1
+
+# Monitor settings
+
+
+
+# Start with only laptop screen
+exec xrandr --output $laptop-display --auto --output $second-display --off
+# Switch between laptop and monitor
+bindcode $mod+Shift+35                exec bash /home/migacz/.scripts/external_monitor.sh
+
+# Move whole workspace to specified monitor
+# bindsym $mod + Shift + p              exec i3-msg move workspace to $second-display
+# bindsym $mod + Shift + emicolon      exec i3-msg move workspace to $laptop-display 
+## WORKSPACES
+#If you are changing $ws variables
+#You need to update i3ws.sh names aswell.
+#If you want shourctac $mod+b to work
+#
+#e # # # # # # # # # # #f #
+#LAPTOP
+# Workspace 1
+set $mn1 "a" 
+set $ws1 "1:lap"  
+# Workspace 2
+set $ws2 "2:lap" 
+set $mn2 "s" 
+# Workspace 3
+set $ws3 "3:lap"              
+set $mn3 "d" 
+# Workspace 4
+set $ws4 "4:lap"
+set $mn4 "f" 
+# Workspace 5
+set $ws5 "5:lap" 
+set $mn5 "g" 
+
+#HDMI
+# Workspace 6
+set $ws6 "6:hdmi" 
+set $mn6 "h" 
+# Workspace 7
+set $ws7 "7:hdmi" 
+set $mn7 "j" 
+# Workspace 8
+set $ws8 "8:hdmi" 
+set $mn8 "k" 
+# Workspace 9
+set $ws9 "9:hdmi" 
+set $mn9 "o" 
+# Workspace 10
+set $ws10 "10:hdmi" 
+set $mn10 "l" 
+
+# Workspace 12
+set $ws11 "11: Mail" 
+set $mn11 "m" 
+
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# If second display is avaliable put worpsaces in that way:
+
+# Custom behaviour of splitting windows
+for_window [class=.*] exec split.sh
+for_window [class="mpv"] exec bottomright.sh
+for_window [class="Emacs"] move container to workspace number 6;mode "default" 
+for_window [class="qutebrowser"] move container to workspace number 5;mode "default" 
+
+
+#lap
+  workspace 1 output $laptop-display
+  workspace 2 output $laptop-display
+  workspace 3 output $laptop-display
+  workspace 4 output $laptop-display
+  workspace 5 output $laptop-display
+
+#hdmi
+  workspace 11 output $second-display
+  workspace 10 output $second-display
+  workspace 9 output $second-display
+  workspace 8 output $second-display
+  workspace 7 output $second-display
+  workspace 6 output $second-display
+
+
+# MODES
+
+# Minimize a window and put it to bottom left/right corner:
+
+mode "mini-window" {
+    
+        # bindsym w exec bottomright.sh p 1
+        # bindsym s exec bottomright.sh p 2
+        # bindsym a exec bottomright.sh p 3
+        # bindsym q exec bottomright.sh p 4
+
+        #Change resolution
+        bindsym f exec bottomright.sh r fhd
+        bindsym q exec bottomright.sh r qhd
+
+        #Change size
+        bindsym s exec bottomright.sh size
+        bindsym n exec bottomright.sh next
+        bindsym t exec bottomright.sh floating-toggle
+
+        bindsym d exec i3-msg "sticky disable" 
+        bindsym e exec i3-msg "sticky enable" 
+        bindsym Escape mode "default"
+}
+# bindsym $mod + n  mode "mini-widow"; 
+bindsym $mod+n mode "mini-window"; exec notify-send "Mini-window" "n - next corner\n s - change size\n q - qhd resolution\n f - fhd resolution\n t - toggle floating" -h string:x-canonical-private-synchronous:my-notification 
+#
+mode "open" {
+
+        #Mnemonic opening
+
+        bindsym q [class="qutebrowser"] focus; mode "default"
+        bindsym v [title="VIM"] focus; mode "default"
+        bindsym e [class="Emacs"] focus; mode "default"
+        bindsym g [class="Google-chrome"] focus; mode "default"
+        bindsym h [instance="Htop"] focus; mode "default"
+        bindsym m [title="Thunderbird"] focus; mode "default"
+        bindsym r [instance="ranger"] focus; mode "default"
+
+        #Terminals tilled
+        bindsym 1              [instance="terminal0"] focus
+        bindsym 2              [instance="terminal1"] focus
+        bindsym 3              [instance="terminal2"] focus
+        bindsym 4              [instance="terminal3"] focus
+    
+        bindsym $mod+o mode "default"; 
+        bindsym F1 mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod + o  mode "open"; 
+
+
+mode "move" {
+        bindsym a exec i3ws.sh current;mode "default" 
+        bindsym o exec i3ws.sh order;mode "default" 
+	bindsym 1 move container to workspace number 1;mode "default" 
+	bindsym 2 move container to workspace number 2;mode "default" 
+	bindsym 3 move container to workspace number 3;mode "default" 
+	bindsym 4 move container to workspace number 4;mode "default" 
+	bindsym 5 move container to workspace number 5;mode "default" 
+	bindsym 6 move container to workspace number 6;mode "default" 
+	bindsym 7 move container to workspace number 7;mode "default" 
+	bindsym 8 move container to workspace number 8;mode "default" 
+	bindsym 9 move container to workspace number 9;mode "default" 
+	bindsym 0 move container to workspace number 10;mode "default" 
+  bindsym $mod+m mode "default"
+}
+bindsym $mod + m mode "move"
+
+# xdotool here is set up because when vim is run using terminal with predefined
+# program to start, vim is not displaying files at the beginning correctly. After
+# changing window position however everything is going back to normal
+# sleep is determining how long it will take before resize of the fonts inside terminal.
+# If your terminal is using different keys to increase/decrease fonts change them. Or
+# remove xdotool completely
+
+# toggle tiling / floating
+bindsym $mod+Shift+space                floating toggle
+
+
+# Walpaper 
+# exec_always "wal -i  /run/media/migacz/Media/Walpapers/DARK/2.jpg  -a 95; update-css.sh"
+# same color for browser  
+bindsym $mod+u exec insert.sh /home/migacz/Downloads/git/solarized-everything-css/css/wall.css /home/migacz/.cache/wal/colors.css
+
+# Light/Dark
+
+set $Theme "Change theme"
+set $UpdateCss " insert.sh /home/migacz/Downloads/git/solarized-everything-css/css/wall.css /home/migacz/.cache/wal/colors.css" 
+set $Opacity -a "85"
+
+mode $Theme {
+    bindsym l exec bash lwall.sh 
+    bindsym d exec bash dwall.sh 
+    bindsym n exec bash wall.sh next
+    bindsym p exec bash wall.sh prev
+
+    # ; exec bash lwall.sh 
+    bindsym k exec pkill -TERM compton
+    bindsym c exec compton --config $PWD/.config/compton/compton.conf
+
+    bindsym $mod + t mode default
+    bindsym Escape mode default
+}
+
+bindsym $mod+t mode $Theme; exec notify-send "Theme settings" "n - next wallpaper\n p - previous wallpaper\n l - light theme\n d - dark theme\n k - kill compton \n c - turn on compton" -h string:x-canonical-private-synchronous:my-notification
+
+# bindsym $mod+Shift+q mode $close
+
+set $close "Close the window? (y/n)"
+mode $close {
+
+    # bindsym y kill, exec bash split.sh; mode default
+    bindsym y kill, mode default
+    bindsym Return kill, mode default
+    bindsym n mode default
+    bindsym Escape mode default
+}
+bindsym $mod+q mode $close
+
+mode "Monitor-setup" {
+        bindsym a               exec bash /home/migacz/.screenlayout/layout-on-left.sh; mode "default"
+        bindsym d               exec bash /home/migacz/.screenlayout/layout-on-right.sh; mode "default"
+        bindsym w               exec bash /home/migacz/.screenlayout/layout-on-top.sh; mode "default"
+        bindsym s               exec bash /home/migacz/.screenlayout/normal-top.sh; mode "default"
+        bindsym Escape          mode "default"
+}
+bindsym $mod+Shift+m mode "Monitor-setup" 
+
+# Bring specifiec program to current workspace
+mode "bring" {
+        bindsym a               exec i3ws.sh current;mode "default" 
+        bindsym w               exec i3ws.sh order;mode "default" 
+        bindsym k               exec i3ws.sh konsole;mode "default"
+
+        bindsym r               exec i3-msg '[instance="ranger"]' move workspace current; mode "default"
+        bindsym q               exec i3-msg '[class="qutebrowser"]' move workspace current && i3-msg '[class="qutebrowser"]' focus && bash split.sh ; mode "default"
+        bindsym t               exec i3-msg '[class="TelegramDesktop"]' move workspace current && i3-msg '[class="TelegramDesktop"]' focus && bash split.sh; mode "default"
+        # && i3-msg move right && i3-msg resize shrink width 10px or 10ppt ;  mode "default"
+        bindsym v               exec i3-msg '[title="VIM"]' move workspace current && i3-msg '[class="VIM"]' focus && bash split.sh; mode "default"
+        bindsym e               exec i3-msg '[class="Emacs"]' move workspace current && i3-msg '[class="Emacs"]' focus && bash split.sh; mode "default"
+        bindsym m               exec i3-msg '[instance="gl"]' move workspace current && i3-msg '[class="gl"]' focus && bash split.sh; mode "default"
+        bindsym g               exec i3-msg '[class="Google-chrome"]' move workspace current && i3-msg '[class="Google-chrome"]' focus && bash split.sh; mode "default"
+        bindsym h               exec i3-msg '[instance="Htop"]' move workspace current && i3-msg '[class="Htop"]' focus && bash split.sh; mode "default"
+        # bindsym t               exec i3-msg '[instance="Thunderbird"]' move workspace current && i3-msg '[class="Thunderbird"]' focus && bash split.sh; mode "default"
+
+        #Terminals tilled
+        bindsym 1               exec i3-msg '[instance="terminal0"]' move workspace current && i3-msg '[instance="terminal0"]' focus && bash split.sh; mode "default"
+        bindsym 2               exec i3-msg '[instance="terminal1"]' move workspace current && i3-msg '[instance="terminal1"]' focus && bash split.sh; mode "default"
+        bindsym 3               exec i3-msg '[instance="terminal2"]' move workspace current && i3-msg '[instance="terminal2"]' focus && bash split.sh; mode "default"
+        bindsym 4               exec i3-msg '[instance="terminal3"]' move workspace current && i3-msg '[instance="terminal3"]' focus && bash split.sh; mode "default"
+
+        bindsym $mod + b          mode "default"
+}
+bindsym $mod + b mode "bring"; exec notify-send "Bring programs on current ws" "a - all on current ws\nw- all programs on workspaces\nk- all konsoles\nr - Ranger\nb - qutebrowser\nt - telegram\nv - vim\n z-mpv" string:x-canonical-private-synchronous:my-notification 
+
+
+# Move currently selected program to workspace name 
+
+set $sleep 0.5
+
+bindsym $mod + v exec $terminal $terminalArg vim ; exec sleep $sleep  && xdotool key 'ctrl+Down' key 'ctrl+Up' 
+
+mode "file" {
+	bindsym q exec $terminal -name "vim" $terminalArg vim /home/migacz/.config/qutebrowser/config.py ;exec sleep $sleep  && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
+	bindsym p exec $terminal -name "vim" $terminalArg vim /home/migacz/Coding/www/5Project ;exec sleep $sleep   && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
+	bindsym i exec $terminal -name "vim" $terminalArg vim ~/.config/i3/config ;exec sleep $sleep  && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
+	bindsym v exec $terminal -name "vim" $terminalArg vim ~/.vimrc exec ;exec sleep  $sleep   && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
+	bindsym n exec $terminal -name "vim" $terminalArg vim /home/migacz/Notes/notes.md;exec sleep  $sleep   && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
+	bindsym b exec $terminal -name "vim" $terminalArg vim ~/.bash_profile ;exec sleep  $sleep   && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
+	bindsym r exec $terminal -name "vim" $terminalArg vim /home/migacz/.config/ranger/rc.conf ;exec sleep  $sleep   && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
+	bindsym x exec $terminal -name "vim" $terminalArg vim /home/migacz/.Xresources ;exec sleep  $sleep  && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default

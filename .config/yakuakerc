@@ -1,0 +1,43 @@
+[Appearance]
+Translucency=true
+
+[DownloadDialog Settings]
+Height 1080=588
+Width 1920=1116
+
+[Favorite Profiles]
+Favorites=
+
+[Shortcuts]
+close-active-terminal=Ctrl+Shift+R
+close-session=Ctrl+Shift+W
+decrease-window-height=Alt+Shift+Up
+decrease-window-width=Alt+Shift+Left
+file_quit=Ctrl+Shift+Q
+grow-terminal-bottom=Ctrl+Alt+Down
+grow-terminal-left=Ctrl+Alt+Left
+grow-terminal-right=Ctrl+Alt+Right
+grow-terminal-top=Ctrl+Alt+Up
+help_about_app=Alt+T
+increase-window-height=Alt+Shift+Down
+increase-window-width=Alt+Shift+Right
+move-session-left=Ctrl+Shift+Left
+move-session-right=Ctrl+Shift+Right
+new-session=Ctrl+Shift+T
+next-session=Shift+Right
+next-terminal=Ctrl+Shift+Down
+previous-session=Shift+Left
+previous-terminal=Ctrl+Shift+Up
+rename-session=Ctrl+Alt+S
+split-left-right=Ctrl+(
+split-top-bottom=Ctrl+)
+switch-to-session-1=Alt+1
+switch-to-session-2=Alt+2
+switch-to-session-3=Alt+3
+switch-to-session-4=Alt+4
+toggle-session-monitor-activity=Ctrl+Shift+A
+toggle-session-monitor-silence=Ctrl+Shift+I
+view-full-screen=Ctrl+F
+
+[Window]
+KeepOpen=true

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=sh -c '/home/migacz/.scripts/capsesc.sh'
+Name=Capsesc
+Comment=Change Caps with Escape
+Type=Application
+Terminal=True

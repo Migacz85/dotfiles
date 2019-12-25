@@ -1,0 +1,49 @@
+Given (Test Commentary is commenting ):
+  World
+Do (modification):
+------------------
+* change inner word
+  gciw
+Expect (result):
+~~~~~~~~~~~~~~~~
+  /* World */
+
+Given (Test Commentary is commenting 2):
+  Hello
+  World
+Do (modification):
+------------------
+* change inner word
+  gcap
+Expect (result):
+~~~~~~~~~~~~~~~~
+  /* Hello */
+  /* World */
+
+Given (Test System clipboard is working):
+================
+  Hello
+
+Do (modification):
+------------------
+* copy line
+  cP 
+* paste line
+  cv
+Expect (result):
+~~~~~~~~~~~~~~~~
+  Hello
+
+
+Execute (In nerd open read.test):
+------------------
+* Open nerd file find file read.test 
+  " :set noswapfile \<Enter>
+  :NERDTree ~/.vim/
+  :/read2.test
+  :normal Enter
+Expect (result):
+~~~~~~~~~~~~~~~~
+  test
+
+

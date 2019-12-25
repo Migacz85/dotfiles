@@ -1,0 +1,15 @@
+[submodule "vim-config"]
+	path = vim-config
+	url = https://github.com/Migacz85/vim-config.git
+[submodule "submodules/ranger_devicons"]
+	path = submodules/ranger_devicons
+	url = https://github.com/alexanderjeurissen/ranger_devicons.git
+[submodule "submodules/pywal"]
+	path = submodules/pywal
+	url = https://github.com/dylanaraps/pywal.git
+[submodule "submodules/trezord-go"]
+	path = submodules/trezord-go
+	url = https://aur.archlinux.org/trezord-go.git
+[submodule "submodules/CopyQ"]
+	path = submodules/CopyQ
+	url = https://github.com/hluk/CopyQ.git
