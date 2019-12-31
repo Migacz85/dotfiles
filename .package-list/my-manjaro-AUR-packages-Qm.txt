@@ -1,11 +1,16 @@
 bashmount
-compton-tryone-git
 gamin
 gnome-shell-extension-manjaro-update
 gnome-shell-extension-taskbar
+gtk-recordmydesktop
 imgur-screenshot-git
 libnm-gtk
+libqdark-git
 manjaro-gdm-check
 mhwd-catalyst
+python-sip-pyqt5
+qbittorrent-dark-git
 ttf-devicons
 vim-devicons
+xf86-input-keyboard
+xf86-input-mouse

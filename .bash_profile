@@ -185,7 +185,7 @@ alias gl="cd /srv/http/"
 alias ten="trans :en"
 alias tpl="trans :pl"
 #alias t="node /home/migacz/Downloads/torrentflix/bin/torrentflix --open qbittorrent"
-alias t="cd ~/torrents ; pirate-get"
+alias t="cd ~/Downloads/ ; pirate-get"
 alias th="echo 'pirate-get - alias to t
 t -R - torrents from last 48h
 t -l - list of categories

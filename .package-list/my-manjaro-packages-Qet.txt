@@ -11,11 +11,11 @@ blender
 blueman
 bluez-utils
 bovo
+calibre
 chromium
 cmake
 cmatrix
 code
-compton-tryone-git
 copyq
 cpupower
 dconf-editor
@@ -109,10 +109,12 @@ nfs-utils
 ntp
 numlockx
 pacui
+picom
 polkit-gnome
 powertop
 pulseaudio-ctl
 pulseaudio-zeroconf
+qbittorrent-dark-git
 qutebrowser
 ranger
 redshift

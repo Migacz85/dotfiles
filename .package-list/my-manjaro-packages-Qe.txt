@@ -19,11 +19,11 @@ bluez-utils
 bovo
 btrfs-progs
 bzip2
+calibre
 chromium
 cmake
 cmatrix
 code
-compton-tryone-git
 copyq
 coreutils
 cpupower
@@ -234,6 +234,7 @@ papirus-maia-icon-theme
 pavucontrol
 pciutils
 perl
+picom
 polkit-gnome
 poppler-data
 powertop
@@ -243,6 +244,7 @@ pulseaudio-bluetooth
 pulseaudio-ctl
 pulseaudio-zeroconf
 python-pip
+qbittorrent-dark-git
 qt5-translations
 qutebrowser
 ranger
@@ -279,6 +281,7 @@ tlp
 totem
 tracker
 tracker-miners
+transmission-cli
 transmission-gtk
 ttf-bitstream-vera
 ttf-dejavu

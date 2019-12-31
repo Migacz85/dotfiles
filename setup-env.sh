@@ -17,7 +17,8 @@ bash $HOME/dotfiles/symlinking.sh
 bash $HOME/dotfiles/fixes.sh
 
 sudo pacman -S yay
-yay compton-tryone-git
+# yay compton-tryone-git
+sudo pacman -S picom
 
 mkdir $HOME/.wallpapers
 cd $HOME/.wallpapers
@@ -59,6 +60,10 @@ sudo pacman -S emacs  --noconfirm
 sudo pacman -S chromium 
 sudo pacman -S thunderbird  
 sudo pacman -S virtualbox
+sudo pacman -S calibre
+sudo pacman -S epr
+yay qbittorrent-dark-git
+
 # sudo pacman -S spectacle  
 
 pip3 install --user mps-youtube
@@ -68,12 +73,18 @@ yay imgur-screenshot
 #Bluetooth
 sudo pacman -S bluetooth pulseaudio-bluetooth bluez-utils pulseaudio-alsa
 
-Ranger
+#Cli torrents
+#In console type: t name_of_file
+sudo pip3 install pirate-get
+mkdir $HOME/Downloads/torrents
+
+#Ranger
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 cd /.config/ranger/plugins/ranger_devicons
 make
 yay devicons
 yay nerd-fonts-noto-sans-mono
+
 #Imgur Screenshot
 cd $HOME/Downloads/git
 git clone https://github.com/jomo/imgur-screenshot.git

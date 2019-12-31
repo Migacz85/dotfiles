@@ -23,6 +23,7 @@
   exec copyq
   exec_always xrdb merge .Xresources
   # exec_always python $HOME/.scripts/i3wm.py 
+  exec_always python /home/migacz/.scripts/i3wm.py 
 
   exec bash hibernate.sh -monitor
   exec bash start.sh "youtube-list" mpsyt 
@@ -318,8 +319,8 @@ mode $Theme {
     bindsym p exec bash wall.sh prev
 
     # ; exec bash lwall.sh 
-    bindsym k exec pkill -TERM compton
-    bindsym c exec compton --config $PWD/.config/compton/compton.conf
+    bindsym k exec pkill -TERM picom
+    bindsym c exec picom --experimental-backends
 
     bindsym $mod + t mode default
     bindsym Escape mode default
