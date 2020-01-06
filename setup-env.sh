@@ -5,21 +5,24 @@
 #git clone https://github.com/Migacz85/dotfiles.git --recurse-submodules
 
 
-#sudo pacman-mirrors --fasttrack
+sudo pacman-mirrors --fasttrack
 sudo pacman -Syyu
 git config --global user.email "migacz85@gmail.com" 
 git config --global user.name "Marcin"
 
+#Symlinking dotfiles with dotfiles folder
 bash $HOME/dotfiles/.scripts/capsesc.sh
 cd dotfiles/.package-list
 cp $HOME/dotfiles/.package-list/my-manjaro-packages-Q.txt $HOME/dotfiles/.old-package-list/my-manjaro-packages-Q.txt
 bash $HOME/dotfiles/symlinking.sh
 bash $HOME/dotfiles/fixes.sh
 
+#Compositor
 sudo pacman -S yay
 # yay compton-tryone-git
 sudo pacman -S picom
 
+#Wallpapers
 mkdir $HOME/.wallpapers
 cd $HOME/.wallpapers
 curl --output 1.jpg https://wallroom.io/2560x1440/bg-381e88e/download
@@ -53,6 +56,7 @@ sudo pacman -S volume-icon  --noconfirm
 sudo pacman -S network-manager-applet  --noconfirm
 sudo pacman -S xorg-xwininfo --noconfirm
 sudo pacman -S xorg-xbacklight --noconfirm
+sudo pip3 install i3ipc
 #APPS
 sudo pacman -S thunar  --noconfirm
 sudo pacman -S copyq  --noconfirm
@@ -65,10 +69,14 @@ sudo pacman -S epr
 yay qbittorrent-dark-git
 
 # sudo pacman -S spectacle  
-
 pip3 install --user mps-youtube
 pip3 install --user youtube-dl
 yay imgur-screenshot
+
+#Kindle
+pacman -S base-devel
+
+yay -S ssmtp
 
 #Bluetooth
 sudo pacman -S bluetooth pulseaudio-bluetooth bluez-utils pulseaudio-alsa
@@ -84,6 +92,9 @@ cd /.config/ranger/plugins/ranger_devicons
 make
 yay devicons
 yay nerd-fonts-noto-sans-mono
+sudo pacman -S sshfs --noconfirm
+mkdir ~/Android
+sudo pacman -S ssmtp # for mail you need to run fixes.sh aswell
 
 #Imgur Screenshot
 cd $HOME/Downloads/git
@@ -103,6 +114,8 @@ cd ~/Downloads/git
 git clone https://github.com/soimort/translate-shell.git
 make
 make install
+
+#Editor
 #Vim
 echo "Vim installation"
 sudo pacman -S vim
@@ -120,8 +133,12 @@ sudo pacman -S cmake
 cd /home/migacz/.vim/plugged/YouCompleteMe
 python3 install.py --clang-completer
 python3 install.py --all
+
 #Emacs
-#Spacemacs
-# git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 sudo pacman -S npm
 sudo npm install -g tern
+#Spacemacs
+# git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+#Doom emacs
+git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install

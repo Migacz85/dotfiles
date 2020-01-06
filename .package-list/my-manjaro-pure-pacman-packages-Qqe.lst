@@ -6,12 +6,15 @@ alsa-firmware
 alsa-utils
 aspell-en
 astromenace
+autoconf
+automake
 avahi
 b43-fwcutter
 baobab
 bash
 bat
 binutils
+bison
 blender
 blueman
 bluez-utils
@@ -58,12 +61,14 @@ findutils
 firefox
 firefox-i18n-en-us
 flatpak
+flex
 fprintd
 gawk
 gcc-libs
 gdm
 gedit
 gettext
+gimp
 glibc
 gnome-backgrounds
 gnome-calculator
@@ -162,6 +167,7 @@ lrzip
 lsb-release
 lvm2
 lxappearance
+m4
 make
 man-db
 man-pages
@@ -212,7 +218,6 @@ networkmanager-openvpn
 networkmanager-pptp
 networkmanager-vpnc
 nfs-utils
-notify-osd
 npm
 nss-mdns
 ntfs-3g
@@ -255,6 +260,7 @@ shadow
 simple-scan
 spectacle
 spectre-meltdown-checker
+sshfs
 steam-manjaro
 stow
 sudo
@@ -320,6 +326,7 @@ xf86-video-nouveau
 xfsprogs
 xorg-server
 xorg-twm
+xorg-util-macros
 xorg-xbacklight
 xorg-xinit
 xorg-xwininfo

@@ -3,10 +3,13 @@ acpi
 acpid
 aspell-en
 astromenace
+autoconf
+automake
 b43-fwcutter
 baobab
 bashmount
 bat
+bison
 blender
 blueman
 bluez-utils
@@ -27,6 +30,7 @@ feh
 file-roller
 firefox-i18n-en-us
 flatpak
+flex
 gnome-backgrounds
 gnome-calculator
 gnome-calendar
@@ -122,6 +126,7 @@ rofi
 simple-scan
 spectacle
 spectre-meltdown-checker
+sshfs
 steam-manjaro
 stow
 sushi
@@ -160,6 +165,7 @@ xf86-video-amdgpu
 xf86-video-ati
 xf86-video-intel
 xf86-video-nouveau
+xorg-util-macros
 xorg-xbacklight
 xorg-xinit
 xsel

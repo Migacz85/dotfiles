@@ -10,6 +10,7 @@ manjaro-gdm-check
 mhwd-catalyst
 python-sip-pyqt5
 qbittorrent-dark-git
+ssmtp
 ttf-devicons
 vim-devicons
 xf86-input-keyboard

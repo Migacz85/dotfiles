@@ -165,7 +165,7 @@ Control focus:</br>
 ### Workspaces:
 
 `win + shift + p` - move selected workspace to monitor <br>
-`win + shift + s`  - move selected workspace to laptop screen </br>
+`win + shift + ;`  - move selected workspace to laptop screen </br>
 `ctrl + shift + controls` - move windows in specific direction </br>
 `ctrl + |`  - next window will be vertical    || </br>
 `ctrl + '`  - next windowl will be horizontal   = </br>

@@ -29,6 +29,7 @@ function linkDotfile {
   ln -s ${dotfilesDir}/${1} ${2}
 } 
 
+dateStr=$(date +%Y-%m-%d-%H%M)
 mv ~/.bash_profile ~/.bash_profile-${dateStr}
 mv ~/.profile ~/.profile-${dateStr}
 

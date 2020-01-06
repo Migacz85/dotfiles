@@ -1,4 +1,4 @@
-# SHOURTCATS AND AUTOSTART # How to find bindcode of key for shourtcat we looking for ? 
+# SHOURTCATS AND AUTOSTART # How to find bindcode of key for shourtcat we looking for ?
 # Use: 
 # xmodmap -pke
 
@@ -11,7 +11,7 @@
 
   #Bluetooth
   exec pactl load-module module-bluetooth-discover
-  exec sleep 5 && bluetoothctl connect 68:DB:F5:5D:42:E2 
+  exec sleep 5 && bluetoothctl connect 74:D6:37:AD:5E:D1
 
   # set $browser qutebrowser
   # exec $browser
@@ -56,7 +56,8 @@
 
 
 # Shourtacts for programs 
-  bindsym $mod+d                          exec --no-startup-id "rofi -combi-modi window,drun,ssh -theme gruvbox-light-soft -show combi"
+  # bindsym $mod+d                          exec --no-startup-id "rofi -combi-modi drun,window,ssh -show combi"
+  bindsym $mod+d                          exec --no-startup-id "rofi -show drun -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
   # bindsym $mod+d                        exec --no-startup-id termite -t 'fzf-menu' -e 'i3-dmenu-desktop --dmenu=fzf'
   # bindsym $mod+d                        exec --no-startup-id i3-dmenu-desktop
   bindsym $mod+Return                     exec bash terminal.sh 
@@ -197,6 +198,7 @@ bindsym $mod+0 workspace number 10
 # Custom behaviour of splitting windows
 for_window [class=.*] exec split.sh
 for_window [class="mpv"] exec bottomright.sh
+
 for_window [class="Emacs"] move container to workspace number 6;mode "default" 
 for_window [class="qutebrowser"] move container to workspace number 5;mode "default" 
 
@@ -244,14 +246,17 @@ mode "mini-window" {
         bindsym e exec i3-msg "sticky enable" 
         bindsym Escape mode "default"
 }
-# bindsym $mod + n  mode "mini-widow"; 
-bindsym $mod+n mode "mini-window"; exec notify-send "Mini-window" "n - next corner\n s - change size\n q - qhd resolution\n f - fhd resolution\n t - toggle floating" 
-#
-mode "open" {
+# bindsym $mod + n  mode "mini-widow";
+bindsym $mod+n mode "mini-window"; exec notify-send "Mini-window" "n - next corner\n s - change size\n q - qhd resolution\n f - fhd resolution\n t - toggle floating"
 
+#
+
+mode "open" {
+        #Or rather "focus" 
         #Mnemonic opening
 
         bindsym q [class="qutebrowser"] focus; mode "default"
+        bindsym c [class="code"] focus; mode "default"
         bindsym v [title="VIM"] focus; mode "default"
         bindsym e [class="Emacs"] focus; mode "default"
         bindsym g [class="Google-chrome"] focus; mode "default"
@@ -260,10 +265,10 @@ mode "open" {
         bindsym r [instance="ranger"] focus; mode "default"
 
         #Terminals tilled
-        bindsym 1              [instance="terminal0"] focus
-        bindsym 2              [instance="terminal1"] focus
-        bindsym 3              [instance="terminal2"] focus
-        bindsym 4              [instance="terminal3"] focus
+        bindsym 1              [title="terminal0"] focus
+        bindsym 2              [title="terminal1"] focus
+        bindsym 3              [title="terminal2"] focus
+        bindsym 4              [title="terminal3"] focus
     
         bindsym $mod+o mode "default"; 
         bindsym F1 mode "default"

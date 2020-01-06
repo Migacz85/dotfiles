@@ -1,0 +1,8 @@
+configuration {
+
+
+
+}
+
+@import "/home/migacz/.cache/wal/colors-rofi-light.rasi"
+@import "/home/migacz/.cache/wal/colors-rofi-dark.rasi"

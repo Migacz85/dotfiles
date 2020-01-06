@@ -35,8 +35,11 @@ atkmm
 attica
 attr
 audit
+autoconf
+automake
 avahi
 b43-fwcutter
+babl
 baobab
 bash
 bash-completion
@@ -45,6 +48,7 @@ bashrc-manjaro
 bat
 bc
 binutils
+bison
 blas
 blender
 blosc
@@ -167,6 +171,7 @@ firefox
 firefox-i18n-en-us
 flac
 flatpak
+flex
 folks
 fontconfig
 foomatic-db-engine
@@ -196,6 +201,7 @@ gdk-pixbuf2
 gdm
 gdome2
 gedit
+gegl
 geoclue
 geocode-glib
 gettext
@@ -203,6 +209,7 @@ gfbgraph
 ghostscript
 giblib
 giflib
+gimp
 git
 gjs
 glew
@@ -431,6 +438,7 @@ lasem
 lcms2
 ldb
 ldns
+lensfun
 less
 lib32-alsa-lib
 lib32-alsa-plugins
@@ -544,6 +552,7 @@ libaccounts-qt
 libaec
 libaio
 libarchive
+libasr
 libass
 libassuan
 libasyncns
@@ -622,6 +631,7 @@ libgusb
 libgweather
 libgxps
 libhandy
+libheif
 libibus
 libical
 libice
@@ -662,6 +672,7 @@ libmspub
 libmtp
 libmusicbrainz5
 libmwaw
+libmypaint
 libnautilus-extension
 libndp
 libnetfilter_conntrack
@@ -713,6 +724,7 @@ libraqm
 libraw
 libraw1394
 libreoffice-fresh
+libressl
 librevenge
 librsvg
 libsamplerate
@@ -729,6 +741,7 @@ libsodium
 libsoup
 libsoxr
 libspectre
+libspiro
 libspnav
 libsrtp
 libssh
@@ -839,12 +852,14 @@ lua52-expat
 lua52-lpeg
 lua52-luajson
 lua52-socket
+luajit
 lvm2
 lxappearance
 lz4
 lzo
 m17n-db
 m17n-lib
+m4
 mailcap
 make
 man-db
@@ -885,6 +900,7 @@ memtest86+
 mesa
 mesa-demos
 mesa-vdpau
+metis
 mhwd
 mhwd-amdgpu
 mhwd-ati
@@ -915,6 +931,7 @@ mpv
 mtdev
 mujs
 mutter
+mypaint-brushes1
 nautilus
 nautilus-admin
 nautilus-empty-file
@@ -938,7 +955,6 @@ nfsidmap
 nm-connection-editor
 node-gyp
 nodejs
-notify-osd
 noto-fonts
 noto-fonts-compat
 npm
@@ -1236,11 +1252,14 @@ spirv-tools
 splix
 sqlite
 srt
+sshfs
+ssmtp
 startup-notification
 steam-manjaro
 stoken
 stow
 sudo
+suitesparse
 sushi
 sysfsutils
 system-config-printer
@@ -1383,6 +1402,7 @@ xorg-server-common
 xorg-server-xwayland
 xorg-setxkbmap
 xorg-twm
+xorg-util-macros
 xorg-xauth
 xorg-xbacklight
 xorg-xhost
