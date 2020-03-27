@@ -36,6 +36,11 @@ current_window_class=$(xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | c
         chromium --app=http://youtube.com
     fi
 
+    if [[ "$1" == "netflix" ]]; then
+        google-chrome-stable --app=http://netflix.com
+    fi
+
+
     if [[ "$1" == "floating-toggle" ]]; then
         if [ $floating == 0 ]; then
             i3-msg [class="mpv"] focus

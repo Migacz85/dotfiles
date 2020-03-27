@@ -1,6 +1,6 @@
 [Alsa]
 card=HDA Intel PCH
-channel=Speaker
+channel=Master
 
 [Notification]
 show_notification=true

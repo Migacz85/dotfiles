@@ -2,7 +2,9 @@
 DIR="/home/migacz/stats/"
 lazy_user=0
 # mkdir $DIR
-cd $DIR 
+cd $DIR
+START=$(date +%s);
+echo $START > $DIR""start.txt
 
 # Set name of your workspaces:
 ws[1]=" Coding: "
@@ -136,7 +138,7 @@ if [[ "$1" == "-tracki3wm" ]]; then
 
   while :
   do
-    timestamp=$( date +'%Y/%m/%d %H:M' )
+    timestamp=$( date +'%Y/%m/%d %H:%M' )
     sleep 1 # Refresh rate
     idle=$( xprintidle ) # Time where user was not active at all
     idle_minutes=$(($idle/1000/60))
@@ -158,6 +160,7 @@ if [[ "$1" == "-tracki3wm" ]]; then
     focused_ws=${ws::1}
     second_char=${ws:1:1}
 
+
     re='^[0-9]+$'
     if [[ $second_char =~ $re ]] ; then
       focused_ws=${ws::2}
@@ -178,6 +181,7 @@ if [[ "$1" == "-tracki3wm" ]]; then
       START=$(date +%s);
       echo $START > $DIR""start.txt
     fi
+
   done
 
 fi

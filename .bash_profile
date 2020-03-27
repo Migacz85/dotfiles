@@ -3,6 +3,7 @@
 
 # Envs
 PATH=$PATH:$HOME/.scripts
+PATH=$PATH:$HOME/.scripts/power
 PATH=${PATH}:${HOME}/.local/bin
 PATH=$PATH:/root/.gem/ruby/2.6.0/bin
 export PROJECT="/home/migacz/Coding/www/5Project"
@@ -12,6 +13,8 @@ export VISUAL=vim
 export HISTFILESIZE=-1
 export HISTSIZE=-1
 export BAT_THEME="OneHalfLight"
+
+export NNN_PLUG='o:fzopen;p:mocplay;d:diffs;m:nmount;n:notes;v:imgviu;t:imgthumb'
 
 # Run startx automatically
 ####################
@@ -24,6 +27,7 @@ if [ -z "$DISPLAY" -a $XDG_VTNR -eq 1 ]; then
 
     startx
 fi
+
 
 # Fuzzy finder
 ##############
@@ -185,7 +189,7 @@ alias gl="cd /srv/http/"
 alias ten="trans :en"
 alias tpl="trans :pl"
 #alias t="node /home/migacz/Downloads/torrentflix/bin/torrentflix --open qbittorrent"
-alias t="cd ~/Downloads/ ; pirate-get"
+alias t="cd ~/Downloads/#Income ; pirate-get"
 alias th="echo 'pirate-get - alias to t
 t -R - torrents from last 48h
 t -l - list of categories

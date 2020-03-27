@@ -1,10 +1,9 @@
 import i3ipc
+import time
 
 i3 = i3ipc.Connection()
 
 # Define a callback to be called when you switch workspaces.
-
-
 def on_workspace_focus(self, e):
     # The first parameter is the connection to the ipc and the second is an object
     # with the data of the event sent from i3.
@@ -20,10 +19,18 @@ def on_window_focus(i3, e):
     ws_name = "%s:%s" % (focused.workspace().num, focused.window_class)
 
     i3.command('rename workspace to "%s"' % ws_name)
-    if focused.window_class.lower() == "urxvt":
+    if focused.window_class.lower() == "termite":
         ws_name = "%s:%s" % (focused.workspace().num, focused.window_title)
         i3.command('rename workspace to "%s"' % ws_name)
 
+
+
+    #start = time.time()
+    # end = time.time()
+    # # run your code
+    # elapsed_time = end - start
+    # time.strftime("%H:%M:%S", time.gmtime(elapsed_time))
+    # print(elapsed_time)
 
 # Subscribe to events
 i3.on('workspace::focus', on_workspace_focus)

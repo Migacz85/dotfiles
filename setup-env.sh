@@ -33,7 +33,8 @@ curl --output 3.jpg http://i.imgur.com/5cYE4ui.png
 # for i in `cat my-manjaro-AUR-packages-Qm.txt` ; do yay -y install $i; done
 sudo pacman -S binutils  --noconfirm
 sudo pacman -S bat  --noconfirm
-sudo pacman -S i3  
+sudo pacman -S i3-gaps --noconfirm
+sudo pacman -S i3status --noconfirm
 sudo pacman -S rofi  --noconfirm
 sudo pacman -S pavucontrol  --noconfirm
 sudo pacman -S ranger  --noconfirm
@@ -49,13 +50,18 @@ sudo pacman -S xsel   --noconfirm
 sudo pacman -S ncdu  --noconfirm
 sudo pacman -S bat  --noconfirm
 sudo pacman -S python-pip  --noconfirm
-sudo pacman -S notify-osd  --noconfirm
+sudo pacman -S dunst  --noconfirm
 sudo pacman -S w3m  --noconfirm
 sudo pacman -S mpv  --noconfirm
 sudo pacman -S volume-icon  --noconfirm
 sudo pacman -S network-manager-applet  --noconfirm
 sudo pacman -S xorg-xwininfo --noconfirm
 sudo pacman -S xorg-xbacklight --noconfirm
+sudo pacman -S xdotool
+#For autorotation on convertible laptops
+sudo pacman -S xorg-xinput
+yay  iio-sensor-proxy
+
 sudo pip3 install i3ipc
 #APPS
 sudo pacman -S thunar  --noconfirm
@@ -86,6 +92,13 @@ sudo pacman -S bluetooth pulseaudio-bluetooth bluez-utils pulseaudio-alsa
 sudo pip3 install pirate-get
 mkdir $HOME/Downloads/torrents
 
+#qutebrowser
+sudo pacman -S qutebrowser --noconfirm
+mkdir ~/Downloads/git/
+cd ~/Downloads/git/
+git clone https://github.com/alphapapa/solarized-everything-css.git
+
+
 #Ranger
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 cd /.config/ranger/plugins/ranger_devicons
@@ -95,6 +108,7 @@ yay nerd-fonts-noto-sans-mono
 sudo pacman -S sshfs --noconfirm
 mkdir ~/Android
 sudo pacman -S ssmtp # for mail you need to run fixes.sh aswell
+sudo pacman -S sxiv
 
 #Imgur Screenshot
 cd $HOME/Downloads/git

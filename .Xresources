@@ -2,7 +2,7 @@ Xft.antialias: true
 
 Xft.rgba:      rgb
 Xft.hintstyle: hintfull
-Xft.dpi:       110
+Xft.dpi:       100
 ! }}}
 
 ! ctrl+c will work again */
