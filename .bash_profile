@@ -12,7 +12,8 @@ export EDITOR=vim
 export VISUAL=vim
 export HISTFILESIZE=-1
 export HISTSIZE=-1
-export BAT_THEME="OneHalfLight"
+# export BAT_THEME="OneHalfLight"
+export BAT_THEME="base64"
 
 export NNN_PLUG='o:fzopen;p:mocplay;d:diffs;m:nmount;n:notes;v:imgviu;t:imgthumb'
 
@@ -26,6 +27,7 @@ if [ -z "$DISPLAY" -a $XDG_VTNR -eq 1 ]; then
     cd ~
 
     startx
+    
 fi
 
 

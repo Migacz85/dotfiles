@@ -5,12 +5,14 @@ bluez-hciconfig
 cointop
 fswebcam
 gamin
+gnome-shell-extension-battery-status-git
 gnome-shell-extension-manjaro-update
 gnome-shell-extension-taskbar
 gtk-recordmydesktop
 haskell-bytestring-progress
 haskell-terminal-progress-bar
 imgur-screenshot-git
+lib32-libbsd
 libnm-gtk
 libqdark-git
 libvdpau-va-gl-i965
@@ -18,7 +20,10 @@ lsix
 manjaro-gdm-check
 mhwd-catalyst
 mu
+mutter-performance
 net-tools-debian-ifconfig
+openjpeg
+pangox-compat
 python-sip-pyqt5
 python2-protobuf
 qbittorrent-dark-git

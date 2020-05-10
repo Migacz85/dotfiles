@@ -50,6 +50,7 @@ sudo pacman -S xsel   --noconfirm
 sudo pacman -S ncdu  --noconfirm
 sudo pacman -S bat  --noconfirm
 sudo pacman -S python-pip  --noconfirm
+sudo pacman -S npm --noconfirm
 sudo pacman -S dunst  --noconfirm
 sudo pacman -S w3m  --noconfirm
 sudo pacman -S mpv  --noconfirm
@@ -58,6 +59,7 @@ sudo pacman -S network-manager-applet  --noconfirm
 sudo pacman -S xorg-xwininfo --noconfirm
 sudo pacman -S xorg-xbacklight --noconfirm
 sudo pacman -S xdotool
+
 #For autorotation on convertible laptops
 sudo pacman -S xorg-xinput
 yay  iio-sensor-proxy
@@ -115,6 +117,13 @@ cd $HOME/Downloads/git
 git clone https://github.com/jomo/imgur-screenshot.git
 sudo pacman -S xclip scrot --noconfirm
 
+#Deepin screenshot
+wget https://gist.github.com/msenol86/c0c7daad3de32a7922486e5d669f24c6/archive/82abb9ad54f13c8e53d6272e0d0a999498ffa204.zip
+unp 82abb9ad54f13c8e53d6272e0d0a999498ffa204.zip
+cd 82abb9ad54f13c8e53d6272e0d0a999498ffa204
+makepkg -si PKGBUILD
+
+
 #Pywall
 echo "Installing pywal"
 cd $HOME/dotfiles/submodules/pywal
@@ -147,9 +156,9 @@ sudo pacman -S cmake
 cd /home/migacz/.vim/plugged/YouCompleteMe
 python3 install.py --clang-completer
 python3 install.py --all
+sudo npm install js-beautify -g
 
 #Emacs
-sudo pacman -S npm
 sudo npm install -g tern
 #Spacemacs
 # git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d

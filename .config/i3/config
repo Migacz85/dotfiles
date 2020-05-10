@@ -6,7 +6,7 @@
   exec_always termite -e capsesc.sh 
   exec arbtt-capture
   exec rescuetime
-  exec sync-phone.sh
+  #exec sync-phone.sh
   #Bluetooth
   exec pactl load-module module-bluetooth-discover
  # exec sleep 5 && bluetoothctl connect 74:D6:37:AD:5E:D1
@@ -50,7 +50,7 @@
 
 # Shourtacts for programs
   bindsym $mod+y                          exec sync-phone.sh
-  bindsym $mod+d                          exec --no-startup-id "rofi -combi-modi window,drun,ssh -show combi"
+   bindsym $mod+d                          exec --no-startup-id "rofi -combi-modi window,drun,ssh -show combi"
   # bindsym $mod+d                        exec --no-startup-id "rofi -show drun -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
   # bindsym $mod+d                        exec --no-startup-id termite -t 'fzf-menu' -e 'i3-dmenu-desktop --dmenu=fzf'
   # bindsym $mod+d                        exec --no-startup-id i3-dmenu-desktop
