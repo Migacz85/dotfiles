@@ -12,7 +12,7 @@ SaveSetting() {
 }
 
 # Double check - Run only on mpv
-i3-msg [class="mpv"] focus
+# i3-msg [class="mpv"] focus
 current_window_class=$(xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2) WM_CLASS )
 
 # if [[ $current_window_class == 'WM_CLASS(STRING) = "gl", "mpv"' ]]; then

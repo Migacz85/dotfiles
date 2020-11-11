@@ -12,7 +12,7 @@ if [[ ! -z $running_test ]]; then
         do
             killall sshfs -9
             fusermount -uz ~/Android
-            echo "kontrakt" | sshfs s10@192.168.0.144:/ ~/Android -p 2222 -o password_stdin
+            echo "kontrakt" | sshfs s10@192.168.0.143:/ ~/Android -p 2222 -o password_stdin
             # echo "kontrakt" | sshfs migacz@192.168.0.145:/ ~/Android -p 2222 -o password_stdin
             sleep 3
             if [ "$?" = "0" ] ; then

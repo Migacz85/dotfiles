@@ -1,5 +1,6 @@
 import i3ipc
 import time
+import os
 
 i3 = i3ipc.Connection()
 
@@ -13,16 +14,49 @@ def on_workspace_focus(self, e):
             print(w.name)
 
 # Dynamically name your workspaces after the current window class
+def run_once(f):
+    def wrapper(*args, **kwargs):
+        if not wrapper.has_run:
+            wrapper.has_run = True
+            return f(*args, **kwargs)
+    wrapper.has_run = False
+    return wrapper
+
+
+@run_once
+def my_function():
+    os.system('i3-msg [title="youtube-list"] scratchpad show &&  i3-msg [title="ranger"] scratchpad show &&  i3-msg [title="fterm6"] scratchpad show && i3-msg [title="Htop"] scratchpad show ')
 
 def on_window_focus(i3, e):
     focused = i3.get_tree().find_focused()
     ws_name = "%s:%s" % (focused.workspace().num, focused.window_class)
+    ws = "%s" % (focused.workspace().num)
+    action = run_once(my_function)
+    reset = 0
 
-    i3.command('rename workspace to "%s"' % ws_name)
-    if focused.window_class.lower() == "termite":
-        ws_name = "%s:%s" % (focused.workspace().num, focused.window_title)
+    print(action.has_run)
+
+    if int(ws) != 0:
         i3.command('rename workspace to "%s"' % ws_name)
+        # print("ws", ws)
+        action.has_run = False
+        reset = 1
 
+
+        if focused.window_class.lower() == "termite":
+            ws_name = "%s:%s" % (focused.workspace().num, focused.window_title)
+            i3.command('rename workspace to "%s"' % ws_name)
+
+    if int(ws) == 0:
+        if reset == 1:
+             os.system('i3-msg [title="youtube-list"] scratchpad show &&  i3-msg [title="ranger"] scratchpad show &&  i3-msg [title="fterm6"] scratchpad show && i3-msg [title="Htop"] scratchpad show ')
+             reset = 0
+             action()
+            # print(action.has_run )
+
+# Subscribe to events
+i3.on('workspace::focus', on_workspace_focus)
+i3.on("window::focus", on_window_focus)
 
 
     #start = time.time()
@@ -31,10 +65,6 @@ def on_window_focus(i3, e):
     # elapsed_time = end - start
     # time.strftime("%H:%M:%S", time.gmtime(elapsed_time))
     # print(elapsed_time)
-
-# Subscribe to events
-i3.on('workspace::focus', on_workspace_focus)
-i3.on("window::focus", on_window_focus)
 
 # Start the main loop and wait for events to come in.
 i3.main()

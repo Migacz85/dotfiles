@@ -41,7 +41,7 @@ while true; do
     battery="$( upower -i $(upower -e | grep '/battery') | grep --color=never -E percentage|xargs|cut -d' ' -f2|sed s/%// )"
     current_date=$(date +'%Y-%m-%d')
     date_h=$(date +'%Y-%m-%d-%H:%M')
-    echo "$date_h $battery $charging_state " >> ~/stats/battery-"$current_date".log
+    echo "$date_h $battery $charging_state " >> ~/log/battery-"$current_date".log
 
     # if [[ "$battery" == 100 ]]; then
     # time1=$( date +'%s' )

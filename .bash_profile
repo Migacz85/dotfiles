@@ -17,24 +17,32 @@ export BAT_THEME="base64"
 
 export NNN_PLUG='o:fzopen;p:mocplay;d:diffs;m:nmount;n:notes;v:imgviu;t:imgthumb'
 
+#it should run only once !
+
 # Run startx automatically
 ####################
 if [ -z "$DISPLAY" -a $XDG_VTNR -eq 1 ]; then
-
     #Font for TTY
     cd /usr/share/kbd/consolefonts
     setfont ter-120b.psf.gz
     cd ~
-
     startx
-    
 fi
-
+# XDG_RUNTIME_DIR for mpv hardware acceleration
+if [ -z "$XDG_RUNTIME_DIR" ]; then
+    export XDG_RUNTIME_DIR=/tmp
+    if [ ! -d  "$XDG_RUNTIME_DIR" ]; then
+        mkdir "$XDG_RUNTIME_DIR"
+        chmod 0700 "$XDG_RUNTIME_DIR"
+    fi
+fi
 
 # Fuzzy finder
 ##############
 #source /home/migacz/.fzf/shell/key-bindings.bash
 #source /home/migacz/.fzf/shell/completion.bash
+#if using git-fzf
+source /usr/share/bash-completion/completions/fzf 
 
 unset FZF_CTRL_R_OPTS
 unset FZF_DEFAULT_OPTS
@@ -42,10 +50,13 @@ unset FZF_DEFAULT_OPTS
 export FZF_DEFAULT_OPTS="
      --preview='bat --color=always {}'
      --preview-window up:40:hidden:wrap
-     --bind ctrl-o:preview-up,ctrl-n:preview-down
+     --bind ctrl-o:preview-up,ctrl-k:preview-down
      --bind ctrl-i:toggle-preview
+     --bind ctrl-l:down
 "
-
+# export FZF_DEFAULT_OPTS='--bind tab:down --cycle'
+# export FZF_COMPLETION_TRIGGER='*'
+# --bind ctrl-p:up,ctrl-m:down
 # --bind ctrl-p:up,ctrl-m:down
 # --bind 'ctrl-y:execute-silent(copyq copy {+} )'
 # --bind ctrl-a:select-all
@@ -190,7 +201,6 @@ alias gl="cd /srv/http/"
 #Tools
 alias ten="trans :en"
 alias tpl="trans :pl"
-#alias t="node /home/migacz/Downloads/torrentflix/bin/torrentflix --open qbittorrent"
 alias t="cd ~/Downloads/#Income ; pirate-get"
 alias th="echo 'pirate-get - alias to t
 t -R - torrents from last 48h
@@ -255,7 +265,6 @@ source ~/.cache/wal/colors-tty.sh
 
 ####################
 # Shell start
-
 # clear
 motivation
 

@@ -51,6 +51,7 @@ sudo pacman -S ncdu  --noconfirm
 sudo pacman -S bat  --noconfirm
 sudo pacman -S python-pip  --noconfirm
 sudo pacman -S npm --noconfirm
+sudo pacman -S ruby --noconfirm
 sudo pacman -S dunst  --noconfirm
 sudo pacman -S w3m  --noconfirm
 sudo pacman -S mpv  --noconfirm
@@ -157,6 +158,7 @@ cd /home/migacz/.vim/plugged/YouCompleteMe
 python3 install.py --clang-completer
 python3 install.py --all
 sudo npm install js-beautify -g
+cd ~/.vim/plugged/command-t/ruby/command-t/ext/command-t && make clean; ruby extconf.rb && make
 
 #Emacs
 sudo npm install -g tern

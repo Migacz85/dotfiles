@@ -13,6 +13,7 @@
 #   - smart: Search case-sensitively if there are capital characters.
 c.search.ignore_case = 'smart'
 
+# blink-settings=darkMode=4
 # Find text on a page incrementally, renewing the search for each typed
 # character.
 # Type: Bool
@@ -55,7 +56,8 @@ c.session.lazy_restore = False
 # https://peter.sh/experiments/chromium-command-line-switches/ for a
 # list) will work.
 # Type: List of String
-c.qt.args = []
+
+c.qt.args = ["blink-settings=darkMode=4"]
 
 # Force software rendering for QtWebEngine. This is needed for
 # QtWebEngine to work with Nouveau drivers and can be useful in other
@@ -244,7 +246,7 @@ c.fonts.statusbar = '13pt monospace'
 
 # Font used in the tab bar.
 # Type: QtFont
-c.fonts.tabs = '13pt monospace'
+# c.fonts.tabs = '13pt monospace'
 
 # This setting can be used to map keys to other keys. When the key used
 # as dictionary-key is pressed, the binding for the key used as

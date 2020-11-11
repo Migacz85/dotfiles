@@ -19,6 +19,8 @@ else
 fi
 step=$2
 
+# redshift -x
+
 if [ $1 == "inc" ] &&  [ $temperature -lt 25000 ]; then
 echo $((temperature + step )) | bc > /tmp/redshift_temperature.dat
 redshift -P -O $((temperature + step )) 
@@ -28,3 +30,4 @@ if [ $1 == "dec" ] &&  [ $temperature -gt 1000 ]; then
 echo $((temperature - step )) | bc > /tmp/redshift_temperature.dat
 redshift -P -O $((temperature - step )) 
 fi
+

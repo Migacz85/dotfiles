@@ -1,31 +1,40 @@
-  # SHOURTCATS AND AUTOSTART # How to find bindcode of key for shourtcat we looking for ?  # Use: # xmodmap -pke # or # xev # AUTOSTART PROGRAMS exec_always compton --config $PWD/.config/compton/compton.conf
-  exec udiskie
+  # SHOURTCATS AND AUTOSTART 
+  # How to find bindcode of key for shourtcat we looking for ?  
+  # Use:  
+  # xmodmap -pke 
+  # or 
+  # xev # AUTOSTART PROGRAMS exec_always compton --config $PWD/.config/compton/compton.conf
+
+  #SCRIPTS 
   exec_always bash ~/stats/scripts/start_track_laptop_usage.sh
-  exec_always bash ~/stats/scripts/start_power_management.sh
-  exec bash autorot.sh
-  exec_always termite -e capsesc.sh 
+  # exec_always bash ~/stats/scripts/start_power_management.sh
+  exec bash bash autorot.sh
+  exec bash battery-test.sh
+  #exec sync-phone.sh
+  exec capsesc.sh
+  exec check_temp.sh
+
   exec arbtt-capture
   exec rescuetime
-  #exec sync-phone.sh
   #Bluetooth
-  exec pactl load-module module-bluetooth-discover
- # exec sleep 5 && bluetoothctl connect 74:D6:37:AD:5E:D1
+  exec pactl load-module module-bluetooth-discover 
+  #exec sleep 5 && bluetoothctl connect 74:D6:37:AD:5E:D1
+
   #For visual pacman to work:
   exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
   exec krunner
   exec nm-applet
   exec volumeicon 
   exec copyq
+  exec udiskie
   exec_always xrdb merge .Xresources
-  exec_always python $HOME/.scripts/i3wm.py 
+  # exec_always python $HOME/.scripts/i3wm.py 
   # exec_always python /home/migacz/.scripts/i3wm.py 
-
-  exec bash start.sh "youtube-list" mpsyt 
-  exec bash start.sh "ranger" ranger
-  exec bash start.sh "Htop" htop
-  exec bash start.sh "fterm6" bash 
-  exec bash start.sh "fterm7" bash
-
+  exec_always bash start.sh "youtube-list" youtube-viewer --no-hfr
+  exec_always bash start.sh "ranger" ranger
+  exec_always bash start.sh "Htop" htop
+  exec_always bash start.sh "guake_win" bash
+  # exec bash start.sh "fterm7" bash
   exec_always python 'xrandr --output $EXTERNAL_OUTPUT --mode 2560x1440_50.00 --pos 0x0 --rotate normal --output VIRTUAL1 --off --output $INTERNAL_OUTPUT --primary --mode 1920x1080 --pos 288x1440 --rotate normal'
 
   # exec bash time_count.sh -tracki3wm
@@ -40,7 +49,7 @@
   exec_always pacman -Qet | awk '{print $1}' > $HOME/dotfiles/.package-list/my-manjaro-packages-Qet.txt
   exec_always pacman -Qqe | grep -v "$(pacman -Qqm)" > $PWD/dotfiles/.package-list/my-manjaro-pure-pacman-packages-Qqe.lst
   exec_always pacman -Qm | awk '{print $1}' > $HOME/dotfiles/.package-list/my-manjaro-AUR-packages-Qm.txt
- 
+
   set $mod Mod4
 
 # Programs in variables
@@ -50,16 +59,20 @@
 
 # Shourtacts for programs
   bindsym $mod+y                          exec sync-phone.sh
-   bindsym $mod+d                          exec --no-startup-id "rofi -combi-modi window,drun,ssh -show combi"
+  # bindsym $mod+d                          exec --no-startup-id "rofi -combi-modi window,drun,ssh -show combi"
+  bindsym $mod+d                          exec  rofi_dmenu.sh
+
   # bindsym $mod+d                        exec --no-startup-id "rofi -show drun -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
   # bindsym $mod+d                        exec --no-startup-id termite -t 'fzf-menu' -e 'i3-dmenu-desktop --dmenu=fzf'
   # bindsym $mod+d                        exec --no-startup-id i3-dmenu-desktop
   bindsym $mod+Return                     exec bash terminal.sh 
   bindsym Ctrl + Escape                   exec $terminal $nameArg "Htop" $terminalArg sudo htop 
   bindcode 107                            exec spectacle 
-  bindsym Ctrl+s                          exec bash imgur-screenshot 
-  # bindsym $mod+y                          exec urxvt $nameArg youtube-list" -e mpsyt
-  bindsym $mod+r                          exec termite -t "ranger" -e ranger; exec wal -R
+
+  # bindsym Ctrl+shift+s                    exec bash imgur-screenshot */ 
+  bindsym Ctrl+s                          exec deepin-screenshot 
+
+  # bindsym $mod+y                          exec urxvt $nameArg youtube-list" -e youtube-viewer  
 
 # bindsym F2                            exec notify-send Statistics "`time_count.sh -stats 0 | head -10`"  ;  exec notify-send Statistics "`time_count.sh -stats 0 | tail -5`" 
 # bindsym F3                            exec notify-send Statistics "`time_count.sh -stats 7 | head -10`"  ;  exec notify-send Statistics "`time_count.sh -stats 0 | tail -5`" 
@@ -71,56 +84,46 @@ bindsym F10                             exec python ~/stats/chart.py
 ## SCRACHPAD and FLOATING rules 
 
     floating_modifier $mod
-    for_window [class="copyq"] floating enable 
+    for_window [class="copyq"]              floating enable; #; [class="copyq"] resize set 450 1000; move position 1550 30
     for_window [title="fzf-menu"]           floating enable
     for_window [class="vlc"]                floating enable
     for_window [class="yakuake"]            floating enable
     for_window [class="Peek"]               floating enable
     for_window [class="plasmashell"]        floating enable
     for_window [class="plasmashell"]        resize set 320 300
-    for_window [class="Gnome-calendar"]      floating enable;  [class="Gnome-calendar"] resize set 588 600; [class="Gnome-calendar"] move position 1327 445
+    for_window [class="Gnome-calendar"]     floating enable;  [class="Gnome-calendar"] resize set 588 450; [class="Gnome-calendar"] move position 1170 445
+    for_window [class="Gnome-calculator"]     floating enable;  [class="Gnome-calculator"] resize set 750 400; [class="Gnome-calculator"] move position 1170 0
 
-    # bindsym F1 [class="qutebrowser"] focus; mode "default"
-    # bindsym F2 [class="Emacs"] focus; mode "default"
+    # [title=^(?!copyq).*$ class="Termite" floating] move container to workspace 0
+    bindsym F1 exec bash hide.sh ranger; [title="ranger" floating] scratchpad show ; [title=^(?!ranger).*$ class="Termite" floating] move container to workspace 0 ; [title="ranger"] floating enable ;  [title="ranger" floating] move position center ; [title="ranger" floating] resize set 1200 1000
+    bindsym F2 exec copyq toggle; [class=copyq] resize set 400 1000; [class=copyq] move position 1500 30
+    bindsym F3 exec bash hide.sh Htop ;  [title=^(?!Htop).*$ class="Termite" floating] move container to workspace 0 ; [title="Htop"] scratchpad show ; [title="Htop"] move position center
+    bindsym F4 exec bash hide.sh youtube-list ;  [title=^(?!youtube-list).*$ floating class="Termite" ] move container to workspace 0 ; [title="youtube-list"] scratchpad show ; [title="youtube-list"] move position center
+    bindsym F5 [class="TelegramDesktop"] scratchpad show; [title=^(?!ranger).*$ class="Termite" floating] move container to workspace 0
 
-    bindsym F1 exec bash hide.sh ranger; [title="ranger"] scratchpad show ; [title="ranger"] move position center ; [title="ranger"] resize set 1200 1000
-    bindsym F2 exec copyq toggle && for_window [class="copyq"] move position center
+    bindsym F12                 exec bash hide.sh guake_win;  [title=^(?!guake_win).*$ floating class="Termite" ] move container to workspace 0 ; [title="guake_win"] scratchpad show;
 
-    bindsym F3 exec bash hide.sh Htop ; [title="Htop"] scratchpad show ; [title="Htop"] move position center
-    bindsym F5 exec bash hide.sh youtube-list ; [title="youtube-list"] scratchpad show ; [title="youtube-list"] move position center
+    # Please notice this resizes are on full hd resolution 1920x1080
 
+    for_window [class="TelegramDesktop"] resize set 200 1000 
+    for_window [class="TelegramDesktop"] move position 1500 30
+    for_window [class="TelegramDesktop"] move to scratchpad 
 
-
-    # bindsym F9                [instance="fterm5"] scratchpad show; [instance="fterm5"] 
-    # bindsym F10               exec bash hide.sh fterm7 ; [instance="fterm7"] scratchpad show; 
-    bindsym F12                 exec bash hide.sh fterm6 ;[title="fterm6"] scratchpad show;
-
-    for_window [title="fterm6"] move position 40 0; 
-
-    # bindsym F5 [class="Google-chrome"] focus; mode "default"
-    # bindsym F6 [class="TelegramDesktop"] focus; mode "default"
-
-
-# # Guake style
-# for_window [instance="fterm5"] resize set 1850 484
-    # for_window [instance="fterm7"] resize set 864 364
-    # for_window [instance="fterm7"] move to scratchpad [instance="fterm7"] move position 1048 682 ; [instance="fterm7"] scratchpad show;
-    for_window [title="fterm7"] resize set 900 900
     for_window [title="fterm7"] move to scratchpad
-    # [instance="fterm6"] move position 1500 200 ; [instance="fterm6"] scratchpad show;
+    for_window [title="fterm7"] resize set 900 900
 
-    for_window [title="fterm6"] resize set 1850 484
-    for_window [title="fterm6"] move to scratchpad
+    for_window [title="guake_win"] move to scratchpad
+    for_window [title="guake_win"] move position 40 0;
+    for_window [title="guake_win"] resize set 1850 484
 
-    for_window [title="youtube-list"] resize set 1000 900
     for_window [title="youtube-list"] move to scratchpad 
+    for_window [title="youtube-list"] resize set 1000 900
 
-    for_window  [title="Htop"] resize set 1600 900 
-    for_window  [title="Htop"] move to scratchpad 
+    for_window [title="Htop"] move to scratchpad
+    for_window [title="Htop"] resize set 1600 900
 
-    for_window [title="ranger"] resize set 1200 1000
-    for_window [title="ranger"] move to scratchpad;
-
+    for_window [title="^ranger$"] move to scratchpad;
+    for_window [title="^ranger$"] resize set 1200 1000
 
 ## EXTERNAL MONITOR
 
@@ -246,30 +249,30 @@ mode "mini-window" {
         bindsym Escape mode "default"
 }
 # bindsym $mod + n  mode "mini-widow";
-bindsym $mod+n mode "mini-window"; exec notify-send "Mini-window" "n - next corner\ns - change size\nq - qhd resolution\nf - fhd resolution\nt - toggle floating\ne - sticky enable\nd - sticky disable\ny - open youtube\nm - open netflix "
+bindsym $mod+n mode "mini-window"; exec notify-send "Mini-window" "n - next corner\ns - change size\nq - qhd resolution\nf - fhd resolution\nt - toggle floating\ne - sticky enable\nd - sticky disable\n"
 
 mode "app" {
 
-        bindsym n exec google-chrome-stable --app=http://netflix.com
-        bindsym y exec google-chrome-stable --app=http://youtube.com
-        bindsym a exec google-chrome-stable --app=http://amazon.co.uk
-        bindsym l exec google-chrome-stable --app=http://allegro.pl
-        bindsym e exec google-chrome-stable --app=http://ebay.com
-        bindsym b exec google-chrome-stable --app=http://binance.com
-        bindsym d exec google-chrome-stable --app=https://drive.google.com/drive/
-        bindsym p exec google-chrome-stable --app=https://docs.google.com/spreadsheets/d/1DgGgCIjHf7obCRTjHyojHxlvOxefrDI-dDbRkyRB2Dg/edit?usp=drive_web&ouid=102626394813106501735
-        bindsym Escape mode "default"
-
+        bindsym g exec google-chrome-stable  --ignore-gpu-blacklist --app=https://gmail.com
+        bindsym m exec google-chrome-stable  --ignore-gpu-blacklist --app=https://www.google.com/maps
+        bindsym n exec google-chrome-stable  --ignore-gpu-blacklist --app=http://netflix.com
+        bindsym y exec google-chrome-stable  --ignore-gpu-blacklist --app=http://youtube.com
+        bindsym a exec google-chrome-stable  --ignore-gpu-blacklist --app=http://amazon.co.uk
+        bindsym l exec google-chrome-stable  --ignore-gpu-blacklist --app=http://allegro.pl
+        bindsym e exec google-chrome-stable  --ignore-gpu-blacklist --app=http://ebay.com
+        bindsym b exec google-chrome-stable  --ignore-gpu-blacklist --app=http://binance.com
+        bindsym d exec google-chrome-stable  --ignore-gpu-blacklist --app=https://drive.google.com/drive/
+        bindsym p exec google-chrome-stable  --ignore-gpu-blacklist --app=https://docs.google.com/spreadsheets/d/1DgGgCIjHf7obCRTjHyojHxlvOxefrDI-dDbRkyRB2Dg/edit?usp=drive_web&ouid=102626394813106501735
+        bindsym Escape  mode "default"
 }
 
-bindsym $mod+c mode "app"; exec notify-send "app" "n - netflix\ny - youtube\na - amazon\nl - allegro\ne - ebay\nb - binance\nd - drive"
+bindsym $mod+a mode "app"; exec notify-send "app" "g - gmail \nm - maps \nn - netflix\ny - youtube\na - amazon\nl - allegro\ne - ebay\nb - binance\nd - drive"
 
 
 
 mode "open" {
         #Or rather "focus" 
         #Mnemonic opening
-
         bindsym q               [class="qutebrowser"] focus; mode "default"
         bindsym c               [class="code"] focus; mode "default"
         bindsym v               [title="VIM"] focus; mode "default"
@@ -278,7 +281,8 @@ mode "open" {
         bindsym h               [instance="Htop"] focus; mode "default"
         bindsym m               [title="Thunderbird"] focus; mode "default"
         bindsym r               [instance="ranger"] focus; mode "default"
-        bindsym t               [class="TelegramDesktop"] focus; mode "default"
+                                # [class="TelegramDesktop"] focus; mode "default"
+        bindsym t               [class="TelegramDesktop"] scratchpad show; [title=^(?!ranger).*$ class="Termite" floating] move container to workspace 0
 
         #Terminals tilled
         bindsym 1              [title="terminal0"] focus
@@ -287,12 +291,9 @@ mode "open" {
         bindsym 4              [title="terminal3"] focus
     
         bindsym $mod+o mode "default"; 
-        bindsym F1 mode "default"
         bindsym Escape mode "default"
 }
-
 bindsym $mod + o  mode "open"; 
-
 
 mode "move" {
         bindsym a exec i3ws.sh current;mode "default" 
@@ -306,10 +307,10 @@ mode "move" {
         bindsym 7 move container to workspace number 7;mode "default" 
         bindsym 8 move container to workspace number 8;mode "default" 
         bindsym 9 move container to workspace number 9;mode "default" 
-        bindsym 0 move container to workspace number 10;mode "default" 
+        bindsym 0 move container to workspace number 0; mode "default" 
         bindsym $mod+m mode "default"
+        bindsym Escape mode "default"
 }
-
 bindsym $mod + m mode "move"
 
 # xdotool here is set up because when vim is run using terminal with predefined
@@ -361,7 +362,8 @@ mode $close {
     bindsym n mode default
     bindsym Escape mode default
 }
-bindsym $mod+q mode $close
+# bindsym $mod+q mode $close
+bindsym $mod+q kill
 
 mode "Monitor-setup" {
         bindsym a               exec bash /home/migacz/.screenlayout/layout-on-left.sh; mode "default"
@@ -384,7 +386,7 @@ mode "bring" {
         # && i3-msg move right && i3-msg resize shrink width 10px or 10ppt ;  mode "default"
         bindsym v               exec i3-msg '[title="VIM"]' move workspace current && i3-msg '[class="VIM"]' focus && bash split.sh; mode "default"
         bindsym e               exec i3-msg '[class="Emacs"]' move workspace current && i3-msg '[class="Emacs"]' focus && bash split.sh; mode "default"
-        bindsym m               exec i3-msg '[instance="gl"]' move workspace current && i3-msg '[class="gl"]' focus && bash split.sh; mode "default"
+        bindsym m               exec i3-msg '[instance=^gl$]' move workspace current && i3-msg '[instance=^gl$]' focus && bash split.sh; mode "default"
         bindsym g               exec i3-msg '[class="Google-chrome"]' move workspace current && i3-msg '[class="Google-chrome"]' focus && bash split.sh; mode "default"
         bindsym h               exec i3-msg '[instance="Htop"]' move workspace current && i3-msg '[class="Htop"]' focus && bash split.sh; mode "default"
         # bindsym t               exec i3-msg '[instance="Thunderbird"]' move workspace current && i3-msg '[class="Thunderbird"]' focus && bash split.sh; mode "default"
@@ -407,16 +409,15 @@ set $sleep 0.5
 bindsym $mod + v exec $terminal $terminalArg vim ; exec sleep $sleep  && xdotool key 'ctrl+Down' key 'ctrl+Up' 
 
 mode "file" {
-	bindsym q exec $terminal $nameArg "vim" $terminalArg 'vim /home/migacz/.config/qutebrowser/config.py' ;exec sleep $sleep  && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
-	bindsym p exec $terminal $nameArg "vim" $terminalArg 'vim /home/migacz/Coding/www/5Project' ;exec sleep $sleep   && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
-	bindsym i exec $terminal $nameArg "vim" $terminalArg 'vim /home/migacz/.config/i3/config' ;exec sleep $sleep  && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
-	bindsym v exec $terminal $nameArg "vim" $terminalArg 'vim /home/migacz/.vimrc exec' ;exec sleep  $sleep   && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
-	bindsym n exec $terminal $nameArg "vim" $terminalArg 'vim /home/migacz/Notes/notes.md';exec sleep  $sleep   && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
-	bindsym b exec $terminal $nameArg "vim" $terminalArg 'vim /home/migacz/.bash_profile' ;exec sleep  $sleep   && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
-	bindsym r exec $terminal $nameArg "vim" $terminalArg 'vim /home/migacz/.config/ranger/rc.conf' ;exec sleep  $sleep   && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
-	bindsym x exec $terminal $nameArg "vim" $terminalArg 'vim /home/migacz/.Xresources' ;exec sleep  $sleep  && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
-	bindsym s exec $terminal $nameArg "vim" $terminalArg 'vim .Xresources /usr/share/slim/themes' ;exec sleep  $sleep  && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
-	bindsym l exec $terminal $nameArg "vim" $terminalArg 'sudo vim /etc/systemd/logind.conf'; exec sleep  $sleep  && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
+	bindsym q exec emacs /home/migacz/.config/qutebrowser/config.py
+	bindsym p exec emacs /home/migacz/Coding/www/5Project
+	bindsym i exec emacs /home/migacz/.config/i3/config
+	bindsym v exec termite -e vim /home/migacz/.vimrc exec
+	bindsym n exec emacs /home/migacz/Journal/Notes/notes2.txt
+	bindsym b exec emacs /home/migacz/.bash_profile
+	bindsym r exec emacs /home/migacz/.config/ranger/rc.conf
+	bindsym x exec emacs /home/migacz/.Xresources
+	bindsym l exec 'sudo vim /etc/systemd/logind.conf'; exec sleep  $sleep  && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
 
 	bindsym $mod + Shift + f;mode "default"	
 	bindsym Escape;mode "default"	
@@ -456,10 +457,10 @@ bar {
 }
 
 # Resizing windows
-bindsym $mod+Shift+y resize shrink width 10px or 10ppt
-bindsym $mod+Shift+u resize grow height 10px or 10ppt
-bindsym $mod+Shift+i resize shrink height 10px or 10ppt
-bindsym $mod+Shift+o resize grow width 10 px or 10 ppt
+bindsym $mod+Shift+y resize shrink width 5px or 5ppt
+bindsym $mod+Shift+u resize grow height 5px or 5ppt
+bindsym $mod+Shift+i resize shrink height 5px or 5ppt
+bindsym $mod+Shift+o resize grow width 5px or 5ppt
 
 # Change focus
 bindsym $mod+h focus left
@@ -504,7 +505,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -540,9 +541,9 @@ set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 # bindsym  F9                exec playerctl previous 
 # bindsym  F11               exec playerctl next
 # bindsym  F6                exec --no-startup-id pactl set-sink-mute  $sink toggle
-bindsym  $mod+Shift+8              exec --no-startup-id pactl set-sink-volume $sink  +10%
-bindsym  $mod+Shift+7              exec --no-startup-id pactl set-sink-volume $sink  -10%
-bindsym  $mod+Shift+9              exec playerctl play-pause
+bindsym  $mod+Shift+8             exec --no-startup-id pactl set-sink-volume $sink  +10%
+bindsym  $mod+Shift+7             exec --no-startup-id pactl set-sink-volume $sink  -10%
+bindsym  $mod+Shift+9             exec playerctl play-pause
 
 # bindsym  F9                exec playerctl previous 
 # bindsym  F11               exec playerctl next
@@ -588,4 +589,5 @@ client.background       $bg
 # ocat  /etc/i3/config.keycodes
 
 exec_always wal -R -n
-exec_always bash wall.sh 
+exec_always bash wall.sh
+exec_always sleep 2; picom --experimental-backends
