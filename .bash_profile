@@ -14,10 +14,14 @@ export HISTFILESIZE=-1
 export HISTSIZE=-1
 # export BAT_THEME="OneHalfLight"
 export BAT_THEME="base64"
-
 export NNN_PLUG='o:fzopen;p:mocplay;d:diffs;m:nmount;n:notes;v:imgviu;t:imgthumb'
 
-#it should run only once !
+#https://www.overclockers.co.uk/forums/threads/firefox-now-supports-hardware-video-acceleration-youtube-etc.18900661/
+export MOZ_X11_EGL=1
+
+#Ugly fix for backlit:
+chown migacz:migacz /sys/class/backlight/amdgpu_bl0/brightness
+
 
 # Run startx automatically
 ####################
@@ -37,12 +41,17 @@ if [ -z "$XDG_RUNTIME_DIR" ]; then
     fi
 fi
 
+if [[ $(ps --no-header -p $PPID -o comm) =~ termite|yakuake ]]; then
+        for wid in $(xdotool search --pid $PPID); do
+            xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c -set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id $wid; done
+fi
+
 # Fuzzy finder
 ##############
 #source /home/migacz/.fzf/shell/key-bindings.bash
 #source /home/migacz/.fzf/shell/completion.bash
 #if using git-fzf
-source /usr/share/bash-completion/completions/fzf 
+# source /usr/share/bash-completion/completions/fzf 
 
 unset FZF_CTRL_R_OPTS
 unset FZF_DEFAULT_OPTS

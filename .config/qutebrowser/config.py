@@ -198,7 +198,7 @@ c.spellcheck.languages = []
 
 # Default zoom level.
 # Type: Perc
-c.zoom.default = '125%'
+c.zoom.default = '100%'
 
 # Background color of the completion widget category headers.
 # Type: QssColor
@@ -206,7 +206,7 @@ c.colors.completion.category.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:
 
 # Font used in the completion widget.
 # Type: Font
-c.fonts.completion.entry = '13pt monospace'
+c.fonts.completion.entry = '10pt monospace'
 
 # Font used in the completion categories.
 # Type: Font
@@ -214,35 +214,35 @@ c.fonts.completion.category = 'bold 10pt monospace'
 
 # Font used for the debugging console.
 # Type: QtFont
-c.fonts.debug_console = '13pt monospace'
+c.fonts.debug_console = '10pt monospace'
 
 # Font used for the downloadbar.
 # Type: Font
-c.fonts.downloads = '13pt monospace'
+c.fonts.downloads = '10pt monospace'
 
 # Font used in the keyhint widget.
 # Type: Font
-c.fonts.keyhint = '13pt monospace'
+c.fonts.keyhint = '10pt monospace'
 
 # Font used for error messages.
 # Type: Font
-c.fonts.messages.error = '13pt monospace'
+c.fonts.messages.error = '10pt monospace'
 
 # Font used for info messages.
 # Type: Font
-c.fonts.messages.info = '13 pt monospace'
+c.fonts.messages.info = '10 pt monospace'
 
 # Font used for warning messages.
 # Type: Font
-c.fonts.messages.warning = '13pt monospace'
+c.fonts.messages.warning = '10pt monospace'
 
 # Font used for prompts.
 # Type: Font
-c.fonts.prompts = '13pt sans-serif'
+c.fonts.prompts = '10pt sans-serif'
 
 # Font used in the statusbar.
 # Type: Font
-c.fonts.statusbar = '13pt monospace'
+c.fonts.statusbar = '10pt monospace'
 
 # Font used in the tab bar.
 # Type: QtFont
@@ -264,7 +264,7 @@ config.bind(',w', 'config-cycle content.user_stylesheets /home/migacz/Downloads/
 config.bind(',e', 'config-cycle content.user_stylesheets /home/migacz/Downloads/git/solarized-everything-css/css/gruvbox/gruvbox-all-sites.css ""' )
 config.bind(',r', 'config-cycle content.user_stylesheets /home/migacz/Downloads/git/solarized-everything-css/css/solarized-dark/solarized-dark-all-sites.css ""' )
 config.bind(',a', 'config-cycle content.user_stylesheets /home/migacz/.cache/wal/colors.css /home/migacz/Downloads/git/solarized-everything-css/css/wall.css ""' )
-
+config.bind(',a', 'config-cycle content.user_stylesheets /home/migacz/.cache/wal/colors.css /home/migacz/Downloads/git/solarized-everything-css/css/custom_dark/custom_dark.css ""' )
 config.bind(',n', 'config-cycle content.user_stylesheets /home/migacz/Downloads/git/solarized-everything-css/css/darculized-all-sites.css ""' )
 
 config.bind(',k', 'spawn --userscript /home/migacz/.scripts/send-link.sh')

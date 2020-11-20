@@ -55,3 +55,4 @@ echo "Setting wallpaper number" $Wallnumber "In this directory "
 
 bg=$(ls -p $DIR | grep -v / | sed -n $Wallnumber'p' )
 feh --bg-fill "$DIR/$bg"
+

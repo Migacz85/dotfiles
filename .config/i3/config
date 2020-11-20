@@ -7,12 +7,18 @@
 
   #SCRIPTS 
   exec_always bash ~/stats/scripts/start_track_laptop_usage.sh
+
+  exec sudo chown migacz:migacz /sys/class/backlight/amdgpu_bl1/brightness
+  exec sudo chown migacz:migacz /sys/class/backlight/amdgpu_bl0/brightness
+  # exec sudo touchpad-fix.sh
+  # exec xwinwrap -g 1920x1080 -ov -- mpv -speed 0.003 -wid WID /home/migacz/Downloads/Skies2/NOX\ ATACAMA\ _\ 8K-x2D7jHfitzk.webm --no-correct-pts loop-file='inf' -start 10 -loop
+  exec_always libinput-gestures-setup restart
   # exec_always bash ~/stats/scripts/start_power_management.sh
   exec bash bash autorot.sh
   exec bash battery-test.sh
   #exec sync-phone.sh
   exec capsesc.sh
-  exec check_temp.sh
+  exec sudo check_temp.sh
 
   exec arbtt-capture
   exec rescuetime
@@ -21,6 +27,8 @@
   #exec sleep 5 && bluetoothctl connect 74:D6:37:AD:5E:D1
 
   #For visual pacman to work:
+  #
+  exec dunst
   exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
   exec krunner
   exec nm-applet
@@ -35,6 +43,7 @@
   exec_always bash start.sh "Htop" htop
   exec_always bash start.sh "guake_win" bash
   # exec bash start.sh "fterm7" bash
+  # https://askubuntu.com/questions/1265947/nvidia-prime-not-working-amd-nvidia-xmg-core-4800hrtx2060
   exec_always python 'xrandr --output $EXTERNAL_OUTPUT --mode 2560x1440_50.00 --pos 0x0 --rotate normal --output VIRTUAL1 --off --output $INTERNAL_OUTPUT --primary --mode 1920x1080 --pos 288x1440 --rotate normal'
 
   # exec bash time_count.sh -tracki3wm
@@ -59,8 +68,8 @@
 
 # Shourtacts for programs
   bindsym $mod+y                          exec sync-phone.sh
-  # bindsym $mod+d                          exec --no-startup-id "rofi -combi-modi window,drun,ssh -show combi"
-  bindsym $mod+d                          exec  rofi_dmenu.sh
+  bindsym $mod+d                          exec --no-startup-id "rofi -combi-modi window,drun,ssh -show combi -font 'mono 10'"
+  # bindsym $mod+d                          exec  rofi_dmenu.sh
 
   # bindsym $mod+d                        exec --no-startup-id "rofi -show drun -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
   # bindsym $mod+d                        exec --no-startup-id termite -t 'fzf-menu' -e 'i3-dmenu-desktop --dmenu=fzf'
@@ -253,16 +262,16 @@ bindsym $mod+n mode "mini-window"; exec notify-send "Mini-window" "n - next corn
 
 mode "app" {
 
-        bindsym g exec google-chrome-stable  --ignore-gpu-blacklist --app=https://gmail.com
-        bindsym m exec google-chrome-stable  --ignore-gpu-blacklist --app=https://www.google.com/maps
-        bindsym n exec google-chrome-stable  --ignore-gpu-blacklist --app=http://netflix.com
-        bindsym y exec google-chrome-stable  --ignore-gpu-blacklist --app=http://youtube.com
-        bindsym a exec google-chrome-stable  --ignore-gpu-blacklist --app=http://amazon.co.uk
-        bindsym l exec google-chrome-stable  --ignore-gpu-blacklist --app=http://allegro.pl
-        bindsym e exec google-chrome-stable  --ignore-gpu-blacklist --app=http://ebay.com
-        bindsym b exec google-chrome-stable  --ignore-gpu-blacklist --app=http://binance.com
-        bindsym d exec google-chrome-stable  --ignore-gpu-blacklist --app=https://drive.google.com/drive/
-        bindsym p exec google-chrome-stable  --ignore-gpu-blacklist --app=https://docs.google.com/spreadsheets/d/1DgGgCIjHf7obCRTjHyojHxlvOxefrDI-dDbRkyRB2Dg/edit?usp=drive_web&ouid=102626394813106501735
+        bindsym g exec chromium --ignore-gpu-blacklist --app=https://gmail.com
+        bindsym m exec chromium --ignore-gpu-blacklist --app=https://www.google.com/maps
+        bindsym n exec chromium --ignore-gpu-blacklist --app=http://netflix.com
+        bindsym y exec chromium --ignore-gpu-blacklist --app=http://youtube.com
+        bindsym a exec chromium --ignore-gpu-blacklist --app=http://amazon.co.uk
+        bindsym l exec chromium --ignore-gpu-blacklist --app=http://allegro.pl
+        bindsym e exec chromium --ignore-gpu-blacklist --app=http://ebay.com
+        bindsym b exec chromium --ignore-gpu-blacklist --app=http://binance.com
+        bindsym d exec chromium --ignore-gpu-blacklist --app=https://drive.google.com/drive/
+        bindsym p exec chromium --ignore-gpu-blacklist --app=https://docs.google.com/spreadsheets/d/1DgGgCIjHf7obCRTjHyojHxlvOxefrDI-dDbRkyRB2Dg/edit?usp=drive_web&ouid=102626394813106501735
         bindsym Escape  mode "default"
 }
 
@@ -362,6 +371,7 @@ mode $close {
     bindsym n mode default
     bindsym Escape mode default
 }
+
 # bindsym $mod+q mode $close
 bindsym $mod+q kill
 
@@ -541,8 +551,8 @@ set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 # bindsym  F9                exec playerctl previous 
 # bindsym  F11               exec playerctl next
 # bindsym  F6                exec --no-startup-id pactl set-sink-mute  $sink toggle
-bindsym  $mod+Shift+8             exec --no-startup-id pactl set-sink-volume $sink  +10%
-bindsym  $mod+Shift+7             exec --no-startup-id pactl set-sink-volume $sink  -10%
+bindsym  $mod+Shift+3             exec --no-startup-id pactl set-sink-volume $sink  -10%
+bindsym  $mod+Shift+4             exec --no-startup-id pactl set-sink-volume $sink  +10%
 bindsym  $mod+Shift+9             exec playerctl play-pause
 
 # bindsym  F9                exec playerctl previous 
@@ -553,15 +563,15 @@ bindsym  $mod+Shift+9             exec playerctl play-pause
 # bindsym  F10               exec playerctl play-pause
 
 # Brightness controll
-bindsym $Mod+Shift+2          exec xbacklight -inc 10
-bindsym $Mod+Shift+1          exec xbacklight -dec 10 
+bindsym $Mod+Shift+1          exec brillo -u 10000 -U 5
+bindsym $Mod+Shift+2          exec brillo -u 10000 -A 5
 
 # Redshift controll
-bindsym $Mod+Shift+3          exec redshift.sh dec 100
-bindsym $Mod+Shift+4          exec redshift.sh inc 100 
+bindsym $Mod+Shift+5          exec redshift.sh dec 100
+bindsym $Mod+Shift+6          exec redshift.sh inc 100
 
-bindsym $mod+shift+5 gaps inner current plus 5
-bindsym $mod+shift+6 gaps inner current minus 5
+bindsym $mod+shift+7 gaps inner current plus 5
+bindsym $mod+shift+8 gaps inner current minus 5
 
 ## COLORS AND APPEARANCE
 
@@ -588,6 +598,6 @@ client.background       $bg
 # Default config:
 # ocat  /etc/i3/config.keycodes
 
-exec_always wal -R -n
 exec_always bash wall.sh
+exec_always wal -R -n
 exec_always sleep 2; picom --experimental-backends

@@ -31,3 +31,23 @@ pids=$(xdotool search --name "terminal4" | wc -l)
 if [[ pids -eq 0 ]]; then
     exec $terminal $nameArg terminal4
 fi
+
+
+pids=$(xdotool search --name "terminal5" | wc -l)
+if [[ pids -eq 0 ]]; then
+    exec $terminal $nameArg terminal5
+fi
+
+pids=$(xdotool search --name "terminal6" | wc -l)
+if [[ pids -eq 0 ]]; then
+    exec $terminal $nameArg terminal6
+fi
+
+
+
+
+
+pids=$(xdotool search --name "terminal5" | wc -l)
+if [[ pids -eq 0 ]]; then
+    exec $terminal $nameArg terminal5
+fi
