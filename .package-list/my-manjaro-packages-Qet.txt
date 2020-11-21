@@ -19,13 +19,14 @@ chromium
 cmake
 copyq
 cpupower
-davinci-resolve-studio
+davinci-resolve
 deepin-picker
 deepin-screenshot
 dhcpcd
 dolphin-plugins
 dunst
 dynamic-wallpaper-mojave-gnome-timed-git
+ecdsautils
 ecryptfs-utils
 emacs
 fakeroot
@@ -68,6 +69,7 @@ lenopow
 lib32-mesa-demos
 libreoffice-still
 licenses
+linux414-nvidia-455xx
 linux414-nvidiabl
 linux54-nvidia-455xx
 linux58-nvidia-455xx
@@ -145,6 +147,7 @@ trezor-bridge-bin
 ttf-inconsolata
 ttf-indic-otf
 udiskie
+unp
 vi
 virtualbox
 wallpapers-2018

@@ -33,6 +33,7 @@ cpupower
 crda
 cronie
 cryptsetup
+cuda
 deepin-picker
 deepin-screenshot
 device-mapper
@@ -156,6 +157,7 @@ libva-intel-driver
 libva-mesa-driver
 libva-vdpau-driver
 licenses
+linux414-nvidia-455xx
 linux414-nvidiabl
 linux54
 linux54-nvidia-455xx
@@ -310,6 +312,7 @@ ttf-liberation
 udiskie
 udisks2
 unarchiver
+unp
 usb_modeswitch
 usbutils
 util-linux

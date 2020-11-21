@@ -1,7 +1,8 @@
 brillo
-davinci-resolve-studio
+davinci-resolve
 dynamic-wallpaper-mojave-gnome-timed-git
 dynamic-wallpaper-mojave-images-git
+ecdsautils
 google-chrome
 mpv-git
 optimus-manager-git

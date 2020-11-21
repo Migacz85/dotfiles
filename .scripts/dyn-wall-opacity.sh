@@ -2,6 +2,25 @@
 
 DIR='/home/migacz/Downloads/big-sur2'
 
+    m=$(date +"%M")
+
+    # set wallpaper in kde
+    setkde() {
+    qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
+    var allDesktops = desktops();
+    print (allDesktops);
+    for (i=0;i<allDesktops.length;i++) {
+        d = allDesktops[i];
+        d.wallpaperPlugin = 'org.kde.image';
+        d.currentConfigGroup = Array('Wallpaper',
+                                    'org.kde.image',
+                                    'General');
+        d.writeConfig('Image', 'file://"$1"')
+    }"
+    }
+    setkde "/home/migacz/Downloads/big-sur2/wall$m.jpg"
+
+
 while [ true ]
 do 
 
@@ -47,21 +66,6 @@ do
     echo $m
         
     feh --bg-fill "$DIR/wall$m.jpg"
-
-        # set wallpaper in kde
-        setkde() {
-        qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
-        var allDesktops = desktops();
-        print (allDesktops);
-        for (i=0;i<allDesktops.length;i++) {
-            d = allDesktops[i];
-            d.wallpaperPlugin = 'org.kde.image';
-            d.currentConfigGroup = Array('Wallpaper',
-                                        'org.kde.image',
-                                        'General');
-            d.writeConfig('Image', 'file://"$1"')
-        }"
-        }
 
       setkde "/home/migacz/Downloads/big-sur2/wall$m.jpg"
 

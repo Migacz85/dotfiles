@@ -112,7 +112,7 @@ cups-pdf
 cups-pk-helper
 curl
 dav1d
-davinci-resolve-studio
+davinci-resolve
 db
 dbus
 dbus-glib
@@ -154,6 +154,7 @@ dynamic-wallpaper-mojave-gnome-timed-git
 dynamic-wallpaper-mojave-images-git
 e2fsprogs
 ebook-tools
+ecdsautils
 ecryptfs-utils
 editorconfig-core-c
 efibootmgr
@@ -774,6 +775,7 @@ libtirpc
 libtommath
 libtool
 libtorrent-rasterbar
+libuecc
 libunistring
 libunity
 libunrar
@@ -847,15 +849,13 @@ lilv
 linux-api-headers
 linux-firmware
 linux414
-linux414-bbswitch
+linux414-nvidia-455xx
 linux414-nvidiabl
 linux414-virtualbox-host-modules
 linux54
-linux54-bbswitch
 linux54-nvidia-455xx
 linux54-virtualbox-host-modules
 linux58
-linux58-bbswitch
 linux58-nvidia-455xx
 lirc
 llvm-libs
@@ -1381,6 +1381,7 @@ uchardet
 udiskie
 udisks2
 unarchiver
+unp
 unzip
 upower
 usb_modeswitch

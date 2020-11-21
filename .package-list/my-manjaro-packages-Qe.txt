@@ -34,7 +34,8 @@ cpupower
 crda
 cronie
 cryptsetup
-davinci-resolve-studio
+cuda
+davinci-resolve
 deepin-picker
 deepin-screenshot
 device-mapper
@@ -52,6 +53,7 @@ dvd+rw-tools
 dynamic-wallpaper-mojave-gnome-timed-git
 dynamic-wallpaper-mojave-images-git
 e2fsprogs
+ecdsautils
 ecryptfs-utils
 efibootmgr
 emacs
@@ -161,6 +163,7 @@ libva-intel-driver
 libva-mesa-driver
 libva-vdpau-driver
 licenses
+linux414-nvidia-455xx
 linux414-nvidiabl
 linux54
 linux54-nvidia-455xx
@@ -323,6 +326,7 @@ ttf-liberation
 udiskie
 udisks2
 unarchiver
+unp
 usb_modeswitch
 usbutils
 util-linux
