@@ -19,10 +19,6 @@ export NNN_PLUG='o:fzopen;p:mocplay;d:diffs;m:nmount;n:notes;v:imgviu;t:imgthumb
 #https://www.overclockers.co.uk/forums/threads/firefox-now-supports-hardware-video-acceleration-youtube-etc.18900661/
 export MOZ_X11_EGL=1
 
-#Ugly fix for backlit:
-chown migacz:migacz /sys/class/backlight/amdgpu_bl0/brightness
-
-
 # Run startx automatically
 ####################
 if [ -z "$DISPLAY" -a $XDG_VTNR -eq 1 ]; then
@@ -278,6 +274,9 @@ source ~/.cache/wal/colors-tty.sh
 motivation
 
 # Run script
+
+# fish 
+# source fish_profile
 
 # screenfetch -n
 # inxi

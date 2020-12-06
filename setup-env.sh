@@ -153,6 +153,7 @@ mkdir ~/.vim/undo
 echo "Run :PlugInstall inside vim (in 5sec vim will start)"
 sleep 5
 vim
+python /home/migacz/.vim/plugged/YouCompleteMe/install.py
 sudo pacman -S cmake
 cd /home/migacz/.vim/plugged/YouCompleteMe
 python3 install.py --clang-completer

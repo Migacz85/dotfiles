@@ -6,10 +6,11 @@
   # xev # AUTOSTART PROGRAMS exec_always compton --config $PWD/.config/compton/compton.conf
 
   #SCRIPTS 
-  exec_always bash ~/stats/scripts/start_track_laptop_usage.sh
+  exec bash ~/stats/scripts/start_track_laptop_usage.sh
 
-  exec sudo chown migacz:migacz /sys/class/backlight/amdgpu_bl1/brightness
-  exec sudo chown migacz:migacz /sys/class/backlight/amdgpu_bl0/brightness
+  # exec sudo chown migacz:migacz /sys/class/backlight/amdgpu_bl1/brightness
+  # exec sudo chown migacz:migacz /sys/class/backlight/amdgpu_bl0/brightness
+
   # exec sudo touchpad-fix.sh
   # exec xwinwrap -g 1920x1080 -ov -- mpv -speed 0.003 -wid WID /home/migacz/Downloads/Skies2/NOX\ ATACAMA\ _\ 8K-x2D7jHfitzk.webm --no-correct-pts loop-file='inf' -start 10 -loop
   exec_always libinput-gestures-setup restart
@@ -18,7 +19,6 @@
   exec bash battery-test.sh
   #exec sync-phone.sh
   exec capsesc.sh
-  exec sudo check_temp.sh
 
   exec arbtt-capture
   exec rescuetime
@@ -30,11 +30,11 @@
   #
   exec dunst
   exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-  exec krunner
-  exec nm-applet
-  exec volumeicon 
-  exec copyq
-  exec udiskie
+  exec --no-startup-id krunner
+  exec --no-startup-id nm-applet
+  exec --no-startup-id volumeicon
+  exec --no-startup-id copyq
+  exec --no-startup-id udiskie
   exec_always xrdb merge .Xresources
   # exec_always python $HOME/.scripts/i3wm.py 
   # exec_always python /home/migacz/.scripts/i3wm.py 
@@ -114,9 +114,10 @@ bindsym F10                             exec python ~/stats/chart.py
 
     # Please notice this resizes are on full hd resolution 1920x1080
 
-    for_window [class="TelegramDesktop"] resize set 200 1000 
-    for_window [class="TelegramDesktop"] move position 1500 30
-    for_window [class="TelegramDesktop"] move to scratchpad 
+    # for_window [class="TelegramDesktop"] resize set 200 1000
+    # for_window [class="TelegramDesktop"] move position 1500 30
+    # for_window [class="TelegramDesktop"] move to scratchpad
+    for_window [class="TelegramDesktop"] resize set 400
 
     for_window [title="fterm7"] move to scratchpad
     for_window [title="fterm7"] resize set 900 900
@@ -262,22 +263,27 @@ bindsym $mod+n mode "mini-window"; exec notify-send "Mini-window" "n - next corn
 
 mode "app" {
 
-        bindsym g exec chromium --ignore-gpu-blacklist --app=https://gmail.com
-        bindsym m exec chromium --ignore-gpu-blacklist --app=https://www.google.com/maps
-        bindsym n exec chromium --ignore-gpu-blacklist --app=http://netflix.com
-        bindsym y exec chromium --ignore-gpu-blacklist --app=http://youtube.com
-        bindsym a exec chromium --ignore-gpu-blacklist --app=http://amazon.co.uk
-        bindsym l exec chromium --ignore-gpu-blacklist --app=http://allegro.pl
-        bindsym e exec chromium --ignore-gpu-blacklist --app=http://ebay.com
-        bindsym b exec chromium --ignore-gpu-blacklist --app=http://binance.com
-        bindsym d exec chromium --ignore-gpu-blacklist --app=https://drive.google.com/drive/
-        bindsym p exec chromium --ignore-gpu-blacklist --app=https://docs.google.com/spreadsheets/d/1DgGgCIjHf7obCRTjHyojHxlvOxefrDI-dDbRkyRB2Dg/edit?usp=drive_web&ouid=102626394813106501735
+        bindsym g exec chromium --app=https://gmail.com
+        bindsym m exec chromium --app=https://www.google.com/maps
+        bindsym n exec chromium --app=http://netflix.com
+        bindsym y exec firefox_app.sh http://youtube.com
+        bindsym a exec chromium --app=http://amazon.co.uk
+        bindsym l exec chromium --app=http://allegro.pl
+        bindsym e exec chromium --app=http://ebay.com
+        bindsym b exec chromium --app=http://binance.com
+        bindsym d exec chromium --app=https://drive.google.com/drive/
+        bindsym p exec chromium --app=https://docs.google.com/spreadsheets/d/1DgGgCIjHf7obCRTjHyojHxlvOxefrDI-dDbRkyRB2Dg/edit?usp=drive_web&ouid=102626394813106501735
         bindsym Escape  mode "default"
 }
 
 bindsym $mod+a mode "app"; exec notify-send "app" "g - gmail \nm - maps \nn - netflix\ny - youtube\na - amazon\nl - allegro\ne - ebay\nb - binance\nd - drive"
 
 
+mode "fn-keys" {
+        bindsym $mod + F1 mode "default"
+}
+
+bindsym $mod + F1  mode "fn-keys";
 
 mode "open" {
         #Or rather "focus" 
@@ -291,7 +297,8 @@ mode "open" {
         bindsym m               [title="Thunderbird"] focus; mode "default"
         bindsym r               [instance="ranger"] focus; mode "default"
                                 # [class="TelegramDesktop"] focus; mode "default"
-        bindsym t               [class="TelegramDesktop"] scratchpad show; [title=^(?!ranger).*$ class="Termite" floating] move container to workspace 0
+        bindsym t               [class="TelegramDesktop"] scratchpad show; [title=^(?!ranger).*$ class="Termite" floating] move container to workspace 0; exec telegram.sh; mode "default"
+
 
         #Terminals tilled
         bindsym 1              [title="terminal0"] focus
@@ -392,7 +399,7 @@ mode "bring" {
 
         bindsym r               exec i3-msg '[instance="ranger"]' move workspace current; mode "default"
         bindsym q               exec i3-msg '[class="qutebrowser"]' move workspace current && i3-msg '[class="qutebrowser"]' focus && bash split.sh ; mode "default"
-        bindsym t               exec i3-msg '[class="TelegramDesktop"]' move workspace current && i3-msg '[class="TelegramDesktop"]' focus && bash split.sh; mode "default"
+        bindsym t               exec i3-msg '[class="TelegramDesktop"]' move workspace current && i3-msg '[class="TelegramDesktop"]' focus && bash split.sh; mode "default"; exec i3-msg [class="TelegramDesktop"] resize set 400
         # && i3-msg move right && i3-msg resize shrink width 10px or 10ppt ;  mode "default"
         bindsym v               exec i3-msg '[title="VIM"]' move workspace current && i3-msg '[class="VIM"]' focus && bash split.sh; mode "default"
         bindsym e               exec i3-msg '[class="Emacs"]' move workspace current && i3-msg '[class="Emacs"]' focus && bash split.sh; mode "default"
@@ -576,8 +583,8 @@ bindsym $mod+shift+8 gaps inner current minus 5
 ## COLORS AND APPEARANCE
 
 # smart_gaps on
-gaps inner 0
-gaps outer 0
+gaps inner 10
+gaps outer 10
 
 new_window 1pixel
 default_border pixel 1

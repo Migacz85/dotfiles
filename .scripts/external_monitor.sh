@@ -7,8 +7,8 @@
 ############################################################
 
 # Check what your system have, you can check output using shell command xrandr
-EXTERNAL_OUTPUT="HDMI1"
-INTERNAL_OUTPUT="eDP1"
+EXTERNAL_OUTPUT="HDMI-0"
+INTERNAL_OUTPUT="DP-2"
 
 second_display="$EXTERNAL_OUTPUT"
 laptop_display="$INTERNAL_OUTPUT"
@@ -33,7 +33,8 @@ fi
 # Only monitor
 if [ $monitor_mode = "all" ]; then
         monitor_mode="EXTERNAL"
-        xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT --mode "2560x1440_50.00" --pos 0x0 --rotate normal 
+        # xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT --mode "2560x1440_50.00" --pos 0x0 --rotate normal 
+        xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT --mode "2560x1440" --pos 0x0 --rotate normal 
 # Only laptop
 elif [ $monitor_mode = "EXTERNAL" ]; then
         monitor_mode="INTERNAL"

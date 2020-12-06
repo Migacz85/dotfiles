@@ -50,6 +50,7 @@ baloo-widgets
 bash
 bashrc-manjaro
 bat
+bbswitch-dkms-git
 bc
 binutils
 bison
@@ -133,6 +134,7 @@ diffutils
 ding-libs
 discount
 djvulibre
+dkms
 dmidecode
 dmraid
 dnsmasq
@@ -173,6 +175,8 @@ f2fs-tools
 faac
 faad2
 fakeroot
+faudio
+fd
 feh
 ffmpeg
 ffmpegthumbs
@@ -183,6 +187,7 @@ filelight
 filesystem
 findutils
 firefox
+fish
 flac
 flashrom
 flatpak
@@ -441,6 +446,7 @@ kwindowsystem
 kwrited
 kxmlgui
 l-smash
+ladspa
 lame
 lapack
 lcms2
@@ -450,6 +456,7 @@ lenopow
 lensfun
 leptonica
 less
+lib32-acl
 lib32-alsa-lib
 lib32-alsa-oss
 lib32-alsa-plugins
@@ -460,18 +467,24 @@ lib32-db
 lib32-dbus
 lib32-e2fsprogs
 lib32-expat
+lib32-faudio
 lib32-flac
 lib32-fluidsynth
+lib32-fontconfig
+lib32-freetype2
 lib32-gcc-libs
+lib32-gettext
 lib32-glew
 lib32-glib2
 lib32-glibc
 lib32-glu
 lib32-gstreamer
+lib32-harfbuzz
 lib32-icu
 lib32-jack
 lib32-keyutils
 lib32-krb5
+lib32-lcms2
 lib32-libasyncns
 lib32-libcanberra
 lib32-libcanberra-gstreamer
@@ -486,11 +499,15 @@ lib32-libgpg-error
 lib32-libice
 lib32-libidn2
 lib32-libinstpatch
+lib32-libjpeg-turbo
 lib32-libldap
 lib32-libltdl
+lib32-libnl
 lib32-libnsl
 lib32-libogg
+lib32-libpcap
 lib32-libpciaccess
+lib32-libpng
 lib32-libpng12
 lib32-libpsl
 lib32-libpulse
@@ -498,6 +515,7 @@ lib32-libsm
 lib32-libsndfile
 lib32-libssh2
 lib32-libtasn1
+lib32-libtiff
 lib32-libtirpc
 lib32-libunistring
 lib32-libunwind
@@ -519,6 +537,7 @@ lib32-libxfixes
 lib32-libxi
 lib32-libxml2
 lib32-libxmu
+lib32-libxrandr
 lib32-libxrender
 lib32-libxshmfence
 lib32-libxss
@@ -675,6 +694,7 @@ libldap
 liblouis
 liblqr
 liblrdf
+libluv
 libmad
 libmatroska
 libmbim
@@ -768,6 +788,7 @@ libstemmer
 libtar
 libtasn1
 libteam
+libtermkey
 libthai
 libtheora
 libtiff
@@ -796,6 +817,7 @@ libvisio
 libvisual
 libvorbis
 libvpx
+libvterm
 libwacom
 libwebp
 libwmf
@@ -856,6 +878,7 @@ linux54
 linux54-nvidia-455xx
 linux54-virtualbox-host-modules
 linux58
+linux58-headers
 linux58-nvidia-455xx
 lirc
 llvm-libs
@@ -903,6 +926,7 @@ manjaro-system
 manjaro-wallpapers-18.0
 manjaro-zsh-config
 mathjax
+mbedtls
 md4c
 mdadm
 media-player-info
@@ -933,10 +957,14 @@ mlt
 mobile-broadband-provider-info
 modemmanager
 modemmanager-qt
+mongo-c-driver
+mongodb-bin-3.6
+movit
 mpd
 mpfr
 mpg123
 mpv-git
+msgpack-c
 mtdev
 mtpfs
 mujs
@@ -947,6 +975,7 @@ ncdu
 ncurses
 ndctl
 neon
+neovim
 net-snmp
 net-tools
 nettle
@@ -977,6 +1006,7 @@ numlockx
 nvidia-455xx-utils
 nvidia-prime
 oath-toolkit
+obs-hevc-vaapi-git
 ocl-icd
 okular
 oniguruma
@@ -999,6 +1029,7 @@ openssl-1.0
 opensubdiv
 openvdb
 openvpn
+openxr
 optimus-manager-git
 optipng
 opus
@@ -1124,6 +1155,7 @@ pulseaudio-zeroconf
 purpose
 pybind11
 pygtk
+pyside2
 python
 python-apipkg
 python-appdirs
@@ -1198,6 +1230,7 @@ python-resolvelib
 python-retrying
 python-setuptools
 python-sgmllib
+python-shiboken2
 python-sip
 python-six
 python-soupsieve
@@ -1252,7 +1285,7 @@ qt5-webkit
 qt5-websockets
 qt5-x11extras
 qutebrowser
-radeontop
+radeontop-git
 ranger
 raptor
 rasqal
@@ -1293,6 +1326,7 @@ serd
 shaderc
 shadow
 shared-mime-info
+shotcut
 signon-kwallet-extension
 signon-plugin-oauth2
 signon-ui
@@ -1300,6 +1334,7 @@ signond
 skanlite
 skypeforlinux-stable-bin
 slang
+slimbookbattery
 smartmontools
 smbclient
 snapd
@@ -1363,6 +1398,7 @@ thunderbird
 timeshift
 tinyxml
 tlp
+tlp-rdw
 tpm2-tss
 tracker3
 transcode
@@ -1381,6 +1417,7 @@ uchardet
 udiskie
 udisks2
 unarchiver
+unibilium
 unp
 unzip
 upower
@@ -1420,6 +1457,7 @@ webrtc-audio-processing
 wget
 which
 wildmidi
+wine
 wireless-regdb
 wireless_tools
 wmctrl
@@ -1455,6 +1493,7 @@ xf86-video-amdgpu
 xf86-video-ati
 xf86-video-intel
 xf86-video-nouveau
+xf86-video-vesa
 xfconf
 xfsprogs
 xkeyboard-config

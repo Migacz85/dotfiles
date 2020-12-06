@@ -15,6 +15,7 @@ avahi
 b43-fwcutter
 bash
 bat
+bbswitch-dkms-git
 binutils
 bison
 blender
@@ -61,6 +62,7 @@ emovix
 exfat-utils
 f2fs-tools
 fakeroot
+fd
 feh
 ffmpeg
 ffmpegthumbs
@@ -70,6 +72,7 @@ filelight
 filesystem
 findutils
 firefox
+fish
 fwupd
 fzf
 gawk
@@ -203,11 +206,14 @@ milou
 mkinitcpio-openswap
 mobile-broadband-provider-info
 modemmanager
+mongo-c-driver
+mongodb-bin-3.6
 mpd
 mpv-git
 mtpfs
 nano
 ncdu
+neovim
 network-manager-applet
 networkmanager
 networkmanager-openconnect
@@ -225,6 +231,7 @@ ntp
 numlockx
 nvidia-455xx-utils
 nvidia-prime
+obs-hevc-vaapi-git
 okular
 openresolv
 openssh
@@ -274,7 +281,7 @@ qbittorrent
 qt5-imageformats
 qt5-virtualkeyboard
 qutebrowser
-radeontop
+radeontop-git
 ranger
 redshift
 reiserfsprogs
@@ -289,8 +296,10 @@ sddm-breath2-theme
 sddm-kcm
 sed
 shadow
+shotcut
 skanlite
 skypeforlinux-stable-bin
+slimbookbattery
 snapd
 snapd-glib
 spectacle
@@ -343,6 +352,7 @@ wallpapers-2018
 wallpapers-juhraya
 wget
 which
+wine
 wmctrl
 wpa_supplicant
 xdg-desktop-portal
@@ -358,6 +368,7 @@ xf86-video-amdgpu
 xf86-video-ati
 xf86-video-intel
 xf86-video-nouveau
+xf86-video-vesa
 xfsprogs
 xorg-server
 xorg-twm

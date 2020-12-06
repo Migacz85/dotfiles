@@ -56,6 +56,7 @@ emovix
 exfat-utils
 f2fs-tools
 fakeroot
+fd
 feh
 ffmpeg
 ffmpegthumbs
@@ -65,6 +66,7 @@ filelight
 filesystem
 findutils
 firefox
+fish
 fwupd
 fzf
 gawk
@@ -197,10 +199,12 @@ milou
 mkinitcpio-openswap
 mobile-broadband-provider-info
 modemmanager
+mongo-c-driver
 mpd
 mtpfs
 nano
 ncdu
+neovim
 network-manager-applet
 networkmanager
 networkmanager-openconnect
@@ -277,6 +281,7 @@ sddm-breath2-theme
 sddm-kcm
 sed
 shadow
+shotcut
 skanlite
 snapd
 snapd-glib
@@ -329,6 +334,7 @@ wallpapers-2018
 wallpapers-juhraya
 wget
 which
+wine
 wmctrl
 wpa_supplicant
 xdg-desktop-portal
@@ -344,6 +350,7 @@ xf86-video-amdgpu
 xf86-video-ati
 xf86-video-intel
 xf86-video-nouveau
+xf86-video-vesa
 xfsprogs
 xorg-server
 xorg-twm
