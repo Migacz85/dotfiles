@@ -204,8 +204,8 @@ alias gs="cd /home/migacz/.scripts"
 alias gl="cd /srv/http/"
 
 #Tools
-alias ten="trans :en"
-alias tpl="trans :pl"
+alias ten="trans pl:en"
+alias tpl="trans en:pl"
 alias t="cd ~/Downloads/#Income ; pirate-get"
 alias th="echo 'pirate-get - alias to t
 t -R - torrents from last 48h

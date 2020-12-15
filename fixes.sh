@@ -1,15 +1,11 @@
 #Fixes
 
 cat >>~/.bashrc <<EOL
+
  if [ -f ~/.bash_profile ]; then
  source ~/.bash_profile
  fi
- if [ -f /etc/bashrc ]; then
-         . /etc/bashrc
- fi
- if [ -f /etc/bash_completion ]; then
-   . /etc/bash_completion
- fi
+
 EOL
 
 sudo cat >~/etc/ssmtp/ssmtp.conf <<EOL

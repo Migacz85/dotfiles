@@ -2,3 +2,4 @@
 .config/qutebrowser/bookmarks/
 .config/qutebrowser/qsettings/
 .config/qutebrowser/quickmarks
+.config/ranger/plugins

@@ -7,8 +7,11 @@
 ############################################################
 
 # Check what your system have, you can check output using shell command xrandr
+# EXTERNAL_OUTPUT="HDMI-0"
+# INTERNAL_OUTPUT="DP-2"
+
 EXTERNAL_OUTPUT="HDMI-0"
-INTERNAL_OUTPUT="DP-2"
+INTERNAL_OUTPUT="eDP-1-1"
 
 second_display="$EXTERNAL_OUTPUT"
 laptop_display="$INTERNAL_OUTPUT"
@@ -32,19 +35,26 @@ fi
 
 # Only monitor
 if [ $monitor_mode = "all" ]; then
+    echo "Only monitor"
         monitor_mode="EXTERNAL"
         # xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT --mode "2560x1440_50.00" --pos 0x0 --rotate normal 
         xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT --mode "2560x1440" --pos 0x0 --rotate normal 
+
 # Only laptop
 elif [ $monitor_mode = "EXTERNAL" ]; then
+    echo "Only laptop"
         monitor_mode="INTERNAL"
         xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --off
 # Both
 
 else
+    echo "Both"
+    notify-send "Both Screens"
         monitor_mode="all"
-        xrandr --output $EXTERNAL_OUTPUT --mode 2560x1440_50.00 --pos 0x0 --rotate normal --output VIRTUAL1 --off --output $INTERNAL_OUTPUT --primary --mode 1920x1080 --pos 288x1440 --rotate normal
-        #xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --auto --left-of $INTERNAL_OUTPUT
+        xrandr --output "$EXTERNAL_OUTPUT" --mode 2560x1440_50.00 --pos 0x0 --rotate normal --output "$INTERNAL_OUTPUT" --primary --mode 1920x1080 --pos 288x1440 --rotate normal
+        sleep 1
+        xrandr --output HDMI-1-0 --mode 2560x1440_50.00 --pos 0x0 --rotate normal --output eDP-1-1 --primary --mode 1920x1080 --pos 288x1440 --rotate normal
+
 fi
 echo "${monitor_mode}" > /tmp/monitor_mode.dat
 
@@ -62,5 +72,5 @@ i3-msg '[workspace="9"]' move workspace to $second_display
 i3-msg '[workspace="10"]' move workspace to $second_display
 
 #start compton again
-compton --config $PWD/.config/compton/compton.conf
-bash wall.sh
+# compton --config $PWD/.config/compton/compton.conf
+# bash wall.sh
