@@ -12,7 +12,6 @@ export EDITOR=vim
 export VISUAL=vim
 export HISTFILESIZE=-1
 export HISTSIZE=-1
-# export BAT_THEME="OneHalfLight"
 export BAT_THEME="base64"
 export NNN_PLUG='o:fzopen;p:mocplay;d:diffs;m:nmount;n:notes;v:imgviu;t:imgthumb'
 
@@ -59,15 +58,6 @@ export FZF_DEFAULT_OPTS="
      --bind ctrl-i:toggle-preview
      --bind ctrl-l:down
 "
-# export FZF_DEFAULT_OPTS='--bind tab:down --cycle'
-# export FZF_COMPLETION_TRIGGER='*'
-# --bind ctrl-p:up,ctrl-m:down
-# --bind ctrl-p:up,ctrl-m:down
-# --bind 'ctrl-y:execute-silent(copyq copy {+} )'
-# --bind ctrl-a:select-all
-# --bind ctrl-u:half-page-up
-# --bind ctrl-d:half-page-down
-# --extended
 
 #fuzzy cd
 fcd() {
@@ -215,8 +205,8 @@ t -c 'Audio' shpongle
 t -p 5 - display 500 results from all categories'
 "
 alias gitin='/home/migacz/go/src/github.com/isacikgoz/gitin/./gitin'
-alias h=" echo '
 
+alias h=" echo '
 System:
 
 fcd      - fuzzy cd
@@ -255,32 +245,12 @@ win + shift + r - reload
 ####################
 # Pywall - Colors
 # Import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
-
 (cat ~/.cache/wal/sequences &)
-
 # Alternative (blocks terminal for 0-3ms)
-
 cat ~/.cache/wal/sequences
-
 # To add support for TTYs this line can be optionally added.
-
 source ~/.cache/wal/colors-tty.sh
-
 ####################
 # Shell start
-# clear
 motivation
 
-# Run script
-
-# fish 
-# source fish_profile
-
-# screenfetch -n
-# inxi
-# echo " "
-# inxi -w
-# echo " "
-# tput setaf 6; motivation

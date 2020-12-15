@@ -6,12 +6,18 @@
 # Third run of script: Display only on external monitor
 ############################################################
 
-# Check what your system have, you can check output using shell command xrandr
+Check what your system have, you can check output using shell command xrandr
+
 # EXTERNAL_OUTPUT="HDMI-0"
 # INTERNAL_OUTPUT="DP-2"
 
-EXTERNAL_OUTPUT="HDMI-0"
-INTERNAL_OUTPUT="eDP-1-1"
+# Nvidia only:
+# EXTERNAL_OUTPUT="HDMI-0"
+# INTERNAL_OUTPUT="eDP-1-1"
+
+# Hybrid:
+EXTERNAL_OUTPUT="HDMI-1-0"
+INTERNAL_OUTPUT="eDP-1"
 
 second_display="$EXTERNAL_OUTPUT"
 laptop_display="$INTERNAL_OUTPUT"
