@@ -35,7 +35,7 @@ cd ~
 
 4. Make it permanent:
 
-run fix.sh using systemd:
+run startup.sh using systemd:
 https://www.golinuxcloud.com/run-script-at-startup-boot-without-cron-linux/
 
 

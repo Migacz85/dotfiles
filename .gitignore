@@ -3,3 +3,4 @@
 .config/qutebrowser/qsettings/
 .config/qutebrowser/quickmarks
 .config/ranger/plugins
+/.config/picom/yay-bin/
