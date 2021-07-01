@@ -5,6 +5,12 @@
 #sudo pacman -S pdfkt
 #yay common-lang
 #sudo pacman -S bcprov
+ # ~/Downloads/
+ # mkdir kindle
+ # cd kindle
+ # mkdir pdf
+ # mkdir mobi
+ # mkdir txt
 
 # dir=/srv/http/link.html
 # dir=/srv/http/link.txt
@@ -27,7 +33,7 @@ mkdir ~/Downloads/kindle/pdf
 mkdir ~/Downloads/kindle/mobi
 
 cd ~/Downloads/
-notify-send "Converting site on .pdf" "$QUTE_TITLE.pdf"
+notify-send "Converting site on .pdf"
 
 # WKHTMLTOPDF - usable arguments to set
 # --minimum-font-size 30 --header-font-size 33
@@ -37,14 +43,13 @@ notify-send "Converting site on .pdf" "$QUTE_TITLE.pdf"
 # --zoom X.X
 # wkhtmltopdf --margin-left .375in --margin-right .375in --margin-bottom .375in --margin-top .375in --page-width 6in --page-height 9in --load-error-handling ignore --javascript-delay 3333 --enable-forms --footer-center "[page]/[topage]" "${PDF_Combine[@]}" "/MyPath/MyFileName.pdf"
 #--minimum-font-size 30 --header-font-size 33 -s A4
-wkhtmltopdf --minimum-font-size 20 --header-font-size 24 -s A4 "$QUTE_URL" ~/Downloads/kindle/pdf/"$QUTE_TITLE.pdf"
+wkhtmltopdf --minimum-font-size 30 --header-font-size 34 -s A4 "$QUTE_URL" ~/Downloads/kindle/pdf/"$QUTE_TITLE.pdf"
 notify-send "Converting pdf on .mobi"
 ebook-convert  ~/Downloads/kindle/pdf/"$QUTE_TITLE.pdf" ~/Downloads/kindle/mobi/"$QUTE_TITLE.mobi"
 
 # echo "Message Body Here" | mailx -s "Subject" -a  ~/Downloads/kindle/mobi/"$QUTE_TITLE.mobi" migacz85_5e5754@kindle.com
-# echo "Message Body Here" | mailx -s "Subject" -a  ~/Downloads/kindle/pdf/"$QUTE_TITLE.pdf" migacz85_5e5754@kindle.com
-# notify-send "Site sent on kindle"
-
+echo "Message Body Here" | mailx -s "Subject" -a  ~/Downloads/kindle/pdf/"$QUTE_TITLE.pdf" migacz85_5e5754@kindle.com
+notify-send "Sent on kindle"
 
 echo '
 <!DOCTYPE html>

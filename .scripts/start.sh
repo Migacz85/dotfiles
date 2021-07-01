@@ -3,6 +3,7 @@
 
 source ~/.bash_profile
 
+sleep 4
 is_window_exist=$(xdotool search -name $1)
 
 
@@ -10,7 +11,9 @@ is_window_exist=$(xdotool search -name $1)
         echo "[$(date)] : this window already running $is_window_exist"
     else
 
-    termite -t $1 -e $2
-    fi
+    termite -t $1 -e $2 &
+    source ~/.bash_profile
+fi
 
-# wal -R
+sleep 1
+# wal -R -n

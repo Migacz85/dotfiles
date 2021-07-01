@@ -47,11 +47,10 @@ Replace migacz with name of your user
 
 ## Brightness can't be adjusted on Nvidia
 # -Dont do this if you plan using optimus-manager-git it will cause black screen on boot.
+
 Create this file:
 /etc/X11/xorg.conf.d/10-brightness.conf 
-
 With: 
-
 Section "Device"
     Identifier     "Device0"
     Driver         "nvidia"

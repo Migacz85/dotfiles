@@ -5,7 +5,7 @@ discharge=$(($(cat /sys/class/power_supply/BAT0/power_now ) / 1000000))
 
 while [ true ]
 do 
-        redshift=$(cat /tmp/redshift_temperature.dat)
+        # redshift=$(cat /tmp/redshift_temperature.dat)
         discharge=$(($(cat /sys/class/power_supply/BAT0/power_now) / 1000000))
         tctl=$(sensors | grep "Tctl:" | awk '{print $2}')
         brightness=$(cat /sys/class/backlight/amdgpu_bl0/brightness)
@@ -15,7 +15,8 @@ do
         # echo "$memory $most_intensive_proces"
 
         if  [[ $(tlp-stat -b | grep power_now | awk '{print $3}') != '' ]]; then
-            echo "🔥$tctl 🔋$discharge 💡$brightness 🌇$redshift 🤔$memory" > /home/migacz/temp
+            echo "🔥$tctl 🔋$discharge 💡$brightness 🤔$memory" > /home/migacz/temp
+            echo "🔥$tctl 🔋$discharge 💡$brightness 🤔$memory" 
         fi
     sleep 2
 

@@ -11,3 +11,10 @@
 #    i3-msg [instance=$open_window] scratchpad show
 #    fi
 # done
+
+i3-msg "[title=^(?!$1).*$ class="Termite" floating] move to scratchpad"
+i3-msg [title="$1" floating] scratchpad show
+i3-msg "[title=$1] floating enable ;"
+
+# i3-msg "[title=$1 floating] move position center "
+# i3-msg "[title=$1 floating] resize set 1200 1000"

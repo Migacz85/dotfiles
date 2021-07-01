@@ -34,3 +34,10 @@ bash /home/migacz/.scripts/capsesc.sh &
 sleep 1
 bash /home/migacz/.scripts/check_temp.sh &
 
+export KDEWM=/usr/bin/i3
+
+sleep 10
+#Mount Windows partitions
+mount /dev/nvme0n1p3 ~/Windows
+mount /dev/nvme1n1p2 ~/Shared
+

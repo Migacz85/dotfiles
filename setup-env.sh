@@ -4,6 +4,7 @@
 #First clone this
 #git clone https://github.com/Migacz85/dotfiles.git --recurse-submodules
 
+
 #Configure mirrors
 sudo pacman-mirrors --fasttrack
 
@@ -111,8 +112,11 @@ pip3 install --user mps-youtube
 pip3 install --user youtube-dl
 yay imgur-screenshot
 
-#Kindle
-yay ssmtp
+#Mail
+# https://wiki.archlinux.org/index.php/Msmtp
+#
+yay msmtp
+chmod 600 ~/.msmtprc
 
 #Bluetooth
 sudo pacman -S bluetooth pulseaudio-bluetooth bluez-utils pulseaudio-alsa
@@ -164,6 +168,7 @@ bash $HOME/dotfiles/.scripts/wall.sh
 wal -R
 xrdb merge ~/.cache/wal/colors.Xresources
 
+bash /home/$USER/.scripts/dwall.sh
 #Translation in shell
 yay translate-shell
 
@@ -190,18 +195,21 @@ sudo npm install js-beautify -g
 #You need to run this command manually after installation
 cd ~/.vim/plugged/command-t/ruby/command-t/ext/command-t && make clean; ruby extconf.rb && make
 
-#Emacs
-sudo npm install -g tern
-#Spacemacs
-# git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 #Doom emacs
+sudo npm install -g tern
+sudo pacman --needed --noconfirm -S ripgrep
+yay prettier mu mbsync-git
 git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 
-bash /home/$USER/.scripts/dwall.sh
+#mail in doom
+mkdir -p ~/Maildir/gmail/
+mkdir -p ~/Maildir/gmail/INBOX
+time mu init --maildir=~/Maildir --my-address='migacz85@gmail.com'
+time mbsync -c ~/.config/mu4e/mbsyncrc -a
+
 
 # Fixes for Legion 5p amd 7 4800h with rtx2060
-
 sudo su
 rmmod pcspkr ; echo "blacklist pcspkr" >>/etc/modprobe.d/blacklist.conf
 

@@ -2,14 +2,35 @@
 # Calling this script will place minified currently focused window in corners
 # of screen
 # dependency: xdotool
+LAPTOP_MONTIOR='eDP-1-1'
+CURRENT_MONITOR=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).output' | cut -d"\"" -f2)
 
 SaveSetting() {
     echo "CurrentPosition=$CurrentPosition
     resolution=$resolution
     size=$size
     floating=$floating
-        " > /home/migacz/.scripts/mwindow.set
+        " > ~/.scripts/mini-window/mwindow.set
 }
+
+    is_terminal_visible=$(xdotool search --name --onlyvisible ^terminal0$)
+    if [[ ! -z $is_terminal_visible ]]; then
+        # If there is terminal 0 open preffer to till with this window
+        i3-msg [title=^terminal5$] focus
+        i3-msg [title=^terminal4$] focus
+        i3-msg [title=^terminal3$] focus
+        i3-msg [title=^terminal2$] focus
+        i3-msg [title=^terminal1$] focus
+        i3-msg [title=^terminal0$] focus
+        i3-msg [instance=^gl$] move workspace current
+        # i3-msg [instance=^gl$] resize set 500 0
+        i3-msg [instance=^gl$] split h
+    else
+        echo "nomatch"
+        i3-msg [instance=^gl$] move workspace current
+        i3-msg [instance=^gl$] split h
+    fi
+
 
 # Double check - Run only on mpv
 # i3-msg [class="firefox"] focus
@@ -87,7 +108,6 @@ current_window_class=$(xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | c
     Y=$((HEIGHT/4))
 
     # CHANGE SETTINGS
-
     # Resolution
     #TODO detect resolution of screen where script is executed
     if [[ $1 == r ]] && [[ $2 == "qhd" ]]; then
@@ -95,15 +115,16 @@ current_window_class=$(xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | c
         SaveSetting
     fi
 
-    if [[ $1 == r ]] && [[ $2 == "fhd" ]]; then
+    if [[ $LAPTOP_MONITOR != $SYSTEM_MONITOR ]]; then
+        resolution="qhd-rotated"
+        SaveSetting
+    fi
+
+    if [[ $LAPTOP_MONITOR == $SYSTEM_MONITOR ]]; then
         resolution="fhd"
         SaveSetting
     fi
 
-    if [[ $1 == r ]] && [[ $2 == "qhd-rotated" ]]; then
-        resolution="fhd-rotated"
-        SaveSetting
-    fi
 
 
     if [[ $resolution == "fhd" ]]; then
@@ -117,13 +138,12 @@ current_window_class=$(xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | c
     fi
 
     if [[ $resolution == "qhd-rotated" ]]; then
-        HEIGHT=2560
-        WEIGHT=1440
+        HEIGHT=2550
+        WEIGHT=2250
     fi
 
 
-    if [[ $1 == "p" ]]; then
-        # Set window position to given parameter 1, 2, 3 or 4
+    if [[ $1 == "p" ]]; then # Set window position to given parameter 1, 2, 3 or 4
         CurrentPosition=$2
         SaveSetting
     fi
@@ -143,8 +163,8 @@ current_window_class=$(xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | c
     #SET POSITION OF WINDOW
 
     RIGHT=$(($WIDTH-$newWindowHeight-20))
-    EXTRAMARGIN=300
-    BOTTOM=$(($HEIGHT-$newWindowWidth-40 ))
+    EXTRAMARGIN=100
+    BOTTOM=$(($HEIGHT-$newWindowWidth-20 ))
 
 
     i3-msg [class="mpv"] focus
@@ -161,6 +181,16 @@ current_window_class=$(xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | c
         fi
     fi
 
+    # left top on rotated qhd
+    # xdotool windowmove 56623106 1930 10
+    # right top
+    # xdotool windowmove 56623106 2870 10
+    # right down
+    # xdotool windowmove 56623106 2850 2250
+    # left down
+    # xdotool windowmove 56623106 1930 2250
+
+
     if [[ $CurrentPosition == 1 ]]; then
         xdotool windowmove $current $RIGHT 20
     fi
@@ -176,4 +206,6 @@ current_window_class=$(xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | c
 
     xdotool windowsize $(xdotool getwindowfocus) $newWindowHeight $newWindowWidth
 
-    # i3-msg focus mode_toggle
+    #After moving the mini-window remove focus from it
+    # sleep 1
+    i3-msg focus mode_toggle

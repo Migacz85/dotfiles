@@ -3,17 +3,24 @@
 
 # Envs
 PATH=$PATH:$HOME/.scripts
-PATH=$PATH:$HOME/.scripts/power
+for d in $HOME/.scripts/*/; do
+    PATH+=":$d"
+done
+
 PATH=${PATH}:${HOME}/.local/bin
 PATH=$PATH:/root/.gem/ruby/2.6.0/bin
+PATH=$PATH:~/.emacs.d/bin
 export PROJECT="/home/migacz/Coding/www/5Project"
-export BROWSER="qutebrowser"
+# export BROWSER="qutebrowser"
 export EDITOR=vim
 export VISUAL=vim
 export HISTFILESIZE=-1
 export HISTSIZE=-1
-export BAT_THEME="base64"
+export BAT_THEME="Monokai Extended Light" #dark
+export BAT_THEME="base64" #light
 export NNN_PLUG='o:fzopen;p:mocplay;d:diffs;m:nmount;n:notes;v:imgviu;t:imgthumb'
+
+export QT_STYLE_OVERRIDE=kvantum-dark
 
 #https://www.overclockers.co.uk/forums/threads/firefox-now-supports-hardware-video-acceleration-youtube-etc.18900661/
 export MOZ_X11_EGL=1
@@ -41,12 +48,51 @@ if [[ $(ps --no-header -p $PPID -o comm) =~ termite|yakuake ]]; then
             xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c -set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id $wid; done
 fi
 
+#Enumrate terminals
+
+window_name=$(xdotool getactivewindow)
+window_name=$(xdotool getwindowname $window_name)
+
+if [[ $window_name == 'terminal0' ]]; then
+    PS1='1\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+fi
+
+if [[ "$window_name" == 'terminal1' ]]; then
+    PS1='2\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+fi
+
+if [[ "$window_name" == 'terminal2' ]]; then
+    PS1='3\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+fi
+
+if [[ "$window_name" == 'terminal3' ]]; then
+    PS1='4\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+fi
+
+if [[ "$window_name" == 'terminal4' ]]; then
+    PS1='5\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Fuzzy finder
 ##############
 #source /home/migacz/.fzf/shell/key-bindings.bash
 #source /home/migacz/.fzf/shell/completion.bash
 #if using git-fzf
-# source /usr/share/bash-completion/completions/fzf 
+# source /usr/share/bash-completion/completions/fzf
 
 unset FZF_CTRL_R_OPTS
 unset FZF_DEFAULT_OPTS
@@ -113,7 +159,9 @@ __ehc()
 # Functions
 ##########################
 
+
 function anaconda {
+
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/migacz/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
@@ -161,20 +209,46 @@ function compres {
 }
 
 # Aliases
+alias modes='grep -Ev "#|bindsym"  ~/dotfiles/.config/i3/config | grep "mode"'
+alias ec='cd ~/.config/ && fe'
+alias bindings='grep -Ev "#|mode"  ~/dotfiles/.config/i3/config | grep "\$mod"'
+alias ls='ls --color -h --group-directories-first'
+alias eb="vim /home/migacz/.bash_profile"
+alias sb="source /home/migacz/.bash_profile"
+alias y="youtube-dl --extract-audio --audio-format mp3"
+alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+alias ecrypt_file='gpg2 -c'
+
+alias pd='pandoc "$1" \
+    -f gfm \
+    -V linkcolor:blue \
+    -V geometry:a4paper \
+    -V geometry:margin=2cm \
+    -V mainfont="DejaVu Serif" \
+    -V monofont="DejaVu Sans Mono" \
+    --pdf-engine=xelatex \
+    -o "$2"'
+
+#download mails
+alias dmail='time mbsync -c ~/.config/mu4e/mbsyncrc -a'
+#Youtube
+alias pv='pipe-viewer'
+alias ytdt='pipe-viewer --skip-if-exists  --wget-dl --upload https://www.youtube.com/channel/UCVls1GmFKf6WlTraIb_IaJg -A'
+alias ytluke='pipe-viewer --skip-if-exists  --wget-dl --upload  https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA -A'
+alias ytnews='pipe-viewer --skip-if-exists  --wget-dl --upload  https://www.youtube.com/channel/UCoMdktPbSTixAyNGwb-UYkQ -A --skip-watched'
+alias ytbloomtech='pipe-viewer --skip-if-exists  --wget-dl --upload  https://www.youtube.com/channel/UCrM7B7SL_g1edFOnmj-SDKg -A --skip-watched --get-captions'
+alias ythealth='pipe-viewer --skip-if-exists  --wget-dl --upload  https://www.youtube.com/user/Calisthenicmovement -A'
+alias ytguitar='pipe-viewer --skip-if-exists  --wget-dl --upload  https://www.youtube.com/c/SkyGuitar'
 
 # alias qn='bash /home/migacz/Coding/Bash-scripts/qnote/qnote.sh $1 $2 $3'
 # alias template="git clone https://github.com/Migacz85/web-template.git"
-
+#Shell
 # Python
-alias drefresh="/home/migacz/.emacs.d/bin/doom refresh ."
+
 alias env-init="python -m venv"
 alias env-enter="source venv/bin/activate"
 alias env-show="pip3 freeze --local"
 alias env-install="sudo pip3 install -r"
-
-alias eb="vim /home/migacz/.bash_profile"
-alias sb="source /home/migacz/.bash_profile"
-alias y="youtube-dl --extract-audio --audio-format mp3"
 
 alias kcast="bash  /home/migacz/.scripts/kindle-cast.sh"
 alias speed_reading="cd '/home/migacz/Downloads/git/spread0r' && ./spread0r.pl "
@@ -194,6 +268,7 @@ alias gs="cd /home/migacz/.scripts"
 alias gl="cd /srv/http/"
 
 #Tools
+alias cam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed"
 alias ten="trans pl:en"
 alias tpl="trans en:pl"
 alias t="cd ~/Downloads/#Income ; pirate-get"
@@ -206,51 +281,15 @@ t -p 5 - display 500 results from all categories'
 "
 alias gitin='/home/migacz/go/src/github.com/isacikgoz/gitin/./gitin'
 
-alias h=" echo '
-System:
-
-fcd      - fuzzy cd
-fcdh     - fuzzy cd hidden
-ctr+r    - fuzzy history
-fe       - fuzzy find file and edit
-i3config - Open i3 config file
-compres  - compres all photos in dir you are
-youtube  - rip music
-project  - go to current project folder
-
-Python:
-
-env-init= python -m venv venv - initialize env
-env-enter=source venv/bin/activate - enter to the env
-env-show=pip3 freeze --local - show dependencies in this env
-env-install=sudo pip3 inastall -r - install files from file
-
-Shourtcats:
-
-Control focus:
-win +
-h j k l  left down up right
-
-ctrl+shift+controls - move windows in specific diretion
-ctrl+\  - next window will be vertical    ||
-ctrl+'  - next windowl will be horizontal   =
-
-Standart:
-win + s or w or e - tilling/stacking modes
-win + q - kill window
-win + shift + q - options for system logout/restart/shutdown
-win + shift + r - reload
-'"
 
 ####################
 # Pywall - Colors
 # Import colorscheme from 'wal' asynchronously
-(cat ~/.cache/wal/sequences &)
+# (cat ~/.cache/wal/sequences &)
 # Alternative (blocks terminal for 0-3ms)
-cat ~/.cache/wal/sequences
+# cat ~/.cache/wal/sequences
 # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh
 ####################
 # Shell start
 motivation
-

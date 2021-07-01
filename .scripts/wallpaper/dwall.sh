@@ -16,5 +16,5 @@ rm  $HOME/.config/rofi/colors-rofi-dark.rasi
 cp $HOME/.cache/wal/colors-rofi-dark.rasi $HOME/.config/rofi/colors-rofi-dark.rasi
 
 # wal -i "$dir" --saturate 0.9 -a 70 -n -e -b '#FFFF'
-qutebrowser ':set content.user_stylesheets $HOME/Downloads/git/solarized-everything-css/css/apprentice/apprentice-all-sites.css '
+# qutebrowser ':set content.user_stylesheets $HOME/Downloads/git/solarized-everything-css/css/apprentice/apprentice-all-sites.css '
 # update-css.sh

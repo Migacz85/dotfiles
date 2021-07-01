@@ -3,4 +3,6 @@
 .config/qutebrowser/qsettings/
 .config/qutebrowser/quickmarks
 .config/ranger/plugins
-/.config/picom/yay-bin/
+.config/picom/yay-bin/
+.config/ranger/plugins/
+.config/ranger/plugins/__pycache__

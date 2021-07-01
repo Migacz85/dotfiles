@@ -4,6 +4,7 @@ amd-ucode
 android-tools
 android-udev
 appimagelauncher
+arandr
 ark
 autoconf
 automake

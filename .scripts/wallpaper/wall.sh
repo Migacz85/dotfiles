@@ -4,7 +4,7 @@ DIR="$HOME/.wallpapers"
 
 SaveSetting() {
     echo "Wallnumber=$Wallnumber
-        " > $HOME/.scripts/wallpaper.set
+        " > $HOME/.scripts/wallpaper/wallpaper.set
 }
 
 # if [[ ! -f "wallpaper.set" ]]; then

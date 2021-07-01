@@ -2,6 +2,8 @@
 #sudo pacman -Rs xorg-xwininfo xdotool xprop
 count_windows=$(xdotool search --all --onlyvisible --desktop $(xprop -notype -root _NET_CURRENT_DESKTOP | cut -c 24-) "" 2>/dev/null | wc -l)
 
+CURRENT_MONITOR=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).output' | cut -d"\"" -f2)
+
 # Get the coordinates of the active window's
 #    top-left corner, and the window's size.
 #    This excludes the window decoration.
@@ -21,36 +23,39 @@ choice="matrix"
 
 # notify-send "Current layout:" $choice -h string:x-canonical-private-synchronous:my-notification
 
-if [[ $choice == "matrix" ]]; then
-    if [ $count_windows -eq 1 ]; then
-        i3-msg split v
-    fi
-    if [ $count_windows -eq 2 ]; then
-        if [ $y -gt 500  ]; then
-            i3-msg move right
+if [[ $CURRENT_MONITOR = "eDP-1-1" ]] || [[ $CURRENT_MONITOR = "eDP-1" ]] ; then
+
+    if [[ $choice == "matrix" ]]; then
+        if [ $count_windows -eq 1 ]; then
             i3-msg split v
         fi
+        if [ $count_windows -eq 2 ]; then
+            if [ $y -gt 500  ]; then
+                i3-msg move right
+                i3-msg split v
+            fi
+        fi
+
+        if [ $count_windows -eq 4 ]; then
+            if [ $x -gt 900 ] && [ $y -gt 700  ]; then
+                i3-msg move left
+            fi
+
+            if [ $x -lt 500 ] && [ $y -gt 700 ]; then
+                i3-msg move right
+            fi
+
+            fi
+
     fi
 
-    if [ $count_windows -eq 4 ]; then
-        if [ $x -gt 900 ] && [ $y -gt 700  ]; then
-             i3-msg move left
+    if [[ $choice == "vertical" ]]; then
+        if [ $count_windows -eq 1 ]; then
+        i3-msg split v
         fi
-
-        if [ $x -lt 500 ] && [ $y -gt 700 ]; then
-            i3-msg move right
-        fi
-
     fi
 
 fi
-
-if [[ $choice == "vertical" ]]; then
-    if [ $count_windows -eq 1 ]; then
-    i3-msg split v
-    fi
-fi
-
 # For full hd resolution XxY coordinates
 # |14x14  | 500x14
 # ----------------
