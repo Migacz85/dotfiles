@@ -33,8 +33,7 @@ sudo rmmod pcspkr ; echo "blacklist pcspkr" >>/etc/modprobe.d/blacklist.conf
 bash /home/migacz/.scripts/capsesc.sh &
 sleep 1
 bash /home/migacz/.scripts/check_temp.sh &
-
-export KDEWM=/usr/bin/i3
+# export KDEWM=/usr/bin/i3
 
 sleep 10
 #Mount Windows partitions

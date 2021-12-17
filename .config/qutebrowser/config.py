@@ -22,7 +22,7 @@ c.editor.command = ['konsole', '-e', 'vim {}']
 
 #Setting dark mode
 config.set("colors.webpage.darkmode.enabled", True)
-
+# config.load_autoconfig()
 
 # How to open links in an existing instance if a new one is launched.
 # This happens when e.g. opening a link from a terminal. See
@@ -62,8 +62,7 @@ c.session.lazy_restore = False
 # list) will work.
 # Type: List of String
 
-c.qt.args = ["blink-settings=darkMode=4"]
-
+# c.qt.args = ["blink-settings=darkMode=4"]
 
 
 # Force software rendering for QtWebEngine. This is needed for
@@ -277,6 +276,6 @@ config.bind(',n', 'config-cycle content.user_stylesheets /home/migacz/Downloads/
 config.bind(',k', 'spawn --userscript /home/migacz/.scripts/send-link.sh')
 
 
-config.bind('z', 'hint links spawn mpv {hint-url}')
-config.bind('x', 'spawn mpv {url}')
+config.bind('z', 'hint links spawn mpv --ytdl-format=best {hint-url}')
+config.bind('x', 'spawn mpv --ytdl-format=best {url}')
 config.load_autoconfig(False)

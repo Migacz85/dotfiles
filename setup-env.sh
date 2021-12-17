@@ -108,7 +108,7 @@ yay telegram-desktop
 yay brillo 
 
 # sudo pacman -S spectacle  
-pip3 install --user mps-youtube
+yay straw-viewer
 pip3 install --user youtube-dl
 yay imgur-screenshot
 

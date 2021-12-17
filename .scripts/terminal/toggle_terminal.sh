@@ -17,13 +17,10 @@ is_terminal_open=$(xdotool search --name ^$1$)
         # window_name=$(xdotool getwindowname $window_name)
         # window_name='terminal0'
         # i3-msg move workspace current
-
         sleep 0.5
-
         i3-msg  move up
         i3-msg  move up
         i3-msg  resize set 0 $3
-
         # notify-send "$window_name"
         i3-msg split h
     fi
@@ -31,10 +28,11 @@ is_terminal_open=$(xdotool search --name ^$1$)
 # TOP
 #
 
+
+if [[ $3 == 'top'  ]]; then
     if [[ ! -z $is_terminal_visible ]]; then
         echo "[$(date)] : this window already displayed on this desktop $is_window_exist"
         i3-msg [title=^$1$] move workspace $2
-
     else
         i3-msg [title=^$1$] move workspace current &&
         i3-msg [title=^$1$] move up &&
@@ -43,28 +41,33 @@ is_terminal_open=$(xdotool search --name ^$1$)
         i3-msg [title=^$1$] move up &&
         i3-msg [title=^$1$] move up &&
         # resize shrink height 5px or 5ppt
-        i3-msg [title=^$1$] resize set 0 $3
+        i3-msg [title=^$1$] resize set 0 $4
         i3-msg [title=^$1$] focus
         i3-msg [title=^$1$] split h
+        i3-msg [title=^$1$] focus
+        # i3-msg [title=^$1$] resize set 0 150
 
-        if [[ $count_terminals -ge 1 ]]; then
-            i3-msg [title=^$1$] move down
-            # i3-msg [title=^$1$] split h
-        fi
+        # if [[ $count_terminals -ge 1 ]]; then
+        #     i3-msg [title=^$1$] move down
+        #     i3-msg [title=^$1$] split h
+        # fi
 
     fi
+fi
 
-
-# # Right
-#     if [[ ! -z $is_terminal_visible ]]; then
-#         echo "[$(date)] : this window already displayed on this desktop $is_window_exist"
-#         i3-msg [title=^$1$] move workspace $2
-#     else
-#         i3-msg [title=^$1$] move workspace current &&
-#         # resize shrink height 5px or 5ppt
-#         i3-msg [title=^$1$] focus
-#     fi
-
+if [[ $3 == 'right'  ]]; then
+    if [[ ! -z $is_terminal_visible ]]; then
+        echo "[$(date)] : this window already displayed on this desktop $is_window_exist"
+        i3-msg [title=^$1$] move workspace $2
+    else
+        i3-msg [title=^$1$] move workspace current &&
+        if [[ $count_terminals == 0 ]]; then
+        i3-msg [title=^$1$] move right
+         fi
+        # resize shrink height 5px or 5ppt
+        i3-msg [title=^$1$] focus
+    fi
+fi
 
 ##Right
 #     if [[ $count_terminals == 1 ]]; then

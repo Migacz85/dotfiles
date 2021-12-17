@@ -40,7 +40,7 @@
   exec --no-startup-id udiskie
   exec --no-startup-id rescuetime
   #Apps
-  exec qutebrowser
+  # exec qutebrowser
   exec emacs
   # exec finance.sh
 
@@ -59,7 +59,7 @@
   ##################################################
   bindcode 107                            exec spectacle
   # bindsym Ctrl+shift+s                    exec bash imgur-screenshot */
-  # bindsym Ctrl+s                          exec deepin-screenshot
+  bindsym Ctrl+s                          exec flameshot gui
 
 ## SCRACHPAD and FLOATING rules
   ##################################################
@@ -76,8 +76,8 @@
   for_window [class="Gnome-calculator"]   floating enable;  [class="Gnome-calculator"] resize set 750 400; [class="Gnome-calculator"] move position 1160 5
 
   for_window [class="vlc"]                floating enable
-  for_window [class="vlc"] resize set 400 80;
-  for_window [class="vlc"] move position 1500 950;
+  for_window [class="vlc"] resize set 485 1005;
+  for_window [class="vlc"] move position 1400 20;
 
   # Please notice this resizes are on full hd resolution 1920x1080
   for_window [title="fterm7"] move to scratchpad
@@ -127,8 +127,8 @@
   # bindsym $Mod+Shift+3          exec brillo -u 10000 -U 5
   # bindsym $Mod+Shift+4          exec brillo -u 10000 -A 5
 
-  bindsym KP_Page_Up exec brillo -u 10000 -A 5
-  bindsym KP_Up exec brillo -u 10000 -U 5
+  bindcode 84 exec brillo -u 10000 -U 1 && brightness.sh
+  bindcode 85 exec brillo -u 10000 -A 1 && brightness.sh
 
   # Redshift controll
   bindsym $Mod+Shift+5          exec redshift.sh dec 100
@@ -203,8 +203,8 @@
   exec_always libinput-gestures-setup restart
   exec_always xrdb merge .Xresources
 
-  exec_always bash start.sh "youtube-list" straw-viewer
-  exec_always bash start.sh "ranger" ranger
+  exec_always bash start.sh "youtube-list" pipe-viewer
+  exec_always bash start.sh "ranger" bash
   exec_always bash start.sh "Htop" htop
   exec_always bash start.sh "guake_win" bash
   # exec bash start.sh "fterm7" bash
@@ -215,11 +215,25 @@
 
 ## MODES
     ##################################################
+
+  mode "playlist-manager" {
+          #download Music to Music folder
+          bindsym a exec alexa.sh ; mode "default"
+          bindsym k exec bluetooth off;  mode "default"
+          bindsym m exec ytdm.sh music &; mode "default"
+          bindsym v exec ytdm.sh video &; mode "default"
+          bindsym l exec ytdm.sh mpv ;  mode "default"
+          #Play music from Music folder
+          bindsym p exec vlc --qt-start-minimized ftp://192.168.0.80/Music/; mode "default"
+
+          bindsym Escape mode "default"
+          bindysm $mod+shift+s mode "default"
+          }
+
+  bindsym $mod+shift+p mode "playlist-manager"; exec notify-send "ytdm.sh" "a - alexa.sh \nl - play in mini window \nk - kill alexa \nm - Download music \nv - Download video\np - Play downloaded music"
+
   mode "mini-window" {
-          # bindsym w exec mini-window.sh p 1
-          # bindsym s exec mini-window.sh p 2
-          # bindsym a exec mini-window.sh p 3
-          # bindsym q exec mini-window.sh p 4
+
 
           #Change resolution
           bindsym f exec mini-window.sh r fhd
@@ -246,41 +260,42 @@
           bindsym g exec chromium --app=https://app.grammarly.com/
           bindsym g exec chromium --app=https://gmail.com
           bindsym m exec chromium --app=https://www.google.com/maps
-          bindsym n exec google-chrome --app=http://netflix.com
-          bindsym y exec qutebrowser http://youtube.com --target window
+          bindsym n exec google-chrome-stable --app=http://netflix.com
+          bindsym y exec google-chrome-stable --app=http://youtube.com --target window
+          bindsym f exec google-chrome-stable --app=https://www.fitbit.com/ && mode "default"
 
           bindsym a exec chromium --app=http://amazon.co.uk
           bindsym l exec chromium --app=http://allegro.pl
           bindsym e exec chromium --app=http://ebay.com
-          bindsym b exec qutebrowser --target window https://www.binance.com/en/trade/BTC_USDT
+          bindsym b exec qutebrowser --target window https://www.binance.com/en/trade/BTC_USDT && mode "default"
           bindsym d exec chromium --app=https://drive.google.com/drive/
           bindsym p exec chromium --app=https://docs.google.com/spreadsheets/d/1DgGgCIjHf7obCRTjHyojHxlvOxefrDI-dDbRkyRB2Dg/edit?usp=drive_web&ouid=102626394813106501735
           bindsym Escape  mode "default"
   }
-  bindsym $mod+a mode "app"; exec notify-send "app" "g - gmail \nm - maps \nn - netflix\ny - youtube\na - amazon\nl - allegro\ne - ebay\nb - binance\nd - drive"
+  bindsym $mod+a mode "app"; exec notify-send "app" "f - fitbit \ng - gmail \nm - maps \nn - netflix\ny - youtube\na - amazon\nl - allegro\ne - ebay\nb - binance\nd - drive" && bash split.sh
 
 
-  mode "fn-keys" {
-          bindsym $mod + F1 mode "default"
-  }
-  bindsym $mod + F1  mode "fn-keys";
+  # mode "fn-keys" {
+  #         bindsym $mod + F1 mode "default"
+  # }
+  # bindsym $mod + F1  mode "fn-keys";
 
   bindsym $mod+q                          exec i3-input -F 'exec search_in_qutebrowser.sh "%s"'
 
   mode "open" {
           #Or rather "focus"
           #Mnemonic focusing
-          bindsym q               [title="qutebrowser"] focus; mode "default"
           bindsym e               [class="Emacs"] focus; mode "default"
-          bindsym m               [title="mpv"] focus; mode "default"
-          bindsym c               [title="Binance"] focus; mode "default"
-          bindsym w               [instance="docs.google.com__spreadsheets_d_1DgGgCIjHf7obCRTjHyojHxlvOxefrDI-dDbRkyRB2Dg_edit"] focus; mode "default"
+          bindsym h               [class="Chromium"] focus; mode "default"
           bindsym t               exec bash toggle_telegram.sh "TelegramDesktop" 400 0 ; mode "default"
-          bindsym k               [title="terminal"] focus; mode "default"
+          bindsym m               [title="mpv"] focus; mode "default"
+          bindsym q               [title="qutebrowser"] focus; mode "default"
+          bindsym i               [title="Binance"] focus; mode "default"
+          bindsym w               [instance="docs.google.com__spreadsheets_d_1DgGgCIjHf7obCRTjHyojHxlvOxefrDI-dDbRkyRB2Dg_edit"] focus; mode "default"
+          # bindsym g               [title="terminal"] focus; mode "default"
 
           # bindsym r               [instance="ranger"] focus; mode "default"
           # bindsym h               [instance="Htop"] focus; mode "default"
-          # bindsym g               [class="Google-chrome"] focus; mode "default"
           # bindsym v               [title="VIM"] focus; mode "default"
           # bindsym c               [class="code"] focus; mode "default"
           # bindsym y               exec bash focus_youtube.sh; mode "default"
@@ -289,22 +304,22 @@
           bindsym r exec scrachpad_terminal.sh ranger ;         mode "default"
           bindsym l exec copyq toggle;                          mode "default"
           bindsym y exec scrachpad_terminal.sh youtube-list ;   mode "default"
-          bindsym h exec scrachpad_terminal.sh Htop ;           mode "default"
-          bindsym g exec scrachpad_terminal.sh guake_win;       mode "default"
+          bindsym p exec scrachpad_terminal.sh Htop ;           mode "default"
+          bindsym s exec scrachpad_terminal.sh guake_win;       mode "default"
 
           #Terminals tilled
           set $size 150
-          bindsym 1               exec bash toggle_terminal.sh terminal0 0 $size; mode "default"
-          bindsym 2               exec bash toggle_terminal.sh terminal1 0 $size; mode "default"
-          bindsym 3               exec bash toggle_terminal.sh terminal2 0 $size; mode "default"
-          bindsym 4               exec bash toggle_terminal.sh terminal3 0 $size; mode "default"
-          bindsym 5               exec bash toggle_terminal.sh terminal4 0 $size; mode "default"
-          bindsym 6               exec bash toggle_terminal.sh terminal5 0 $size; mode "default"
+          bindsym 1               exec bash toggle_terminal.sh terminal0 0 right $size; mode "default"
+          bindsym 2               exec bash toggle_terminal.sh terminal1 0 right $size; mode "default"
+          bindsym 3               exec bash toggle_terminal.sh terminal2 0 top $size; mode "default"
+          bindsym 4               exec bash toggle_terminal.sh terminal3 0 top $size; mode "default"
+          bindsym 5               exec bash toggle_terminal.sh terminal4 0 right $size; mode "default"
+          bindsym 6               exec bash toggle_terminal.sh terminal5 0 right $size; mode "default"
 
           bindsym $mod+o mode "default";
           bindsym Escape mode "default"
   }
-  bindsym $mod+o  mode "open";
+  bindsym $mod+o mode "open";
 
   mode "move" {
           bindsym a exec i3ws.sh current;mode "default"
@@ -348,7 +363,7 @@
           bindsym v               exec i3-msg '[title="VIM"]' move workspace current && i3-msg '[class="VIM"]' focus && bash split.sh; mode "default"
           bindsym e               exec i3-msg '[class="Emacs"]' move workspace current && i3-msg '[class="Emacs"]' focus && bash split.sh; mode "default"
           bindsym m               exec i3-msg '[instance=^gl$]' move workspace current && i3-msg '[instance=^gl$]' focus && bash split.sh; mode "default"
-          bindsym g               exec i3-msg '[class="Google-chrome"]' move workspace current && i3-msg '[class="Google-chrome"]' focus && bash split.sh; mode "default"
+          bindsym h               exec i3-msg '[class="Chromium"]' move workspace current && i3-msg '[class="Google-chrome"]' focus && bash split.sh; mode "default"
           bindsym h               exec i3-msg '[instance="Htop"]' move workspace current && i3-msg '[class="Htop"]' focus && bash split.sh; mode "default"
 
           bindsym $mod + b          mode "default"
@@ -439,17 +454,25 @@
 ## AUDIO CONTROLS
   ##################################################
   set $sink `pactl list short sinks | grep RUNNING | cut -f1`
+  # set $sink  0
   # bindsym $mod+Shift+1                    exec --no-startup-id pactl set-sink-volume $sink  -10%
   # bindsym $mod+Shift+2                    exec --no-startup-id pactl set-sink-volume $sink  +10%
   bindsym $mod+Shift+9                    exec playerctl play-pause
 
   bindcode 83                    exec --no-startup-id pactl set-sink-volume $sink  mute
-  bindcode 84                    exec --no-startup-id pactl set-sink-volume $sink  -10%
-  bindcode 85                    exec --no-startup-id pactl set-sink-volume $sink  +10%
+  bindsym KP_Up                     exec --no-startup-id pactl set-sink-volume $sink  -10% && bash volume.sh
+  bindsym KP_Page_Up                     exec --no-startup-id pactl set-sink-volume $sink  +10% && bash volume.sh
   # Media keys
+  bindsym XF86AudioPlay exec playerctl play
+  bindsym XF86AudioPause exec playerctl pause
+  bindsym XF86AudioNext exec playerctl next
+  bindsym XF86AudioPrev exec playerctl previous
+
+
   # bindsym  F9                exec playerctl previous
   # bindsym  F10               exec playerctl play-pause
   # bindsym  F11               exec playerctl next
+
 
 ## COLORS AND APPEARANCE
   ##################################################
@@ -496,12 +519,10 @@
   set $Opacity -a "85"
 
   mode $Theme {
-      # bindsym l exec bash lwall.sh
-      # bindsym d exec bash dwall.sh
       bindsym n exec bash wall.sh next
       bindsym p exec bash wall.sh prev
-
-      # ; exec bash lwall.sh
+      bindsym l exec bash toggle_dark_mode.sh light
+      bindsym d exec bash toggle_dark_mode.sh dark
       bindsym k exec pkill -TERM picom
       bindsym c exec picom --experimental-backends
 
@@ -527,6 +548,8 @@
 #(This works if you installed i3 along with gnome - You can them start using all functionality
 #from gnome in i3)
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec bash /usr/lib/polkit-kde-authentication-agent-1
+
 
 ## BACKUP FOR LOCK PACKAGES
   # You can install them  using pacman:

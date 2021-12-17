@@ -3,7 +3,7 @@
 
 source ~/.bash_profile
 
-sleep 4
+sleep 2
 is_window_exist=$(xdotool search -name $1)
 
 

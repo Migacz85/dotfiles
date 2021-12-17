@@ -43,5 +43,5 @@ toggle-session-monitor-silence=Ctrl+Shift+I
 view-full-screen=Ctrl+F
 
 [Window]
-Height=45
+Height=100
 KeepOpen=true

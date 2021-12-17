@@ -209,6 +209,8 @@ function compres {
 }
 
 # Aliases
+alias setbrowser='xdg-settings set default-web-browser' # chromium.deskotp
+alias ytdmusic='youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0'
 alias modes='grep -Ev "#|bindsym"  ~/dotfiles/.config/i3/config | grep "mode"'
 alias ec='cd ~/.config/ && fe'
 alias bindings='grep -Ev "#|mode"  ~/dotfiles/.config/i3/config | grep "\$mod"'
@@ -269,6 +271,7 @@ alias gl="cd /srv/http/"
 
 #Tools
 alias cam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed"
+alias recordcam="ffmpeg -f v4l2 -framerate 25 -video_size 1920x1080 -i /dev/video0 output.mkv"
 alias ten="trans pl:en"
 alias tpl="trans en:pl"
 alias t="cd ~/Downloads/#Income ; pirate-get"
