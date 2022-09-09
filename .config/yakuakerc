@@ -4,6 +4,9 @@ Translucency=true
 [Desktop Entry]
 DefaultProfile=Dark.profile
 
+[Dialogs]
+FirstRun=false
+
 [DownloadDialog Settings]
 Height 1080=588
 Width 1920=1116
@@ -43,5 +46,4 @@ toggle-session-monitor-silence=Ctrl+Shift+I
 view-full-screen=Ctrl+F
 
 [Window]
-Height=100
-KeepOpen=true
+Height=63

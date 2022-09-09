@@ -12,9 +12,13 @@
 #    fi
 # done
 
-i3-msg "[title=^(?!$1).*$ class="Termite" floating] move to scratchpad"
+# Move every floating window except $1 to scrachpad. 
+# its good if you are not using floating windows at all. 
+# But every floating window will vanish in scrachpad...
+
+i3-msg "[title=^(?!$1).*$ class="Alacritty" floating] move to scratchpad"
+
+# i3-msg "[title=^(?!terminal[0-9]).*$ class="Alacritty" floating] move to scratchpad"
 i3-msg [title="$1" floating] scratchpad show
 i3-msg "[title=$1] floating enable ;"
 
-# i3-msg "[title=$1 floating] move position center "
-# i3-msg "[title=$1 floating] resize set 1200 1000"

@@ -1,8 +1,13 @@
 # ~/.bash_profile
+#!/usr/bin/env python2.7
 #export PATH=/home/migacz/anaconda3/bin:$PATH
+#Set python version
+# alias python=python3.9 
 
 # Envs
 PATH=$PATH:$HOME/.scripts
+PATH=$PATH:$HOME/.scripts/toggle_dark_mode/*
+
 for d in $HOME/.scripts/*/; do
     PATH+=":$d"
 done
@@ -10,20 +15,36 @@ done
 PATH=${PATH}:${HOME}/.local/bin
 PATH=$PATH:/root/.gem/ruby/2.6.0/bin
 PATH=$PATH:~/.emacs.d/bin
-export PROJECT="/home/migacz/Coding/www/5Project"
-# export BROWSER="qutebrowser"
-export EDITOR=vim
-export VISUAL=vim
+# PATH=${PATH}:/opt/local/bin
+
+export BROWSER="qutebrowser"
+export EDITOR=nvim
+export VISUAL=nvim
 export HISTFILESIZE=-1
+# ignore duplicate commands, ignore commands starting with a space
+export HISTCONTROL=ignoreboth:erasedups
+# append to the history instead of overwriting (good for multiple connections)
+shopt -s histappend
 export HISTSIZE=-1
-export BAT_THEME="Monokai Extended Light" #dark
-export BAT_THEME="base64" #light
-export NNN_PLUG='o:fzopen;p:mocplay;d:diffs;m:nmount;n:notes;v:imgviu;t:imgthumb'
+export NNN_PLUG='fusermount -uz '
+export PROMPT_COMMAND='history -a'
+
+__NV_PRIME_RENDER_OFFLOAD=1 
+__GLX_VENDOR_LIBRARY_NAME=nvidia
+__GLX_VENDOR_LIBRARY_NAME=%nvidia%
+
+#export TERM=linux
+#export TERMINFO=/etc/terminfo
+
+
+xcolor_prompt=yes
+force_color_prompt=yes
 
 export QT_STYLE_OVERRIDE=kvantum-dark
 
 #https://www.overclockers.co.uk/forums/threads/firefox-now-supports-hardware-video-acceleration-youtube-etc.18900661/
 export MOZ_X11_EGL=1
+cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status
 
 # Run startx automatically
 ####################
@@ -54,7 +75,7 @@ window_name=$(xdotool getactivewindow)
 window_name=$(xdotool getwindowname $window_name)
 
 if [[ $window_name == 'terminal0' ]]; then
-    PS1='1\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+    PS1='1) 💀\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 fi
 
 if [[ "$window_name" == 'terminal1' ]]; then
@@ -72,20 +93,6 @@ fi
 if [[ "$window_name" == 'terminal4' ]]; then
     PS1='5\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Fuzzy finder
 ##############
@@ -114,7 +121,7 @@ fcd() {
 }
 
 #fuzzy hidden cd
-fhcd() {
+fcdh() {
     local dir
     dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
 }
@@ -184,7 +191,7 @@ function reload_gtk() {
 }
 
 function motivation {
-  NUMBER=$(( ( RANDOM % 200 )  + 1 ))
+  NUMBER=$(( ( RANDOM % 18000000 )  + 1 ))
   #echo "Sentencja numer: " $NUMBER
   p="p"
   q="'"
@@ -192,7 +199,7 @@ function motivation {
   eval "$CMDTXT"
   if [ $NUMBER -eq 50 ]
   then
-  echo  "You should play in lotto - because chance of getting this message is 1 to 200 "
+  echo  "You should play in lotto - because chance of getting this message is 1 to 18 000 000 "
   fi
 }
 
@@ -209,6 +216,27 @@ function compres {
 }
 
 # Aliases
+
+alias kali='ssh migacz@192.168.0.235'
+alias ec='cd ~/.config/ && fcd'
+alias wakeserver='wol b0:5a:da:ab:ac:fd'
+alias marp-start='cd ~/Documents/Presentation/ && npx marp --watch --html true --bespoke.osc=false --bespoke.transition ~/Documents/Presentation/ -p &> ~/Documents/Presentation/marp.log & '
+
+# Server Music Control
+
+# alias vu="ssh migacz@192.168.0.80 'playerctl -p vlc volume 0.1+' "
+# alias vd="ssh migacz@192.168.0.80 'playerctl -p vlc volume 0.1-' "
+# alias ns="ssh migacz@192.168.0.80 'playerctl -p vlc next' "
+# alias ps="ssh migacz@192.168.0.80 'playerctl -p vlc next' "
+# alias play="ssh migacz@192.168.0.80 'playerctl -p vlc play' "
+# alias pause="ssh migacz@192.168.0.80 'playerctl -p vlc pause' "
+# alias nf="ssh migacz@192.168.0.80 'export DISPLAY=:0; /home/migacz/.scripts/play-dir.py next' "
+# alias pf="ssh migacz@192.168.0.80 'export DISPLAY=:0; /home/migacz/.scripts/play-dir.py prev' "
+# alias rf="ssh migacz@192.168.0.80 'export DISPLAY=:0; /home/migacz/.scripts/play-dir.py random' "
+# alias fn="ssh migacz@192.168.0.80 'export DISPLAY=:0; /home/migacz/.scripts/play-dir.py foldername' "
+# alias sn="ssh migacz@192.168.0.80 'export DISPLAY=:0; /home/migacz/.scripts/play-dir.py song-name'"
+
+alias vim='nvim'
 alias setbrowser='xdg-settings set default-web-browser' # chromium.deskotp
 alias ytdmusic='youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0'
 alias modes='grep -Ev "#|bindsym"  ~/dotfiles/.config/i3/config | grep "mode"'
@@ -261,7 +289,7 @@ alias www="cd /home/migacz/Coding/www"
 alias wal="python /home/migacz/.local/bin/wal"
 
 alias run="python3 manage.py runserver localhost:5000"
-alias i3config="emacs /home/migacz/.config/i3/config"
+alias i3config="vim /home/migacz/.config/i3/config"
 
 # Dirs
 alias gd="cd /home/migacz/Downloads"
@@ -274,6 +302,11 @@ alias cam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed"
 alias recordcam="ffmpeg -f v4l2 -framerate 25 -video_size 1920x1080 -i /dev/video0 output.mkv"
 alias ten="trans pl:en"
 alias tpl="trans en:pl"
+
+alias ejp="trans en:ja"
+alias jen="trans ja:en"
+
+
 alias t="cd ~/Downloads/#Income ; pirate-get"
 alias th="echo 'pirate-get - alias to t
 t -R - torrents from last 48h

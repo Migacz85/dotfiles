@@ -164,7 +164,7 @@ current_window_class=$(xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | c
 
     RIGHT=$(($WIDTH-$newWindowHeight-20))
     EXTRAMARGIN=100
-    BOTTOM=$(($HEIGHT-$newWindowWidth-20 ))
+    BOTTOM=$(($HEIGHT-$newWindowWidth-40 ))
 
 
     i3-msg [class="mpv"] focus

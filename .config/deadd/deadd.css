@@ -1,0 +1,135 @@
+/* Dark mode */
+/* Notification center */
+
+.blurredBG, #main_window, .blurredBG.low, .blurredBG.normal {
+    background: rgba(29, 29, 29, 0.5);
+}
+
+.noti-center.time {
+    font-size: 32px;
+}
+
+/* Notifications */
+
+.title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.appname {
+    font-size: 12px;
+}
+
+.time {
+    font-size: 12px;
+}
+
+.blurredBG.notification {
+    background:  rgba(33, 33, 33, 0.5);
+
+}
+
+.blurredBG.notification.critical {
+    background: rgba(255, 0, 0, 0.5);
+}
+
+.notificationInCenter.critical {
+    background: rgba(155, 0, 20, 0.5);
+}
+
+/* Labels */
+
+label {
+    color: rgb(223, 214, 214);
+}
+
+label.notification {
+    color: rgb(237, 224, 224);
+}
+
+label.critical {
+    color: rgb(238, 228, 228);
+}
+.notificationInCenter label.critical {
+    color: rgb(242, 224, 224);
+}
+
+
+/* Buttons */
+
+button {
+    background: transparent;
+    color: #322;
+    border-radius: 3px;
+    border-width: 0px;
+    background-position: 0px 0px;
+    text-shadow: none;
+}
+
+button:hover {
+    border-radius: 3px;
+    background: rgba(0, 20, 20, 0.2);
+    border-width: 0px;
+    border-top: transparent;
+    border-color: #f00;
+    color: #fee;
+}
+
+
+/* Custom Buttons */
+
+.userbutton {
+    background: rgba(20,0,0, 0.15);
+}
+
+.userbuttonlabel {
+    color: #222;
+    font-size: 12px;
+}
+
+.userbutton:hover {
+    background: rgba(201, 200, 200, 0.2);
+}
+
+.userbuttonlabel:hover {
+    color: #111;
+}
+
+button.buttonState1 {
+    background: rgba(235, 232, 232, 0.5);
+}
+
+.userbuttonlabel.buttonState1 {
+    color: rgb(34, 33, 33);
+}
+
+button.buttonState1:hover {
+    background: rgba(235, 232, 232, 0.4);
+}
+
+.userbuttonlabel.buttonState1:hover {
+    color: rgb(221, 215, 215);
+}
+
+button.buttonState2 {
+    background: rgba(255,255,255,0.3);
+}
+
+.userbuttonlabel.buttonState2 {
+    color: rgb(223, 217, 217);
+}
+
+button.buttonState2:hover {
+    background: rgba(20,0,0, 0.3);
+}
+
+.userbuttonlabel.buttonState2:hover {
+    color: rgb(225, 221, 221);
+}
+
+
+/* Images */
+
+image.deadd-noti-center.notification.image {
+    margin-left: 0px;
+}

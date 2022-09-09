@@ -7,10 +7,10 @@
 
 ## PROGRAMS IN VARIABLES
   ##################################################
-  set $terminal termite
+  set $terminal alacritty
   set $terminalArg -e
   set $nameArg -t
-  set $editor emacs
+  set $editor code
 ## SET MODKEY
   set $mod Mod4
   # set $mod Control
@@ -18,10 +18,20 @@
 ## AUTOSTART CUSTOM SCRIPTS & APPS
   ##################################################
   #Scripts:
+  # exec xautolock -time 15 -locker "/home/migacz/.scripts/lock.sh"
+  exec xautolock -time 15 -locker "i3lock -k --bar-indicator -B sigma --time-color=ffffff --layout-color=ffffff  --date-color=ffffff --bar-count 1000 --wrong-color=ffffff --verif-color=ffffff --keyhl-color=AAFFAA "
   exec bash ~/stats/scripts/start_track_laptop_usage.sh
   exec bash battery-test.sh
   exec capsesc.sh
   exec arbtt-capture
+  exec optimus-manager-qt
+  exec xfce4-power-manager
+  exec nordvpn c p2p 
+  exec google-chrome-stable
+
+
+  # exec_always i3-layouts
+
   # exec python $HOME/.scripts/i3wm.py
   # startup.sh - is starting scripts as root
 
@@ -31,17 +41,22 @@
   # exec_always bash ~/stats/scripts/start_power_management.sh
 
   #Bacground Apps:
-  exec --no-startup-id dunst
-  exec --no-startup-id qbittorrent
-  exec --no-startup-id krunner
+  # exec --no-startup-id dunst
+ 
+  exec deadd-notification-center
+  # exec brightness2.sh
+  # exec volume2.sh
+
+  
+  # exec --no-startup-id krunner
   exec --no-startup-id nm-applet
   exec --no-startup-id volumeicon
   exec --no-startup-id copyq
   exec --no-startup-id udiskie
-  exec --no-startup-id rescuetime
+  # exec --no-startup-id rescuetime
   #Apps
   # exec qutebrowser
-  exec emacs
+  exec  code 
   # exec finance.sh
 
 ## LAUNCHER
@@ -49,11 +64,11 @@
   bindsym $mod+d                          exec --no-startup-id "rofi -combi-modi drun,ssh -show combi -font 'mono 10'"
   # bindsym $mod+d                        exec  rofi_dmenu.sh
   # bindsym $mod+d                        exec --no-startup-id "rofi -show drun -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
-  # bindsym $mod+d                        exec --no-startup-id termite - 'fzf-menu' -e 'i3-dmenu-desktop --dmenu=fzf'
+  # bindsym $mtermiteod+d                        exec --no-startup-id termite - 'fzf-menu' -e 'i3-dmenu-desktop --dmenu=fzf'
   # bindsym $mod+d                        exec --no-startup-id i3-dmenu-desktop
 
   bindsym $mod+Return                     exec bash terminal.sh 
-  bindsym $mod+y                          exec
+  # bindsym $mod+y                          exec
 
 ## SCREENSHOT
   ##################################################
@@ -67,6 +82,8 @@
 
   floating_modifier $mod
   # for_window [class="copyq"]             [class="copyq"] resize set 450 1000; move position 1550 30
+  for_window [title="mpv"]                floating enable/tmp/brightness.pid
+
   for_window [title="fzf-menu"]           floating enable
   for_window [class="yakuake"]            floating enable
   for_window [class="Peek"]               floating enable
@@ -76,31 +93,55 @@
   for_window [class="Gnome-calculator"]   floating enable;  [class="Gnome-calculator"] resize set 750 400; [class="Gnome-calculator"] move position 1160 5
 
   for_window [class="vlc"]                floating enable
-  for_window [class="vlc"] resize set 485 1005;
-  for_window [class="vlc"] move position 1400 20;
+  for_window [class="vlc"]                resize set 400 80;
+  for_window [class="vlc"]                move position 1500 950;
 
   # Please notice this resizes are on full hd resolution 1920x1080
-  for_window [title="fterm7"] move to scratchpad
-  for_window [title="fterm7"] resize set 900 900
-  for_window [title="guake_win"] move to scratchpad
-  for_window [title="guake_win"] move position 300 0;
-  for_window [title="guake_win"] resize set 1383 782
-  for_window [title="youtube-list"] move to scratchpad
-  for_window [title="youtube-list"] resize set 1300 900
-  for_window [title="youtube-list"] move position 300 0;
-  for_window [title="Htop"] move to scratchpad
-  for_window [title="Htop"] resize set 1300 900
-  for_window [title="^Htop"] move position 300 0;
-  for_window [title="^ranger$"] resize set 1300 1000
-  for_window [title="^ranger$"] move to scratchpad;
-  for_window [title="^ranger$"] move position 300 0;
+  # for_window [title="fterm7"]             move to scratchpad
+  # for_window [title="fterm7"]             resize set 900 900
+
+  # for_window [title="guake_win"]          move to scratchpad
+  # for_window [title="guake_win"]          move position 300 0;
+  # for_window [title="guake_win"]          resize set 1383 782
+
+  # for_window [title="youtube-list"]       move to scratchpad
+  # for_window [title="youtube-list"]       resize set 1300 900
+  # for_window [title="youtube-list"]       move position 300 0;
+
+  for_window [title="guake_win"]          move to scratchpad
+  for_window [title="guake_win"]          move position 300 0;
+  for_window [title="guake_win"]          resize set 1383 782
+
+  for_window [title="ranger"]          move to scratchpad
+  for_window [title="ranger"]          move position 300 0;
+  for_window [title="ranger"]          resize set 1383 782
+
+
+  for_window [title="youtube-list"]       move to scratchpad
+  for_window [title="youtube-list"]       resize set 1300 900
+  for_window [title="youtube-list"]       move position 300 0;
+
+  for_window [title="Htop"]               move to scratchpad
+  for_window [title="Htop"]               resize set 1300 900
+  for_window [title="^Htop"]              move position 300 0;
 
   # for_window [class=copyq] resize set 400 1000; [class=copyq] move position 1500 30
 
  # Custom behaviour of splitting windows
+ #
+  set $i3l vstack 0.6 to workspace 0
+  
+  # bindsym $mod+Shift+w exec i3l vstack 0.65 left
+
   for_window [class=.*] exec split.sh
   for_window [class="mpv"] focus; exec mini-window.sh
   for_window [class="Emojione-picker"] move position center
+  # for_window [floating] scratchpad show
+
+  # for_window [instance="video"]                floating enable
+  # for_window [instance="video"]                resize set 400 400;
+  # for_window [instance="video"]                move position 500 150;
+
   #F1-F12
   bindsym F1 exec scrachpad_terminal.sh ranger
   bindsym F2 exec copyq toggle;
@@ -127,8 +168,8 @@
   # bindsym $Mod+Shift+3          exec brillo -u 10000 -U 5
   # bindsym $Mod+Shift+4          exec brillo -u 10000 -A 5
 
-  bindcode 84 exec brillo -u 10000 -U 1 && brightness.sh
-  bindcode 85 exec brillo -u 10000 -A 1 && brightness.sh
+  bindcode 84 exec brightness2.sh dec
+  bindcode 85 exec brightness2.sh inc
 
   # Redshift controll
   bindsym $Mod+Shift+5          exec redshift.sh dec 100
@@ -146,7 +187,10 @@
   ##################################################
   # When on nvidia:
   set $laptop-display eDP-1-1
-  set $second-display HDMI-0
+  # Nvidia:
+  # set $second-display HDMI-0 
+  # Hybrid:
+  set $second-display HDMI-1-0
 
   # bindsym $mod+i exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
   bindsym $mod+i exec                     i3rename.sh
@@ -154,17 +198,20 @@
   bindsym $mod+x                          exec i3-msg workspace next;
   bindsym $mod+z                          exec i3-msg workspace prev;
 
+  set $ws1 Tor
+  set $ws2 Chrome
+  set $ws6 Code
   set $ws8 "📊"
   set $ws9 "💵"
 
-  bindsym $mod+1                          workspace number 1
-  bindsym $mod+2                          workspace number 2
+  bindsym $mod+1                          workspace number 1 "Tor"
+  bindsym $mod+2                          workspace number 2 "Chrome"
   bindsym $mod+3                          workspace number 3
   bindsym $mod+4                          workspace number 4
-  bindsym $mod+5                          workspace number 5 "Browsing"
+  bindsym $mod+5                          workspace number 5 
 
   bindsym $mod+6                          workspace number 6
-  bindsym $mod+7                          workspace number 7 ;exec i3-msg [title="terminal0"] move left
+  bindsym $mod+7                          workspace number 7 
   bindsym $mod+8                          workspace number 8 $ws8
   bindsym $mod+9                          workspace number 9 $ws9
   bindsym $mod+0                          workspace number 10
@@ -172,7 +219,10 @@
   # CURRENT_MONITOR=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).output' | cut -d"\"" -f2)
 
   #Programs assigned to workspaces
-  for_window [class="Emacs"] move container to workspace number 6 ✨
+  for_window [class="Tor Browser"] move container to workspace number 1 $ws1
+  for_window [title="Google Chrome"] move container to workspace number 2 $ws2
+  for_window [class="code-oss"] move container to workspace number 6 $ws6
+
   # for_window [class="qutebrowser"] move container to workspace number 5 Browsing
 
   # assign [class="Thunderbird"] $ws9
@@ -199,8 +249,7 @@
   for_window [urgent=latest] focus
 
 ## RESTARTING I3
-  ##################################################
-  exec_always libinput-gestures-setup restart
+ exec_always libinput-gestures-setup restart
   exec_always xrdb merge .Xresources
 
   exec_always bash start.sh "youtube-list" pipe-viewer
@@ -233,8 +282,6 @@
   bindsym $mod+shift+p mode "playlist-manager"; exec notify-send "ytdm.sh" "a - alexa.sh \nl - play in mini window \nk - kill alexa \nm - Download music \nv - Download video\np - Play downloaded music"
 
   mode "mini-window" {
-
-
           #Change resolution
           bindsym f exec mini-window.sh r fhd
           bindsym q exec mini-window.sh r qhd
@@ -275,29 +322,35 @@
   bindsym $mod+a mode "app"; exec notify-send "app" "f - fitbit \ng - gmail \nm - maps \nn - netflix\ny - youtube\na - amazon\nl - allegro\ne - ebay\nb - binance\nd - drive" && bash split.sh
 
 
-  # mode "fn-keys" {
-  #         bindsym $mod + F1 mode "default"
-  # }
-  # bindsym $mod + F1  mode "fn-keys";
 
-  bindsym $mod+q                          exec i3-input -F 'exec search_in_qutebrowser.sh "%s"'
+
+  # mode "fn-keys" {
+  # 
+  #         bindsym $mod + f1 mode "default"
+  # }
+  # bindsym $mod + f1  mode "fn-keys";
+
+  bindsym $mod+q                          exec i3-input -f 'exec search_in_qutebrowser.sh "%s"'
 
   mode "open" {
-          #Or rather "focus"
-          #Mnemonic focusing
-          bindsym e               [class="Emacs"] focus; mode "default"
-          bindsym h               [class="Chromium"] focus; mode "default"
+          #or rather "focus"
+          #mnemonic focusing
+
+          bindsym c               [class="code-oss"] focus; mode "default"
+          bindsym h               [class="chromium"] focus; mode "default"
           bindsym t               exec bash toggle_telegram.sh "TelegramDesktop" 400 0 ; mode "default"
+          bindsym w               exec bash toggle_whatsapp.sh "Whatsapp-for-linux" 770 0 ; mode "default"
           bindsym m               [title="mpv"] focus; mode "default"
           bindsym q               [title="qutebrowser"] focus; mode "default"
-          bindsym i               [title="Binance"] focus; mode "default"
+
           bindsym w               [instance="docs.google.com__spreadsheets_d_1DgGgCIjHf7obCRTjHyojHxlvOxefrDI-dDbRkyRB2Dg_edit"] focus; mode "default"
+          bindsym i               [title="Binance"] focus; mode "default"
+          bindsym e               [class="Emacs"] focus; mode "default"
           # bindsym g               [title="terminal"] focus; mode "default"
 
-          # bindsym r               [instance="ranger"] focus; mode "default"
+          bindsym r               [instance="ranger"] focus; mode "default"
           # bindsym h               [instance="Htop"] focus; mode "default"
           # bindsym v               [title="VIM"] focus; mode "default"
-          # bindsym c               [class="code"] focus; mode "default"
           # bindsym y               exec bash focus_youtube.sh; mode "default"
 
           #F1-F12
@@ -311,15 +364,41 @@
           set $size 150
           bindsym 1               exec bash toggle_terminal.sh terminal0 0 right $size; mode "default"
           bindsym 2               exec bash toggle_terminal.sh terminal1 0 right $size; mode "default"
-          bindsym 3               exec bash toggle_terminal.sh terminal2 0 top $size; mode "default"
-          bindsym 4               exec bash toggle_terminal.sh terminal3 0 top $size; mode "default"
+          bindsym 3               exec bash toggle_terminal.sh terminal2 0 down $size; mode "default"
+          bindsym 4               exec bash toggle_terminal.sh terminal3 0 down $size; mode "default"
           bindsym 5               exec bash toggle_terminal.sh terminal4 0 right $size; mode "default"
-          bindsym 6               exec bash toggle_terminal.sh terminal5 0 right $size; mode "default"
+          bindsym 6               exec bash toggle_terminal.sh terminal5 0 right $size; mOde "default"
 
           bindsym $mod+o mode "default";
           bindsym Escape mode "default"
   }
   bindsym $mod+o mode "open";
+
+  #mode "move" {
+  #        bindsym a exec i3ws.sh current;mode "default"
+  #        bindsym o exec i3ws.sh order;mode "default"
+  #        bindsym 1 move container to workspace number 1;mode "default"
+  #        bindsym 2 move container to workspace number 2;mode "default"
+  #        bindsym 3 move container to workspace number 3;mode "default"
+  #        bindsym 4 move container to workspace number 4;mode "default"
+  #        bindsym 5 move container to workspace number 5;mode "default"
+  #        bindsym 6 move container to workspace number 6;mode "default"
+  #        bindsym 7 move container to workspace number 7;mode "default"
+  #        bindsym 8 move container to workspace number 8;mode "default"
+  #        bindsym 9 move container to workspace number 9;mode "default"
+  #        #Terminals tilled
+  #        set $size 150
+  #        bindsym 1               exec bash toggle_terminal.sh terminal0 0 right $size; mode "default"
+  #        bindsym 2               exec bash toggle_terminal.sh terminal1 0 right $size; mode "default"
+  #        bindsym 3               exec bash toggle_terminal.sh terminal2 0 top $size; mode "default"
+  #        bindsym 4               exec bash toggle_terminal.sh terminal3 0 top $size; mode "default"
+  #        bindsym 5               exec bash toggle_terminal.sh terminal4 0 right $size; mode "default"
+  #        bindsym 6               exec bash toggle_terminal.sh terminal5 0 right $size; mode "default"
+
+          # bindsym $mod+o mode "default";
+          # bindsym Escape mode "default"
+  # }
+  # bindsym $mod+o mode "open";
 
   mode "move" {
           bindsym a exec i3ws.sh current;mode "default"
@@ -357,16 +436,18 @@
           bindsym w               exec i3ws.sh order;       mode "default"
           bindsym k               exec i3ws.sh konsole;     mode "default"
 
-          bindsym r               exec i3-msg '[instance="ranger"]' move workspace current; mode "default"
-          bindsym q               exec i3-msg '[class="qutebrowser"]' move workspace current && i3-msg '[class="qutebrowser"]' focus && bash split.sh ; mode "default"
-          bindsym t               exec i3-msg '[class="TelegramDesktop"]' move workspace current && i3-msg '[class="TelegramDesktop"]' focus && bash split.sh; mode "default"; exec i3-msg [class="TelegramDesktop"] resize set 400
-          bindsym v               exec i3-msg '[title="VIM"]' move workspace current && i3-msg '[class="VIM"]' focus && bash split.sh; mode "default"
-          bindsym e               exec i3-msg '[class="Emacs"]' move workspace current && i3-msg '[class="Emacs"]' focus && bash split.sh; mode "default"
-          bindsym m               exec i3-msg '[instance=^gl$]' move workspace current && i3-msg '[instance=^gl$]' focus && bash split.sh; mode "default"
-          bindsym h               exec i3-msg '[class="Chromium"]' move workspace current && i3-msg '[class="Google-chrome"]' focus && bash split.sh; mode "default"
-          bindsym h               exec i3-msg '[instance="Htop"]' move workspace current && i3-msg '[class="Htop"]' focus && bash split.sh; mode "default"
+          bindsym q               exec i3-msg '[class="qutebrowser"]' move workspace current && i3-msg '[class="qutebrowser"]' focus ; mode "default"
+          bindsym t               exec i3-msg '[class="TelegramDesktop"]' move workspace current && i3-msg '[class="TelegramDesktop"]' focus; mode "default"; exec i3-msg [class="TelegramDesktop"] resize set 400
+          bindsym e               exec i3-msg '[class="Emacs"]' move workspace current && i3-msg '[class="Emacs"]' focus ; mode "default"
+          bindsym m               exec i3-msg '[instance=^gl$]' move workspace current && i3-msg '[instance=^gl$]' focus ; mode "default"
+          bindsym h               exec i3-msg '[class="Google-chrome"]' move workspace current && i3-msg '[class="Google-chrome"]' focus ; mode "default"
+          bindsym c               exec i3-msg '[class="code-oss"]' move workspace current && i3-msg '[class="code-oss"]' focus ; mode "default"
+          bindsym y               exec i3-msg '[title="YouTube - Google Chrome"]' move workspace current; mode "default"
+
+          # bindsym h               exec i3-msg '[instance="Htop"]' move workspace current && i3-msg '[class="Htop"]' focus ; mode "default"
 
           bindsym $mod + b          mode "default"
+          bindsym Escape            mode "default"
   }
   bindsym $mod + b mode "bring"; exec notify-send "Bring programs on current ws" "a - all on current ws\nw - all programs on workspaces\nk- all konsoles\nr - Ranger\nb - qutebrowser\nt - telegram\nv - vim\nz - mpv"
 
@@ -379,7 +460,6 @@
     bindsym b exec $editor /home/migacz/.bash_profile
     bindsym r exec $editor /home/migacz/.config/ranger/rc.conf
     bindsym x exec $editor /home/migacz/.Xresources
-    bindsym l exec 'sudo vim /etc/systemd/logind.conf'; exec sleep  $sleep  && xdotool key 'ctrl+Down' key 'ctrl+Up' ; mode default
 
     bindsym $mod + Shift + f;mode "default"
     bindsym Escape;mode "default"
@@ -412,15 +492,25 @@
   bindsym $mod+j                          focus down
   bindsym $mod+k                          focus up
   bindsym $mod+l                          focus right
+
   # move focused window
+  
   bindsym $mod+Shift+h                    move left
   bindsym $mod+Shift+j                    move down
   bindsym $mod+Shift+k                    move up;
   bindsym $mod+Shift+l                    move right;
+
   bindsym $mod+Shift+Left                 move left
   bindsym $mod+Shift+Down                 move down
   bindsym $mod+Shift+Up                   move up
   bindsym $mod+Shift+Right                move right
+
+  # bindsym $mod+Shift+h                   exec i3l move left
+  # bindsym $mod+Shift+k                   exec i3l move up
+  # bindsym $mod+Shift+j                   exec i3l move down
+  # bindsym $mod+Shift+l                   exec i3l move right
+
+
   # alternatively, you can use the cursor keys:
   bindsym $mod+Left                       focus left
   bindsym $mod+Down                       focus down
@@ -460,11 +550,10 @@
   bindsym $mod+Shift+9                    exec playerctl play-pause
 
   bindcode 83                    exec --no-startup-id pactl set-sink-volume $sink  mute
-  bindsym KP_Up                     exec --no-startup-id pactl set-sink-volume $sink  -10% && bash volume.sh
-  bindsym KP_Page_Up                     exec --no-startup-id pactl set-sink-volume $sink  +10% && bash volume.sh
+  bindsym KP_Up                     exec --no-startup-id volume2.sh dec
+  bindsym KP_Page_Up                     exec --no-startup-id volume2.sh inc
   # Media keys
-  bindsym XF86AudioPlay exec playerctl play
-  bindsym XF86AudioPause exec playerctl pause
+  bindsym XF86AudioPlay exec playerctl play bindsym XF86AudioPause exec playerctl pause
   bindsym XF86AudioNext exec playerctl next
   bindsym XF86AudioPrev exec playerctl previous
 
@@ -481,15 +570,21 @@
   # font pango:DejaVu Sans Mono 10
   # font -misc-fixed-medium-r-normal--14-120-75-75-C-70-iso10646-1
 
-  # smart_gaps on
-  gaps inner 0
-  gaps outer 0
+  smart_gaps on
+  gaps inner 3
+  gaps outer 3
 
   bindsym $mod+shift+7                    gaps inner current plus 5
   bindsym $mod+shift+8                    gaps inner current minus 5
 
-  new_window 1pixel
   default_border pixel 1
+
+  # for_window [class=".*"] border pixel 0
+   
+
+  smart_borders on
+  # border_radius 5
+  smart_borders no_gaps
 
   # # Set colors from Xresources
   # set_from_resource $fg i3wm.color2 #f0f0f0
@@ -502,6 +597,12 @@
   # client.urgent           $bg     $bg     $fg  $bg       $bg
   # client.placeholder      $bg     $bg     $fg  $bg       $bg
   # client.background       $bg
+
+client.focused                  #333333         #333333         #37B4CF         $coloratt       #A3BE8C
+client.focused_inactive         #333333         #333333         #3097AE         $coloratt       #000000
+client.unfocused                #333333         #000000         #1C4053         $coloratt       #000000
+client.urgent                   #2f343a         #900000         #AB2D2D         $coloratt       #900000
+client.placeholder              #37B4CF         #000000         #ffffff         $coloratt       #0c0c0c
 
   # Set Wallpaper
   exec_always bash wall.sh
@@ -518,11 +619,12 @@
   set $UpdateCss " insert.sh /home/migacz/Downloads/git/solarized-everything-css/css/wall.css /home/migacz/.cache/wal/colors.css"
   set $Opacity -a "85"
 
-  mode $Theme {
+ mode $Theme {
       bindsym n exec bash wall.sh next
       bindsym p exec bash wall.sh prev
-      bindsym l exec bash toggle_dark_mode.sh light
-      bindsym d exec bash toggle_dark_mode.sh dark
+      bindsym l exec bash toggle_dark_mode.sh light; mode "default"
+      bindsym d exec bash toggle_dark_mode.sh dark; mode "default"
+
       bindsym k exec pkill -TERM picom
       bindsym c exec picom --experimental-backends
 
@@ -532,85 +634,14 @@
 
   bindsym $mod+t mode $Theme; exec notify-send "Theme settings" " n - next wallpaper\n p - previous wallpaper\n l - light theme\n d - dark theme\n k - kill compton \n c - turn on compton" -h string:x-canonical-private-synchronous:my-notification
 
-## SYSTEM BAR
-  bar {
-          status_command i3status  -c ~/.config/i3/i3status.conf
-  }
 
-## FIXES
-  #Bluetooth Fix
-  exec pactl load-module module-bluetooth-discover
+    bar {
+       # status_command i3status -c ~/.config/i3/i3status/i3status
+         status_command i3blocks -c ~/.config/i3/i3blocks.conf
+   }
 
 
-############SOME CODE THAT SHOULD BE DELETED BUT FROM SOME REASON ITS NOT
+  exec rm /tmp/brightness.pid 
+  exec rm /tmp/volume.pid 
+  
 
-#For visual pacman to work:
-#(This works if you installed i3 along with gnome - You can them start using all functionality
-#from gnome in i3)
-#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec bash /usr/lib/polkit-kde-authentication-agent-1
-
-
-## BACKUP FOR LOCK PACKAGES
-  # You can install them  using pacman:
-  # sudo pacman -S  --noconfirm --needed - < "my-manjaro-packages-Qet.txt"
-  # or
-  # cat my-manjaro-pure-pacman-packages-Qqe.lst | xargs pacman -S --needed --noconfirm
-  # exec pacman -Q | awk '{print $1}' > $HOME/dotfiles/.package-list/my-manjaro-packages-Q.txt
-  # exec pacman -Qe | awk '{print $1}' > $HOME/dotfiles/.package-list/my-manjaro-packages-Qe.txt
-  # exec pacman -Qet | awk '{print $1}' > $HOME/dotfiles/.package-list/my-manjaro-packages-Qet.txt
-  # exec pacman -Qqe | grep -v "$(pacman -Qqm)" > $PWD/dotfiles/.package-list/my-manjaro-pure-pacman-packages-Qqe.lst
-  # exec pacman -Qm | awk '{print $1}' > $HOME/dotfiles/.package-list/my-manjaro-AUR-packages-Qm.txt
-
-## F1-F12
-# bindsym F2                            exec notify-send Statistics "`time_count.sh -stats 0 | head -10`"  ;  exec notify-send Statistics "`time_count.sh -stats 0 | tail -5`"
-# bindsym F3                            exec notify-send Statistics "`time_count.sh -stats 7 | head -10`"  ;  exec notify-send Statistics "`time_count.sh -stats 0 | tail -5`"
-# bindsym F9                            exec echo "left" > /home/migacz/.scripts/side.conf           # Display on kindle
-# bindsym F10                           exec termite -e "bash /home/migacz/stats/run.sh"
-
-##
-# #LAPTOP
-# # Workspace 1
-# set $mn1 "a"
-# set $ws1 "1:lap"
-# # Workspace 2
-# set $ws2 "2:lap"
-# set $mn2 "s"
-# # Workspace 3
-#p set $ws3 "3:lap"
-# set $mn3 "d"
-# # Workspace 4
-# set $ws4 "4:lap"
-# set $mn4 "f"
-# # Workspace 5
-# set $ws5 "5:lap"
-# set $mn5 "g"
-# #HDMI
-# # Workspace 6
-# set $ws6 "6:hdmi"
-# set $mn6 "h"
-# # Workspace 7
-# set $ws7 "7:hdmi"
-# set $mn7 "j"
-# # Workspace 8
-# set $ws8 "8:hdmi"
-# set $mn8 "k"
-# # Workspace 9
-# set $ws9 "9:hdmi"
-# set $mn9 "o"
-# # Workspace 10
-# set $ws10 "10:hdmi"
-# set $mn10 "l"
-# # Workspace 12
-# set $ws11 "11: Mail"
-# NUMPAD
-# # Apps Launched with <SUPER> + <KEYPAD 1-9>
-# bindsym $mod+KP_End exec $myTerm -e lynx -cfg=~/.lynx.cfg -lss=~/.lynx.lss http://www.distrowatch.com
-# bindsym $mod+KP_Down exec $myTerm -e sh ./scripts/googler-script.sh
-# bindsym $mod+KP_Page_Down exec $myTerm -e newsboat
-# bindsym $mod+KP_Left exec $myTerm -e rtv
-# bindsym $mod+KP_Begin exec $myTerm -e neomutt
-# bindsym $mod+KP_Right exec $myTerm -e twitch-curses
-# bindsym $mod+KP_Home exec $myTerm -e sh ./scripts/haxor-news.sh
-# bindsym $mod+KP_Up exec $myTerm -e toot curses
-# bindsym $mod+KP_Page_Up exec $myTerm -e sh ./scripts/tig-script.sh

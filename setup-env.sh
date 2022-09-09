@@ -65,9 +65,7 @@ yes | sudo pacman -S unzip  --noconfirm
 yes | sudo pacman -S fzf  --noconfirm
 yes | sudo pacman -S stow  --noconfirm
 yes | sudo pacman -S vim  --noconfirm
-yes | sudo pacman -S urxvt-unicode  --noconfirm
-yes | sudo pacman -S termite-nocsd  --noconfirm
-yes | sudo pacman -S termite  --noconfirm
+yes | sudo pacman -S alacritty  --noconfirm
 yes | sudo pacman -S feh  --noconfirm
 yes | sudo pacman -S cmake  --noconfirm
 yes | sudo pacman -S udiskie  --noconfirm
@@ -77,7 +75,6 @@ yes | sudo pacman -S bat  --noconfirm
 yes | sudo pacman -S python-pip  --noconfirm
 yes | sudo pacman -S npm --noconfirm
 yes | sudo pacman -S ruby --noconfirm
-yes | sudo pacman -S dunst  --noconfirm
 yes | sudo pacman -S w3m  --noconfirm
 yes | sudo pacman -S mpv  --noconfirm
 yes | sudo pacman -S network-manager-applet  --noconfirm
@@ -90,6 +87,9 @@ yes | sudo pacman -S xdotool --noconfirm
 # yay  iio-sensor-proxy
 #Emoticons
 yay emojione-picker-git  
+
+# Notifications
+yay deadd-notification-center
 
 sudo pip3 install i3ipc --noconfirm
 #APPS

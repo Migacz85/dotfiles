@@ -12,7 +12,8 @@ clip=$(xsel --clipboard --output)  &&
 
 if [[ $1 == 'music' ]]; then
     notify-send -a "Ytdm.sh" "downloading $clip from yt to /Music"
-    # https://github.com/ytdl-org/youtube-dl#output-template%(date)s/%(upload_date)s
+    # https:/tmp/brightness.pid
+//github.com/ytdl-org/youtube-dl#output-template%(date)s/%(upload_date)s
     yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 $clip -o '~/Music/%(title)s-%(id)s.%(ext)s' > ~/Music/yt.out
 
     out=$(cat yt.out) &&

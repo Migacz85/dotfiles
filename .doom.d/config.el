@@ -59,6 +59,7 @@
 (setq user-mail-address "migacz85@gmail.com"
       user-full-name  "Marcin Mrugacz"
       mu4e-view-prefer-html t
+
       ;; I have my mbsyncrc in a different folder on my system, to keep it separate from the
       ;; mbsyncrc available publicly in my dotfiles. You MUST edit the following line.
       ;; Be sure that the following command is: "mbsync -c ~/.config/mu4e/mbsyncrc -a"

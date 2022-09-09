@@ -9,6 +9,7 @@
 (package! evil-snipe)
 (package! evil-multiedit)
 (package! mu4e)
+;; (package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
 
 ; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)

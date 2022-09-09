@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-terminal='termite'
+terminal='alacritty'
 nameArg='-t'
 
 

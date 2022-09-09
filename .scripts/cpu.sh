@@ -19,6 +19,6 @@ cpu_total_cur=$((user+system+nice+softirq+steal+idle+iowait))
 # compute CPU utilization (%)
 cpu_util=$((100*( cpu_active_cur-cpu_active_prev ) / (cpu_total_cur-cpu_total_prev) ))
 
-printf " Current CPU Utilization : %s\n" "$cpu_util"
+printf "%s\n" "$cpu_util"
 
 exit 0
